@@ -1,0 +1,94 @@
+Brainstroming für Joomla-Komponente: com_Zugmitglieder
+------------------------------------------------------
+Erstellt wird eine Komponente, die die Mitglieder des Zuges verwaltet.
+Und zwar in der Form, dass die Daten pro Zugmitglied einmal zentral erfasst
+und gespeichert werden und dann für die Generierung der Seiten:
+-> Mitgliederliste
+-> Zugkönige
+-> Corpskönige
+-> Mitgliedermeldung an die Bruderschaft
+-> Adressliste des Zuges
+verwendet werden.
+
+Informationen, wie Zugsau, Pfänder, etc. werden auch erfasst.
+
+Layout:
+Vor den Bruderschaftsbeitritt das St. Sebastianus-Logo.
+Vor den TzK.Beitritt das TZK-Logo.
+
+Könnte das Aussehen eines "Personalausweises" haben (mit Schlagschatten).
+-> Bild rechts oben
+-> TzK Logo links oben
+-> Namen und Daten symetrisch verteilt
+-> Einzelne Reiter für Mitgliedsdaten, Königschronik, Hubertuschronik
+
+
+
+Tabellen:
++----------------------+
+| jschuetze_mitglieder |
++----------------------+
+id                  int
+vorname             varchar(64)
+name                varchar(64)
+geburtstag          date
+strasse             varchar(64)    
+plz                 int
+ort                 varchar(32)
+tel                 varchar(32)
+mobile              varchar(32)
+email_priv          varchar(64)
+foto_url            varchar(255)
+religion            varchar(8)
+beitritt            date
+austritt            date
+
++---------------------------+
+| jschuetze_bruderschaft    |
++---------------------------+
+id                  int
+fk_miglied          int 
+mitgliedsnr         int 
+beitritt            date
+austritt            date 
+
+-------------------------------
+| jschuetze_memberfunctions   |
+| Fuktion des Miglieds im Zug |
+| von - bis                   |
+-------------------------------
+id                  int
+fk_mitglied         int
+fk_funktion         int
+funktion_seit       date
+funktion_bis        date        
+
+-----------------------
+| Zug_Auszeichungsart |
+-----------------------
+id
+name    varchar(64) // Zug-König, Corps-König, Verdienstorden, ...
+kind    VarChar(16) // stolz, ehre -> König, ... = stolz, Verdienstorden, ... = ehre
+
+---------------------
+| Zug_Auszeichungen |
+---------------------
+id                      int
+fk_mitglied             int
+fk_auszeichnungsart     int
+auszeichnungsdatum      date        // Datum der Auszeichnung
+periode                 varchar(32) // Saison des Titels z.B. 2011/2012, ...
+
+
+---------------------
+| Zug_aktivstatus   |
+---------------------
+id              int
+status          int // 0=Passives Mitglied  1=Gastmarschierer  2=Anwärter  3=Aktiver Schütze
+
+---------------------
+| Zug_function      |
+---------------------
+id              int
+function        varchar(32)
+art             varchar(32) // Rang (Hauptmann, Leutnant, Spieß, Kassierer, Schütze), Funktion (Webmaster, Koch, Sani, ...)

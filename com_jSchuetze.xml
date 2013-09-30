@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<extension type="component" version="2.5.0" client = "site" method="upgrade">
+
+    <name>com_jschuetze</name> 
+    <version>1.0.0</version>
+    <creationDate>14.02.2013</creationDate>
+    <author>Hanjo Hingsen</author>
+	<authorEmail>webmaster@treu-zu-kaarst.de</authorEmail>
+	<authorUrl>http://www.treu-zu-kaarst.de</authorUrl>
+	<copyright>All rights reserved</copyright>
+	<license>GNU/GPL</license>
+    <description>COM_JSCHUETZE_XML_DESCRIPTION</description>
+    <group>content</group>
+
+    <languages folder="site/language">
+        <language tag="de-DE">de-DE/de-DE.com_jschuetze.ini</language>
+    </languages>
+    
+    <files folder="site"> 
+        <filename>index.html</filename> 
+        <filename>jschuetze.php</filename> 
+        <filename>controller.php</filename> 
+        <folder>assets</folder>
+        <folder>controllers</folder>
+        <folder>models</folder>
+        <folder>views</folder>
+    </files> 
+
+    <install>
+        <sql>
+            <file charset="utf8" driver="mysql">sql/install/install.jschuetze.sql</file>
+            <file charset="utf8" driver="mysqli">sql/install/install.jschuetze.sql</file>
+            <file driver="mysql">sql/install/install.jschuetze.sql</file>
+            <file driver="mysqli">sql/install/install.jschuetze.sql</file>
+        </sql>
+    </install>
+
+    <uninstall>
+        <sql>
+            <file charset="utf8" driver="mysql">sql/uninstall/uninstall.jschuetze.sql</file>
+            <file charset="utf8" driver="mysqli">sql/uninstall/uninstall.jschuetze.sql</file>
+            <file driver="mysql">sql/uninstall/uninstall.jschuetze.sql</file>
+            <file driver="mysqli">sql/uninstall/uninstall.jschuetze.sql</file>
+        </sql>
+    </uninstall>
+
+    <update>
+        <schemas>
+            <schemapath type="mysql">sql/updates</schemapath>
+            <schemapath type="mysqli">sql/updates</schemapath>
+        </schemas>
+    </update>
+    
+   	<!-- Media files -->
+	<media destination="com_jschuetze" folder="media">
+		<folder>images</folder>
+		<folder>css</folder>
+	</media>
+
+    <administration> 
+        <menu link="option=com_jschuetze&amp;view=members" img="components/com_jschuetze/assets/images/jschuetze_16.png">COM_JSCHUETZE</menu> 
+        <!--submenu> 
+			<menu link="option=com_jschuetze&amp;controller=project&amp;view=projects" img="../media/media/images/folder_sm.png">COM_jschuetze_MANAGE_PROJECTS</menu>
+			<menu link="option=com_jschuetze&amp;controller=category&amp;view=categories" img="../media/media/images/folder_sm.png">COM_jschuetze_MANAGE_CATEGORIES</menu>
+			<menu link="option=com_jschuetze&amp;controller=todo&amp;view=todos" img="components/com_jschuetze/assets/images/todo-16.png">COM_jschuetze_MANAGE_TODOS</menu>
+			<menu link="option=com_jschuetze&amp;controller=todo&amp;view=mapping" img="../media/com_jschuetze/images/users.png">COM_jschuetze_MANAGE_MAPPINGS</menu>
+        </submenu--> 
+       
+        <languages folder="admin/language">
+            <language tag="de-DE">de-DE/de-DE.com_jschuetze.ini</language>
+            <language tag="de-DE">de-DE/de-DE.com_jschuetze.sys.ini</language>
+        </languages>
+        
+        <files folder="admin"> 
+            <filename>index.html</filename> 
+            <filename>jschuetze.php</filename> 
+            <filename>controller.php</filename> 
+            <folder>assets</folder>
+            <folder>sql</folder>
+            <folder>controllers</folder>
+            <folder>models</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files> 
+    </administration> 
+    
+    <updateservers>
+        <server type="extension" priority="1" name="jSchuetze Update Site">http://www.treu-zu-kaarst.de/scet_update/com_jschuetze_update.xml</server>
+    </updateservers>
+
+    
+</extension>

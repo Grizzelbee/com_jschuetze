@@ -1,0 +1,33 @@
+<style type="text/css">
+
+.dummy{}
+
+.label{
+    font-size: 1.0em;
+    margin-left:20px;
+    font-weight: bold;
+    float:left;
+    width:300px;
+}
+.myContent{
+    font-size: 1.4em;
+    margin-bottom:6px;
+    width:300px;
+}
+
+.contentblock{
+  text-align: justify;  
+}
+
+.memberimage{
+    vertical-align:top;
+    float:right;
+}
+
+.logoimage{
+    vertical-align:top;
+    float:left;
+    height:300px;
+}
+
+</style>
