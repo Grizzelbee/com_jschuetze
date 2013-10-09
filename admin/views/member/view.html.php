@@ -11,7 +11,7 @@
 defined('_JEXEC') or die('Restricted Access!');
 jimport( 'joomla.application.component.view' );
 
-class jSchuetzeViewMember extends JView
+class jSchuetzeViewMember extends JViewLegacy
 {
 	/**
 	 * display method of ToDo view

@@ -20,12 +20,6 @@ class jSchuetzeViewKoenigschronik extends JViewLegacy
 		$this->params        = $app->getParams();
         $this->model         = $this->getModel(); 
         $this->kings         = $this->model->getChronicle($this->params);
-		//$this->content->text = $this->model->getMemberfiles($this->params);
-		//$dispatcher	         =& JDispatcher::getInstance();
-
-		// Process the content plugins.
-		//JPluginHelper::importPlugin('content');
-		//$results = $dispatcher->trigger('onContentPrepare', array ('com_jschuetze.memberfiles', &$this->content, &$this->params, 0));
 
         parent::display($tpl); 
     } 

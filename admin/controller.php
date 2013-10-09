@@ -12,7 +12,7 @@ defined('_JEXEC') or die( 'Restricted access' );
 // import Joomla controller library
 jimport( 'joomla.application.component.controller' );
 
-class jSCHUETZEController extends JController
+class jSCHUETZEController extends JControllerLegacy
 {
 	function display($cachable = false)
 	{

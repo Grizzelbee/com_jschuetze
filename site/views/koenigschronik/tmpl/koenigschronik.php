@@ -11,10 +11,11 @@
 defined('_JEXEC')or die('Restricted access'); 
 // get document to add scripts or StyleSheets
 $document = JFactory::getDocument();
-$document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik.css');
-// JHtml::_('behavior.tooltip');
-// JHtml::_('behavior.formvalidation');
-// JHtml::_('behavior.keepalive');
+if ( $this->params->get('bildbefestigung') == 1) {
+    $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik_taped.css');
+} else {
+    $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik_nailed.css');
+}
 ?> 
 <div>
     <?php
@@ -29,9 +30,9 @@ $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/ko
     }
     if ( $this->params->get('show_page_heading') == 1) 
     {
-        echo '<h1  style="float:left;">' . $this->params->get('page_heading') .'</h1>';
+        echo '<h1 style="vertical-align:middle;"><center>' . $this->params->get('page_heading') .'<center></h1><p />';
+        echo '<div style="width:100%; text-align: justify; text-justify: newspaper">'. $this->params->get('preamble') . '</div>';
         echo '<p style="clear:both;"></p>';
-        echo '<p style="float:left;">' . $this->params->get('preamble') . '</p>';
     }    
     ?>
 </div>
@@ -39,8 +40,9 @@ $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/ko
     <div class="kingsgallery">
         <?php foreach ($this->kings as $n => $king): ?>
             <div class="fotoframe">
-                <img  src="<?php if (empty($king->foto_url)){ echo $this->params->get('noimage'); }else{ echo $king->foto_url; } ?>" title="" alt="" />
                 <span class="saison"><?php echo $king->periode; ?></span>
+                <img  src="<?php if (empty($king->foto_url)){ echo $this->params->get('noimage'); }else{ echo $king->foto_url; } ?>" title="" alt="" />
+                <span class="bildbefestigung"></span>
                 <span class="name"><?php echo JTEXT::_('COM_JSCHUETZE_MAJESTY').' '.$king->vorname.' '.$king->titel.' '.$king->name; ?></span>
             </div>
         <?php endforeach; ?>

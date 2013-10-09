@@ -20,6 +20,6 @@ $viewName = $this->getName();
         <li<?php if ($viewName == 'states')  echo ' id="active"';?>><a href="<?php echo JRoute::_('index.php?option=com_jschuetze&view=states'); ?>"><?php  echo JText::_( 'COM_JSCHUETZE_MANAGE_STATES' ); ?></a></li>
         <li<?php if ($viewName == 'awards')  echo ' id="active"';?>><a href="<?php echo JRoute::_('index.php?option=com_jschuetze&view=awards'); ?>"><?php  echo JText::_( 'COM_JSCHUETZE_MANAGE_AWARDS' ); ?></a></li>
         <li<?php if ($viewName == 'memberawards')  echo ' id="active"';?>><a href="<?php echo JRoute::_('index.php?option=com_jschuetze&view=memberawards'); ?>"><?php  echo JText::_( 'COM_JSCHUETZE_MANAGE_MEMBERAWARDS' ); ?></a></li>
-        <li<?php if ($viewName == 'memberranks')  echo ' id="active"';?>><a href="<?php echo JRoute::_('index.php?option=com_jschuetze&view=memberranks'); ?>"><?php  echo JText::_( 'COM_JSCHUETZE_MANAGE_MEMBERRANKS' ); ?></a></li>
+        <li<?php if ($viewName == 'memberranks')   echo ' id="active"';?>><a href="<?php echo JRoute::_('index.php?option=com_jschuetze&view=memberranks'); ?>"><?php  echo JText::_( 'COM_JSCHUETZE_MANAGE_MEMBERRANKS' ); ?></a></li>
     </ul>
 </div>

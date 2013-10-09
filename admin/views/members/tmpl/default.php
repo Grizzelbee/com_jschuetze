@@ -57,7 +57,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                 <th width="80" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_BEITRITT', 'beitritt', $this->listDirn, $this->listOrder); ?>
                </th>
-                <th width="10%">
+                <th width="12%">
                     <span>
                         <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ORDERING', 'ordering', $this->listDirn, $this->listOrder); ?>
                         <?php echo JHTML::_('grid.order', $this->items, 'filesave.png', 'members.saveorder'); ?>

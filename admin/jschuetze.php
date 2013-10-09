@@ -5,18 +5,18 @@
 // @file        : admin/jschuetze.php (Joomla-Entry-File)               //
 // @implements  :                                                       //
 // @description : Main-Backend-Entry-File for the jSchuetze-Component   //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.1                                                 //
 // *********************************************************************//
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-define('_jSCHUETZE_VERSION','1.0.0');
+define('_jSCHUETZE_VERSION','1.0.1');
  
 // import joomla controller library
 jimport('joomla.application.component.controller');
  
 // Get an instance of the controller 
-$controller = JController::getInstance('jSCHUETZE');
+$controller = JControllerLegacy::getInstance('jSCHUETZE');
  
 // Perform the Request task
 $controller->execute(JRequest::getCmd('task'));

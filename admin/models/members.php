@@ -45,9 +45,6 @@ class jSchuetzeModelMembers extends JModelList
         $query->join('LEFT', '#__jschuetze_titel       AS rank       ON (memberrank.fk_funktion = rank.id)');
         $query->join('LEFT', '#__jschuetze_titel       AS funktion   ON (member.fk_funktion     = funktion.id)');
         $query->group('member.name, member.vorname, member.strasse, member.beitritt');
-        // Das HAVING scheint überflüssig zu sein. GROUP BY reicht allem Anschein nach.
-        // Mal im Auge behalten und die Theorie testen.
-        //$query->having('memberrank.funktion_seit = MAX( memberrank.funktion_seit ) OR memberrank.funktion_seit IS NULL OR memberrank.funktion_bis = 0');
         
         //Search
         $search = $this->getState('filter.search');

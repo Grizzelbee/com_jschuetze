@@ -21,23 +21,17 @@ $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/me
     if ( $this->params->get('show_headerimage') == 1) 
     {
         if ( $this->params->get('headerimage_left_right') == 1){
-            echo '<img style="float:right;" src="'.$this->params->get('headerimage').'" alt="" title=""/>';
+            echo '<img style="float:right; margin-left:20px;" src="'.$this->params->get('headerimage').'" alt="" title=""/>';
         }else {
-            echo '<img style="float:left;" src="'.$this->params->get('headerimage').'" alt="" title=""/>';
+            echo '<img style="float:left; margin-right:20px;" src="'.$this->params->get('headerimage').'" alt="" title=""/>';
         }
 
     }
     if ( $this->params->get('show_page_heading') == 1) 
     {
-        echo '<h1  style="float:left;">' . $this->params->get('page_heading') .'</h1>';
-        // if ($this->params->get('show_headerimage') == 1) 
-        // {
-            // echo '<h1  style="float:left;">' . $this->params->get('page_heading') .'</h1>';
-        // } else {
-            // echo '<h1  style="float:left;">' . $this->params->get('page_heading') .'</h1>';
-        // }
-    echo '<p style="clear:both;"></p>';
-    echo '<p style="float:left;">' . $this->params->get('preamble') . '</p>';
+        echo '<h1 style="vertical-align:middle;">' . $this->params->get('page_heading') .'</h1><p />';
+        echo '<div style="width:100%; text-align: justify; text-justify: newspaper">'. $this->params->get('preamble') . '</div>';
+        echo '<p style="clear:both;"></p>';
     }    
     ?>
 </div>

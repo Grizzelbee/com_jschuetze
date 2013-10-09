@@ -11,7 +11,7 @@
 defined('_JEXEC') or die( 'Restricted Access' ); 
 jimport('joomla.application.component.view'); 
 
-class jSchuetzeViewMembers extends JView 
+class jSchuetzeViewMembers extends JViewLegacy 
 { 
     function display($tpl = null) 
     {

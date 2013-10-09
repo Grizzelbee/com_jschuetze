@@ -26,6 +26,15 @@
                 <option value="3">COM_JSCHUETZE_BRUDERKOENIG</option>
             </field>
 
+            <field  name        = "bildbefestigung"
+                    type        = "list"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_BILDBEFESTIGUNG_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_BILDBEFESTIGUNG_LABEL_DESC">
+                <option value="1">COM_JSCHUETZE_TAPED</option>
+                <option value="2">COM_JSCHUETZE_NAILED</option>
+            </field>
+
             <field  name        = "ordering"
                     type        = "list"
                     default     = "0"
