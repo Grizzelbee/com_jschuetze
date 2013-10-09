@@ -18,36 +18,41 @@ if ( $this->params->get('bildbefestigung') == 1) {
 }
 $menu      = &JSite::getMenu();
 $active    = $menu->getActive();
-$menutitle = $active->title;
 ?> 
-<div class="componentheading"><b><?php echo $menutitle; ?></b></div>
+<div class="componentheading"><b><?php echo $active->title; ?></b></div>
 <div>
     <?php
     if ( $this->params->get('show_headerimage') == 1) 
     {
         if ( $this->params->get('headerimage_left_right') == 1){
-            echo '<img style="float:right;" src="'.$this->params->get('headerimage').'" alt="" title=""/>';
+        ?>
+            <img style="float:right; padding:1em;" src="<?php echo $this->params->get('headerimage'); ?>" alt="" title=""/>
+        <?php
         }else {
-            echo '<img style="float:left;" src="'.$this->params->get('headerimage').'" alt="" title=""/>';
+        ?>
+            <img style="float:left; padding:1em;" src="<?php echo $this->params->get('headerimage'); ?>" alt="" title=""/>
+        <?php    
         }
 
     }
     if ( $this->params->get('show_page_heading') == 1) 
     {
-        echo '<h1 style="vertical-align:middle;"><center>' . $this->params->get('page_heading') .'<center></h1><p />';
-        echo '<div style="width:100%; text-align: justify; text-justify: newspaper">'. $this->params->get('preamble') . '</div>';
-        echo '<p style="clear:both;"></p>';
+    ?>
+        <h1 style="vertical-align:middle; display:table-cell; padding:2em;"><?php echo $this->params->get('page_heading'); ?></h1><p />
+    <?php    
     }    
     ?>
 </div>
+<div style="width:100%; text-align: justify; text-justify: newspaper"><?php echo $this->params->get('preamble'); ?></div>
+<p style="clear:both;"></p>
 <div class="page_body"> 
     <div class="kingsgallery">
         <?php foreach ($this->kings as $n => $king): ?>
             <div class="fotoframe">
                 <span class="saison"><?php echo $king->periode; ?></span>
-                <img  src="<?php if (empty($king->foto_url)){ echo $this->params->get('noimage'); }else{ echo $king->foto_url; } ?>" title="" alt="" />
+                <img  src="<?php if (empty($king->award_foto_url)){ if (empty($king->member_foto_url)){echo $this->params->get('noimage');} else {echo $king->member_foto_url;} }else{ echo $king->award_foto_url; } ?>" title="" alt="" />
                 <span class="bildbefestigung"></span>
-                <span class="name"><?php echo JTEXT::_('COM_JSCHUETZE_MAJESTY').' '.$king->vorname.' '.$king->titel.' '.$king->name; ?></span>
+                <span class="<?php if(empty($king->zug)){ echo'name';} else { echo 'name_und_zug';} ?>"><?php echo JTEXT::_('COM_JSCHUETZE_MAJESTY').' '.$king->vorname.' '.$king->titel.' '.$king->name; if(!empty($king->zug)){echo '<br />' . $king->zug;} ?></span>
             </div>
         <?php endforeach; ?>
     </div>

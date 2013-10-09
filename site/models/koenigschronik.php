@@ -5,7 +5,7 @@
 // @file        : site/models/koenigschronik.php                        //
 // @implements  : Class jSchuetzeModelKoenigschronik                    //
 // @description : Model for the DB-Manipulation of the jSchuetze        //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.5                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -20,7 +20,7 @@ class jSchuetzeModelKoenigschronik extends JModelLegacy
         $db = JFactory::getDBO(); 
         $query = $db->getQuery(true);
 
-        $query->select('member.vorname, award.titel, member.name, award.periode, award.foto_url');
+        $query->select('member.vorname, award.titel, member.name, award.periode, award.foto_url as award_foto_url, member.foto_url as member_foto_url, zug');
         $query->from('#__jschuetze_mitglieder   AS member');
         $query->join('','#__jschuetze_mitgliedsausz  AS award  ON (award.fk_mitglied     = member.id)');
         $query->join('','#__jschuetze_auszeichnungen AS awards ON (award.fk_auszeichnung = awards.id)');

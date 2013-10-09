@@ -1,6 +1,11 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.0.5
+    [+] Feld Zug bei den Mitgliedsauszeichnugen eingeführt; dadurch kann die Königsseite 
+        auch vernüftig beim Corps oder der Bruderschaft eingesetzt werden.
+2013-05-07
+
 Version 1.0.4
     [+] Die Seiten haben jetzt einen Joomla-konformen Header, der eine gestichelte Linie und 
         den Titel des Menülinks zeigt

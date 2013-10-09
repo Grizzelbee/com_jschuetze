@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_mitgliedsausz` (
    `titel`                 VARCHAR(16),
    `periode`               VARCHAR(32), 
    `foto_url`              VARCHAR(255), 
+   `zug`                   VARCHAR(255),
    PRIMARY KEY (`id`) 
 ); 
 

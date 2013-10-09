@@ -22,17 +22,22 @@ $menutitle = $active->title;
     if ( $this->params->get('show_headerimage') == 1) 
     {
         if ( $this->params->get('headerimage_left_right') == 1){
-            echo '<img style="float:right; margin-left:20px;" src="'.$this->params->get('headerimage').'" alt="" title=""/>';
+    ?>
+            <img style="float:right; margin-left:20px;" src="<?php echo $this->params->get('headerimage'); ?>" alt="" title=""/>
+    <?php
         }else {
-            echo '<img style="float:left; margin-right:20px;" src="'.$this->params->get('headerimage').'" alt="" title=""/>';
+    ?>
+            <img style="float:left; margin-right:20px;" src="<?php echo $this->params->get('headerimage'); ?>" alt="" title=""/>
+    <?php
         }
-
     }
     if ( $this->params->get('show_page_heading') == 1) 
     {
-        echo '<h1 style="vertical-align:middle;">' . $this->params->get('page_heading') .'</h1><p />';
-        echo '<div style="width:100%; text-align: justify; text-justify: newspaper">'. $this->params->get('preamble') . '</div>';
-        echo '<p style="clear:both;"></p>';
+    ?>
+        <h1 style="vertical-align:middle;"><?php echo $this->params->get('page_heading'); ?></h1><p />
+        <div style="width:100%; text-align: justify; text-justify: newspaper"><?php echo $this->params->get('preamble'); ?></div>
+        <p style="clear:both;"></p>
+    <?php
     }    
     ?>
 </div>
