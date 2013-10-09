@@ -6,7 +6,7 @@
 // @implements  :                                                       //
 // @description : Code-Snippet for the Menu-Toolbar which is used in    //
 //                in the List-Views                                     //
-// Version      : 1.0.7                                                 //
+// Version      : 1.1.0                                                 //
 // *********************************************************************//
 // get document to add scripts or StyleSheets
 $document = JFactory::getDocument();
@@ -14,7 +14,7 @@ $document->addStyleSheet(JURI::root().'media/com_jschuetze/css/views.css');
 
 function getNavContainer($activeView)
 {
-	$knownViews = array('members', 'memberawards', 'memberranks', 'lendings', 'assets', 'titles', 'states', 'awards');
+	$knownViews = array('members', 'memberawards', 'memberranks', 'lendings', 'assets', 'titles', 'states', 'awards', 'statistics');
 	$navContainer = '';
     
 	foreach ($knownViews as $v => $view):

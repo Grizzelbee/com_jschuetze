@@ -16,10 +16,14 @@ jimport('joomla.application.component.controllerform');
 class jSchuetzeControllerMemberfiles extends JControllerForm
 {
  
-        public function getModel($name = '', $prefix = '', $config = array('ignore_request' => true))
-        {
-            return parent::getModel($name, $prefix, array('ignore_request' => false));
-        }
+    public function getModel($name = '', $prefix = '', $config = array('ignore_request' => true))
+    {
+        return parent::getModel($name, $prefix, array('ignore_request' => false));
+    }
  
+    public function setPagehit($viewname)
+    {
+        $this->getModel()->setPagehit($viewname);
+    }
 }
 ?>

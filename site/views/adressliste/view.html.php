@@ -15,7 +15,7 @@ class jSchuetzeViewAdressliste extends JViewLegacy
     
     function display($tpl = null) 
     { 
-        $app                 = JFactory::getApplication();
+        $app = JFactory::getApplication();
         // Get the parameters
 		$this->params        = $app->getParams();
         $this->model         = $this->getModel(); 

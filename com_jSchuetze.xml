@@ -2,8 +2,8 @@
 <extension type="component" version="2.5.0" client = "site" method="upgrade">
 
     <name>com_jschuetze</name> 
-    <version>1.0.9</version>
-    <creationDate>2013-07-01</creationDate>
+    <version>1.1.0</version>
+    <creationDate>2013-07-09</creationDate>
     <author>Hanjo Hingsen</author>
 	<authorEmail>webmaster@treu-zu-kaarst.de</authorEmail>
 	<authorUrl>http://www.treu-zu-kaarst.de</authorUrl>
@@ -73,6 +73,7 @@
 			<menu link="option=com_jschuetze&amp;view=titles" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_TITLES</menu>
 			<menu link="option=com_jschuetze&amp;view=states" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_STATES</menu>
 			<menu link="option=com_jschuetze&amp;view=awards" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_AWARDS</menu>
+			<menu link="option=com_jschuetze&amp;view=statistics" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_STATISTICS</menu>
         </submenu> 
        
         <languages folder="admin/language">

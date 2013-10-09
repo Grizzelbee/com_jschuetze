@@ -292,5 +292,27 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         return $content; 
     }
 
+    public function setPagehit($viewname)
+    {
+        $db = JFactory::getDBO(); 
+        
+        $query = $db->getQuery(true);
+        $query->select('*');
+        $query->from('#__jschuetze_statistics');
+        $query->where('viewname = \''.$viewname.'\'');
+        
+        $db->setQuery( $query ); 
+        $row = $db->loadObject(); 
+        
+        if (empty($row)) {
+            $row = (object) array("id"=>null, "viewname"=>"$viewname", "hits"=>"1");
+            $db->insertObject('#__jschuetze_statistics', $row, 'id');
+        } else {
+            $row->hits++;
+            $db->updateObject('#__jschuetze_statistics', $row, 'id');
+        };
+    }
+    
+    
 } 
 ?>

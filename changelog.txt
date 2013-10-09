@@ -1,6 +1,11 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.1.0
+    [+] Neuen Back-End-View für Seitenstatistiken eingebaut.
+        Damit kann man sehen, welche der eingerichteten Seiten wie oft abgerufen wurde.
+2013-07-09
+
 Version 1.0.9
     [+] Neuen Front-End-View für die Adresslisten eingebaut
         -> Es können eine interne Adressliste und ein Liste 

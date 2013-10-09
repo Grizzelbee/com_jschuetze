@@ -13,6 +13,8 @@ defined('_JEXEC')or die('Restricted access');
 $document = JFactory::getDocument();
 // get the active MenuItem
 $active    = $this->menu->getActive();
+$menutitle = $active->title;
+$this->model->setPagehit($menutitle);
 
 switch($this->params->get('bildbefestigung'))
 {
@@ -30,7 +32,7 @@ switch($this->params->get('bildbefestigung'))
         break;
 }
 ?> 
-<div class="componentheading"><b><?php echo $active->title; ?></b></div>
+<div class="componentheading"><b><?php echo $menutitle; ?></b></div>
 <div>
     <?php
     if ( $this->params->get('show_headerimage') == 1) 

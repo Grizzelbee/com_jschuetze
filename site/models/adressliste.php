@@ -5,7 +5,7 @@
 // @file        : site/models/adressliste.php                           //
 // @implements  : Class jSchuetzeModelAdressliste                       //
 // @description : Model for the DB-Manipulation of jSchuetze            //
-// Version      : 1.0.9                                                 //
+// Version      : 1.1.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -289,7 +289,26 @@ class jSchuetzeModelAdressliste extends JModelLegacy
         $dompdf->stream("$filename.pdf");
     }
     
-    
+    public function setPagehit($viewname)
+    {
+        $db = JFactory::getDBO(); 
+        
+        $query = $db->getQuery(true);
+        $query->select('*');
+        $query->from('#__jschuetze_statistics');
+        $query->where('viewname = \''.$viewname.'\'');
+        
+        $db->setQuery( $query ); 
+        $row = $db->loadObject(); 
+        
+        if (empty($row)) {
+            $row = (object) array("id"=>null, "viewname"=>"$viewname", "hits"=>"1");
+            $db->insertObject('#__jschuetze_statistics', $row, 'id');
+        } else {
+            $row->hits++;
+            $db->updateObject('#__jschuetze_statistics', $row, 'id');
+        };
+    }    
 } 
 
 

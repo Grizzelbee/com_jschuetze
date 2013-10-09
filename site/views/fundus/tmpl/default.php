@@ -14,6 +14,8 @@ $document = JFactory::getDocument();
 $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/fundus.css');
 $active    = $this->menu->getActive();
 $menutitle = $active->title;
+$this->model->setPagehit($menutitle);
+
 ?> 
 <div class="componentheading"><b><?php echo $menutitle; ?></b></div>
 <div>
