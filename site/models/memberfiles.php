@@ -5,7 +5,7 @@
 // @file        : site/models/memberfiles.php                           //
 // @implements  : Class jSchuetzeModelMemberfiles                       //
 // @description : Model for the DB-Manipulation of the jSchuetze        //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.2                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -106,6 +106,15 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         return $rows; 
     }     
     
+    function getGermanLongDate($aDate)
+    {
+        $monate=array("01"=>"Januar", "02"=>"Februar", "03"=>"März",      "04"=>"April",   "05"=>"Mai",      "06"=>"Juni", 
+                      "07"=>"Juli",   "08"=>"August",  "09"=>"September", "10"=>"Oktober", "11"=>"November", "12"=>"Dezember");
+              
+        return $monate[date('m', $aDate)].' '.date('Y', $aDate);
+    }
+    
+    
     function getMemberfiles($params) 
     { 
         $members =& $this->getMembersForMemberfile();
@@ -157,12 +166,12 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
             $cont.=$memberImage;
             $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')      .': <div class="myContent">'.$member->vorname.' '.$member->name.'</div></div><br /><br />';
             $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_RANK')      .': <div class="myContent">'.$member->rang.'</div></div><br />';
-            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_RANK_SINCE').': <div class="myContent">'.date('m.Y', strtotime($member->funktion_seit)).'</div></div><br />';
+            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_RANK_SINCE').': <div class="myContent">'.$this->getGermanLongDate(strtotime($member->funktion_seit)).'</div></div><br />';
             if (!empty($member->funktion)){
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_FUNCTION')  .': <div class="myContent">'.$member->funktion.'</div></div><br />';
             }
-            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT')  .': <div class="myContent">'.date('m.Y', strtotime($member->beitritt)).'</div></div><br />';
-            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT_BRUDER').': <div class="myContent">'.date('m.Y', strtotime($member->beitritt_bruder)).'</div></div><br />';
+            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT')  .': <div class="myContent">'.$this->getGermanLongDate(strtotime($member->beitritt)).'</div></div><br />';
+            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT_BRUDER').': <div class="myContent">'.$this->getGermanLongDate(strtotime($member->beitritt_bruder)).'</div></div><br />';
             $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STATUS')   .': <div class="myContent">'.$member->status.'</div></div><br /><br />';
             $cont.=$tabEndtag;
             if (!empty($koenigschronik)){
@@ -181,9 +190,9 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
                 if ($vita->funktion_bis==0) {
                         $enddate = JText::_('COM_JSCHUETZE_TODAY');
                     } else {
-                        $enddate = date('m.Y', strtotime($vita->funktion_bis));
+                        $enddate = $this->getGermanLongDate(strtotime($vita->funktion_bis));
                     };
-                $cont.='<div class="label">'.$vita->name.': <div class="myContent">'.date('m.Y', strtotime($vita->funktion_seit)).' '.JText::_('COM_JSCHUETZE_UNTIL').' '. $enddate.'</div></div><br />';
+                $cont.='<div class="label">'.$vita->name.': <div class="myContent">'.$this->getGermanLongDate(strtotime($vita->funktion_seit)).' '.JText::_('COM_JSCHUETZE_UNTIL').' '. $enddate.'</div></div><br />';
             endforeach;
             $cont.=$tabEndtag;
             if (!$user->guest){
@@ -196,6 +205,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .': <div class="myContent">'.$member->tel.'</div></div><br />';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').': <div class="myContent">'.$member->mobile.'</div></div><br />';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .': <div class="myContent">'.$member->email_priv.'</div></div><br />';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .': <div class="myContent">'.date('d.m.Y', strtotime($member->geburtstag)).'</div></div><br />';
                 $cont.=$tabEndtag;
                 if ($member->fk_lebenspartner != 0){
                     // Tab: Lebenspartner
@@ -211,6 +221,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
                     $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .': <div class="myContent">'.$partner->tel.'</div></div><br />';
                     $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').': <div class="myContent">'.$partner->mobile.'</div></div><br />';
                     $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .': <div class="myContent">'.$partner->email_priv.'</div></div><br />';
+                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .': <div class="myContent">'.date('d.m.Y', strtotime($partner->geburtstag)).'</div></div><br />';
                     $cont.=$tabEndtag;
                 }
             }

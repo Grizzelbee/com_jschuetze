@@ -4,8 +4,7 @@ Erstellt wird eine Komponente, die die Mitglieder des Zuges verwaltet.
 Und zwar in der Form, dass die Daten pro Zugmitglied einmal zentral erfasst
 und gespeichert werden und dann für die Generierung der Seiten:
 -> Mitgliederliste
--> Zugkönige
--> Corpskönige
+-> Zugkönige, Corpskönige
 -> Mitgliedermeldung an die Bruderschaft
 -> Adressliste des Zuges
 verwendet werden.

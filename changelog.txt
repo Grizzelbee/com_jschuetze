@@ -1,0 +1,17 @@
+Changelog für com_jSchuetze
+---------------------------
+
+Version 1.0.2
+    [+] In den Memberfiles fehlten die Geburtstage des Schützen und des Lebenspartners
+    [+] Changelog hinzugefügt
+    [+] Bei den Datumsangaben, wo nur der Monat interessant ist, wird jetzt der deutsche Montasname ausgegeben.
+2013-04-02
+
+Version 1.0.1
+    [+] Königschroniken-View erstellt
+2013-03-25
+
+Version 1.0.0
+    [+] Backend komplett implementiert
+    [+] Memberfiles-View erstellt
+2013-01-05
