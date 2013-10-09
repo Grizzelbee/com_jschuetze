@@ -5,19 +5,30 @@
 // @file        : site/views/koenigschronik/tmpl/koenigschronik.php     //
 // @implements  :                                                       //
 // @description : Entry-File for the jSchuetze-koenigschronik-View      //
-// Version      : 1.0.4                                                 //
+// Version      : 1.0.6                                                 //
 // *********************************************************************//
 //Aufruf nur durch Joomla! zulassen
 defined('_JEXEC')or die('Restricted access'); 
 // get document to add scripts or StyleSheets
 $document = JFactory::getDocument();
-if ( $this->params->get('bildbefestigung') == 1) {
-    $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik_taped.css');
-} else {
-    $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik_nailed.css');
+// get the active MenuItem
+$active    = $this->menu->getActive();
+
+switch($this->params->get('bildbefestigung'))
+{
+    case 1:
+        $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik_taped.css');
+        break;
+    case 2:
+        $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik_nailed.css');
+        break;
+    case 3:
+        $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik_pinned.css');
+        break;
+    case 4:
+        $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik_pinned2.css');
+        break;
 }
-$menu      = &JSite::getMenu();
-$active    = $menu->getActive();
 ?> 
 <div class="componentheading"><b><?php echo $active->title; ?></b></div>
 <div>

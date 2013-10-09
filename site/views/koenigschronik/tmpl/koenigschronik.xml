@@ -33,6 +33,8 @@
                     description = "COM_JSCHUETZE_FIELD_BILDBEFESTIGUNG_LABEL_DESC">
                 <option value="1">COM_JSCHUETZE_TAPED</option>
                 <option value="2">COM_JSCHUETZE_NAILED</option>
+                <option value="3">COM_JSCHUETZE_PINNED</option>
+                <option value="4">COM_JSCHUETZE_PINNED_ABOVE</option>
             </field>
 
             <field  name        = "ordering"

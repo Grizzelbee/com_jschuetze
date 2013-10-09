@@ -5,7 +5,7 @@
 // @file        : admin/controller.php (General-Controller-File)        //
 // @implements  : Class jSchuetze-Controller                            //
 // @description : General (Main-)Controller for the jSchuetze-Component //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.6                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted access' );
@@ -14,7 +14,7 @@ jimport( 'joomla.application.component.controller' );
 
 class jSCHUETZEController extends JControllerLegacy
 {
-	function display($cachable = false)
+	function display($cachable = false, $urlparams=false)
 	{
 		// set default view if not set
 		JRequest::setVar('view', JRequest::getCmd('view', 'members'));

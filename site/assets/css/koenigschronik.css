@@ -1,0 +1,60 @@
+<style type="text/css">
+
+.dummy{}
+
+.kingsgallery{
+    width:100%;
+}
+
+.fotoframe{
+    float:left;
+    margin-top:30px;
+    margin-left:25px;
+    margin-bottom:30px;
+    position: relative;
+    -webkit-box-shadow: #DDD 0px 5px 4px 4px;
+    -webkit-box-shadow: 0px 5px 4px 4px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 5px 4px 4px rgba(0,0,0,0.25);
+    box-shadow: 0px 5px 4px 4px rgba(0,0,0,0.25);
+}
+
+.fotoframe img {
+  display: block;
+  width:250;
+  height:324;
+}
+
+.fotoframe span.saison {
+  font-family: Chalkboard, 'Comic Sans';
+  font-size:170%;
+  font-weight:bold;
+  position: absolute;
+  top: -39px;
+  left: 0;
+  width: 250px; 
+  color: #000; 
+  text-align: center;
+  height: 4.0em;
+  line-height: 2.5em;    
+  background-image:url(../images/tape.png);
+  background-repeat:no-repeat;
+  background-position:50px 10px;  
+}
+
+.fotoframe span.name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 250px; 
+  color: #fff; 
+  text-align: center;
+  height: 2.5em;
+  line-height: 2.5em;    
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  background: #282828;
+  background-color: rgba(40, 40, 40, 0.7);  
+}
+
+
+</style>

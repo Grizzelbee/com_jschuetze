@@ -4,8 +4,8 @@
 // @package     : com_jSchuetze                                         //
 // @file        : site/views/memberfiles/view.html.php                  //
 // @implements  : Class jSchuetzeViewMemebrfiles                        //
-// @description : Entry-File for the jToDo-Standard-View                //
-// Version      : 1.0.0                                                 //
+// @description : Entry-File for the schuetze-Standard-View             //
+// Version      : 1.0.6                                                 //
 // *********************************************************************//
 defined('_JEXEC') or die( 'Restricted Access' ); 
 jimport('joomla.application.component.view'); 
@@ -20,7 +20,9 @@ class jSchuetzeViewMemberfiles extends JViewLegacy
 		$this->params        = $app->getParams();
         $this->model         = $this->getModel(); 
 		$this->content->text = $this->model->getMemberfiles($this->params);
+        $this->menu          = $app->getMenu();
 		$dispatcher	         =& JDispatcher::getInstance();
+
 
 		// Process the content plugins.
 		JPluginHelper::importPlugin('content');

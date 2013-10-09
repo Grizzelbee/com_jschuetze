@@ -1,6 +1,13 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.0.6
+    [!] Positionierungsprolbleme bei den Bildbefestigungen auf verschiedenen Sites behoben
+    [!] Komponentenheader wird jetzt richtig und vor allem fehlerfrei erzeugt
+    [+] Neue Bildbefestigung "Push-Pin (von vorne)" eingeführt
+    [+] Neue Bildbefestigung "Push-Pin (von oben)" eingeführt
+2013-05-14
+
 Version 1.0.5
     [+] Feld Zug bei den Mitgliedsauszeichnugen eingeführt; dadurch kann die Königsseite 
         auch vernüftig beim Corps oder der Bruderschaft eingesetzt werden.

@@ -5,15 +5,14 @@
 // @file        : site/views/Memberfiles/tmpl/default.php               //
 // @implements  :                                                       //
 // @description : Entry-File for the jSchuetze-Standard-View            //
-// Version      : 1.0.4                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 //Aufruf nur durch Joomla! zulassen
 defined('_JEXEC')or die('Restricted access'); 
 // get document to add scripts or StyleSheets
 $document = JFactory::getDocument();
 $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/memberfiles.css');
-$menu      = &JSite::getMenu();
-$active    = $menu->getActive();
+$active    = $this->menu->getActive();
 $menutitle = $active->title;
 ?> 
 <div class="componentheading"><b><?php echo $menutitle; ?></b></div>

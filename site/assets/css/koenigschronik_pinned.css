@@ -31,7 +31,7 @@
     font-size:170%;
     font-weight:bold;
     position: absolute;
-    top: -90px;
+    top: -66px;
     left: 0;
     width: 250px; 
     text-align: center;
@@ -42,13 +42,13 @@
 
 .fotoframe span.bildbefestigung {
     position: absolute;
-    top: -4em;
-    left: 0;
+    top: -2.3em;
+    left: 3.5em;
     width: 250px; 
     text-align: center;
-    height: 4.0em;
-    line-height: 2.5em;    
-    background-image:url(../images/bilderhalter.png);
+    height: 4.5em;
+    line-height: 4.0em;    
+    background-image:url(../images/pushpin.png);
     background-repeat:no-repeat;
     background-position:50px 10px;  
 }

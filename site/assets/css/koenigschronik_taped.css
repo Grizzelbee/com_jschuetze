@@ -1,4 +1,15 @@
 <style type="text/css">
+/*
+********************************************************************************
+* Project      : jSchuetze for Joomla                                          *
+* @package     : com_jSchuetze                                                 *
+* @file        : site/assets/koenigschronik_taped.css                          *
+* @implements  :                                                               *
+* @description : CSS Description for the Königschronik with stiky-tape design  *
+* Version      : 1.0.6                                                         *
+********************************************************************************
+*/
+
 
 .dummy{}
 
@@ -22,6 +33,7 @@
   display: block;
   width:250;
   height:324;
+  border:1px solid #999;
 }
 
 .fotoframe span.saison {
@@ -39,11 +51,11 @@
 
 .fotoframe span.bildbefestigung {
   position: absolute;
-  top: -39px;
+  top: -35px;
   left: 0;
   width: 250px; 
   text-align: center;
-  height: 4.5em;
+  height: 5.5em;
   line-height: 2.5em;    
   background-image:url(../images/tape.png);
   background-repeat:no-repeat;
@@ -53,7 +65,7 @@
 .fotoframe span.name {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 1px;
   width: 250px; 
   color: #fff; 
   text-align: center;
@@ -68,7 +80,7 @@
 .fotoframe span.name_und_zug {
     position: absolute;
     bottom: 0;
-    left: 3px;
+    left: 1px;
     width: 250px; 
     color: #fff; 
     text-align: center;

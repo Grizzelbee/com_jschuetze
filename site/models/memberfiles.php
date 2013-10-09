@@ -5,7 +5,7 @@
 // @file        : site/models/memberfiles.php                           //
 // @implements  : Class jSchuetzeModelMemberfiles                       //
 // @description : Model for the DB-Manipulation of the jSchuetze        //
-// Version      : 1.0.2                                                 //
+// Version      : 1.0.6                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -54,7 +54,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         return $rows; 
     }
     
-    function getCurrentAward($memberId)
+    function getCurrentAwards($memberId)
     {
         $db = JFactory::getDBO(); 
         $query = $db->getQuery(true);
@@ -66,9 +66,9 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         $query->where('award.published = 1');
         $query->where('fk_mitglied='.(int)$memberId);
         $query->where('auszeichnungsdatum = (select MAX(auszeichnungsdatum) from #__jschuetze_mitgliedsausz as temp where temp.fk_auszeichnung = memberaward.fk_auszeichnung)');
-
+        $query->order('pfand desc');
         $db->setQuery( $query ); 
-        $row = $db->loadObject(); 
+        $row = $db->loadObjectList(); 
 
         return $row; 
     }
@@ -90,7 +90,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
     
     function getZugkoenigschronik($memberid) 
     { 
-        $db = JFactory::getDBO(); 
+        $db    = JFactory::getDBO(); 
         $query = $db->getQuery(true);
 
         $query->select('aus.periode AS periode, art.name AS auszeichnung');
@@ -143,22 +143,27 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         foreach ($members as $i => $member):
             $koenigschronik =& $this->getZugkoenigschronik($member->id); 
             $vitae          =& $this->getMemberVita($member->id); 
-            $currentAward   =& $this->getCurrentAward($member->id);
+            $currentAwards   =& $this->getCurrentAwards($member->id);
             if ($member->foto_url == '') {
                 $member->foto_url = $noImage;
             }
 
-            if (!empty($currentAward)) {
-                $logoImage = '<div class="logoblock"><img class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO').'"><br />'
-                            .'<img class="pfandimage" src="'.$currentAward->icon.'" title="'.$currentAward->name.' - '.$currentAward->periode.'" alt="'.$currentAward->name.'"></div>';
-            } else {
-                $logoImage = '<div class="logoblock"><img  class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO')
-                                .'"></div>';
-            }
-
-            $memberImage = '<img class="memberimage" src="'.$member->foto_url.'" alt="'
-                           .sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $member->vorname.' '.$member->name).'">';
-            
+            if (!empty($currentAwards)) {
+				$imageOffset=0;
+				$logoImage = '<div class="logoblock"><img class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO').'"><br />';
+				foreach ($currentAwards as $a => $award){
+					$logoImage .= '<img class="pfandimage" style="padding-left:'.$imageOffset.'em;" src="'.$award->icon.'" title="'.$award->name.' - '.$award->periode.'" alt="'.$award->name.'">';
+					$imageOffset += 30;	          
+				}   
+				$logoImage .= '</div>';                     
+			} else {
+				$logoImage = '<div class="logoblock"><img  class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO')
+							.'"></div>';
+			}
+				
+			$memberImage = '<img class="memberimage" src="'.$member->foto_url.'" alt="'
+						   .sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $member->vorname.' '.$member->name).'">';
+           
             $cont = $tabsTag;
             // Tab: Mitgliedsinformationen
             $cont.= sprintf($tabTag, $member->vorname.' '.$member->name);
