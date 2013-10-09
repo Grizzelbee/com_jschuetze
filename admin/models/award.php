@@ -79,7 +79,7 @@ class jSchuetzeModelAward extends JModelAdmin
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
         $query->select('max(ordering)');
-        $query->from('#__jschuetze_auszeichungen');
+        $query->from('#__jschuetze_auszeichnungen');
 		$db->setQuery( $query );
 		$maxOrdering = $db->loadResult();
 

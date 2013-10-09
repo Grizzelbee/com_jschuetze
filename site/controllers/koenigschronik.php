@@ -2,8 +2,8 @@
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
-// @file        : site/controllers/memberfiles.php                      //
-// @implements  : jSchuetzeControllerMemberfiles                        //
+// @file        : site/controllers/koenigschronik.php                   //
+// @implements  : jSchuetzeControllerKoenigschronik                     //
 // @description : Special-Frontend-Controller-File                      //
 //                for the jSchuetze-Component                           //
 // Version      : 1.0.0                                                 //
@@ -13,7 +13,7 @@ defined('_JEXEC') or die( 'Restricted Access' );
 // Include dependancy of the main controllerform class
 jimport('joomla.application.component.controllerform');
  
-class jSchuetzeControllerMemberfiles extends JControllerForm
+class jSchuetzeControllerKoenigschronik extends JControllerForm
 {
  
         public function getModel($name = '', $prefix = '', $config = array('ignore_request' => true))

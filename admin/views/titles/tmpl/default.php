@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
@@ -43,14 +43,14 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_TITLE', 'name', $this->listDirn, $this->listOrder); ?>
                 </th>
                 <th width="5%" align="center">
-                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_RANK', 'fk_rang', $this->listDirn, $this->listOrder); ?>
+                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_RANK', 'rank', $this->listDirn, $this->listOrder); ?>
                </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_PUBLISHED', 'published', $this->listDirn, $this->listOrder); ?>
                </th>
-                <th width="5%">
+                <th width="10%">
                     <span>
-                        <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ORDERING', 'id', $this->listDirn, $this->listOrder); ?>
+                        <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ORDERING', 'ordering', $this->listDirn, $this->listOrder); ?>
                         <?php echo JHTML::_('grid.order', $this->items, 'filesave.png', 'titles.saveorder'); ?>
                     </span>
                 </th>
@@ -91,7 +91,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                                . $this->pagination->getResultsCounter(); 
                     ?>
                     <p>
-                    <center>jSchuetze  v<?php echo _jSCHUETZE_VERSION; ?></center>
+                    <center>jSchützenzug  v<?php echo _jSCHUETZE_VERSION; ?></center>
                     <center>Copyright &copy; <?php echo date('Y', time() )?> by Hanjo Hingsen, Webmaster of  <a href="http://www.treu-zu-kaarst.de">http://www.treu-zu-kaarst.de</a>, All Rights reserved</center>
                 </td>
             </tr>

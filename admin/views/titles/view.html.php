@@ -38,7 +38,7 @@ class jSchuetzeViewTitles extends JViewLegacy
         // Toolbar-Buttons
         JToolBarHelper::addNew('title.add');
         JToolBarHelper::editList('title.edit');
-        JToolBarHelper::deleteList('COM_SCHUETZE_DELETE_QUESTION', 'titles.delete');
+        JToolBarHelper::deleteList('COM_JSCHUETZE_DELETE_QUESTION', 'titles.delete');
         JToolBarHelper::divider();
         JToolBarHelper::publishList('titles.publish');
         JToolBarHelper::unpublishList('titles.unpublish');

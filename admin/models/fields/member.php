@@ -14,26 +14,13 @@ jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('list');
  
-/**
- * categories Field
- *
- * @since		1.6
- */
 class JFormFieldMember extends JFormFieldList
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var		string
-	 * @since	1.6
-	 */
 	protected $type = 'Member';
  
 	/**
 	 * Method to get the field options.
-	 *
 	 * @return	array	The field option objects.
-	 * @since	1.6
 	 */
 	public function getOptions()
 	{
@@ -42,15 +29,16 @@ class JFormFieldMember extends JFormFieldList
         $db		= JFactory::getDbo();
         $query	= $db->getQuery(true);
 
-        $query->select("id AS value, CONCAT(name, ' ', vorname) AS text");
+        $query->select("id AS value, CONCAT(name, ', ', vorname) AS text");
         $query->from('#__jschuetze_mitglieder');
+        //$query->where('published = 1');
         $query->order('name ASC');
      
         // Get the options.
         $db->setQuery($query);
      
         $options = $db->loadObjectList();
-        $options = array_merge_recursive(array("text"=>null), $options);
+        $options = array_merge_recursive(array("text"=>JText::_('COM_JSCHUETZE_CHOOSE_MEMBER')), $options);
 
 		return $options;
 	}

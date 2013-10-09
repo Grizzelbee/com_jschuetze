@@ -38,7 +38,7 @@ class jSchuetzeViewStates extends JViewLegacy
         // Toolbar-Buttons
         JToolBarHelper::addNew('state.add');
         JToolBarHelper::editList('state.edit');
-        JToolBarHelper::deleteList('COM_SCHUETZE_DELETE_QUESTION', 'state.delete');
+        JToolBarHelper::deleteList('COM_JSCHUETZE_DELETE_QUESTION', 'state.delete');
         JToolBarHelper::divider();
         JToolBarHelper::publishList('state.publish');
         JToolBarHelper::unpublishList('state.unpublish');

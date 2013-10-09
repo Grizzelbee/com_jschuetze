@@ -24,7 +24,7 @@ class jSchuetzeModelMembers extends JModelList
     public function __construct($config = array())
     {
         if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array('id', 'name', 'vorname', 'ort', 'beitritt', 'published', 'ordering');
+            $config['filter_fields'] = array('id', 'name', 'vorname', 'ort', 'beitritt', 'published', 'ordering', 'rang', 'funktion', 'funktion_seit', 'funktion_bis');
         }
         parent::__construct($config);
     }
@@ -39,12 +39,15 @@ class jSchuetzeModelMembers extends JModelList
         $query = $db->getQuery(true);
 
         // Select some fields
-        $query->select('member.id AS id, member.name AS name, member.vorname AS vorname, member.ort AS ort, member.beitritt AS beitritt, member.published AS published, member.ordering, rank.name as rang, funktion.name AS funktion');
+        $query->select('member.id AS id, member.name AS name, member.vorname AS vorname, member.ort AS ort, member.beitritt AS beitritt, member.published AS published, member.ordering as ordering, rank.name as rang, funktion.name AS funktion, memberrank.funktion_seit, memberrank.funktion_bis');
         $query->from('#__jschuetze_mitglieder    AS member');
         $query->join('LEFT', '#__jschuetze_memberranks AS memberrank ON (memberrank.fk_mitglied = member.id)');
         $query->join('LEFT', '#__jschuetze_titel       AS rank       ON (memberrank.fk_funktion = rank.id)');
-        $query->join('LEFT', '#__jschuetze_titel       AS funktion   ON (member.fk_funktion      = funktion.id)');
-        $query->where('(memberrank.funktion_bis = 0)');        
+        $query->join('LEFT', '#__jschuetze_titel       AS funktion   ON (member.fk_funktion     = funktion.id)');
+        $query->group('member.name, member.vorname, member.strasse, member.beitritt');
+        // Das HAVING scheint überflüssig zu sein. GROUP BY reicht allem Anschein nach.
+        // Mal im Auge behalten und die Theorie testen.
+        //$query->having('memberrank.funktion_seit = MAX( memberrank.funktion_seit ) OR memberrank.funktion_seit IS NULL OR memberrank.funktion_bis = 0');
         
         //Search
         $search = $this->getState('filter.search');

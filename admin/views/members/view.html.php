@@ -43,7 +43,7 @@ class jSchuetzeViewMembers extends JView
         // Toolbar-Buttons
         JToolBarHelper::addNew('member.add');
         JToolBarHelper::editList('member.edit');
-        JToolBarHelper::deleteList('COM_SCHUETZE_DELETE_QUESTION', 'members.delete');
+        JToolBarHelper::deleteList('COM_JSCHUETZE_DELETE_QUESTION', 'members.delete');
         JToolBarHelper::divider();
         JToolBarHelper::publishList('members.publish');
         JToolBarHelper::unpublishList('members.unpublish');

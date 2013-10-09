@@ -27,6 +27,11 @@ class jSchuetzeViewMemberawards extends JViewLegacy
         $this->listOrder = $this->escape($this->state->get( 'list.ordering'  ));
         $this->listDirn  = $this->escape($this->state->get( 'list.direction' ));
         
+        // include custom fields
+        require_once JPATH_COMPONENT .'/models/fields/period.php';
+        require_once JPATH_COMPONENT .'/models/fields/award.php';
+        require_once JPATH_COMPONENT .'/models/fields/member.php';
+
         parent::display($tpl); 
     } 
 
@@ -38,7 +43,7 @@ class jSchuetzeViewMemberawards extends JViewLegacy
         // Toolbar-Buttons
         JToolBarHelper::addNew('memberaward.add');
         JToolBarHelper::editList('memberaward.edit');
-        JToolBarHelper::deleteList('COM_SCHUETZE_DELETE_QUESTION', 'memberawards.delete');
+        JToolBarHelper::deleteList('COM_JSCHUETZE_DELETE_QUESTION', 'memberawards.delete');
         JToolBarHelper::divider();
         JToolBarHelper::publishList('memberawards.publish');
         JToolBarHelper::unpublishList('memberawards.unpublish');

@@ -23,72 +23,107 @@ Könnte das Aussehen eines "Personalausweises" haben (mit Schlagschatten).
 -> Einzelne Reiter für Mitgliedsdaten, Königschronik, Hubertuschronik
 
 
-
-Tabellen:
-+----------------------+
-| jschuetze_mitglieder |
-+----------------------+
-id                  int
-vorname             varchar(64)
-name                varchar(64)
-geburtstag          date
-strasse             varchar(64)    
-plz                 int
-ort                 varchar(32)
-tel                 varchar(32)
-mobile              varchar(32)
-email_priv          varchar(64)
-foto_url            varchar(255)
-religion            varchar(8)
-beitritt            date
-austritt            date
-
-+---------------------------+
-| jschuetze_bruderschaft    |
-+---------------------------+
-id                  int
-fk_miglied          int 
-mitgliedsnr         int 
-beitritt            date
-austritt            date 
-
--------------------------------
-| jschuetze_memberfunctions   |
-| Fuktion des Miglieds im Zug |
-| von - bis                   |
--------------------------------
-id                  int
-fk_mitglied         int
-fk_funktion         int
-funktion_seit       date
-funktion_bis        date        
-
------------------------
-| Zug_Auszeichungsart |
------------------------
-id
-name    varchar(64) // Zug-König, Corps-König, Verdienstorden, ...
-kind    VarChar(16) // stolz, ehre -> König, ... = stolz, Verdienstorden, ... = ehre
-
+Neue Features:
+--------------
+(beide) Königsseiten:
 ---------------------
-| Zug_Auszeichungen |
----------------------
-id                      int
-fk_mitglied             int
-fk_auszeichnungsart     int
-auszeichnungsdatum      date        // Datum der Auszeichnung
-periode                 varchar(32) // Saison des Titels z.B. 2011/2012, ...
+bekommen das Aussehen einer Bildergalerie, die mit tesafilm an die Wand geklebt wurden.
+Immer x Bilder nebeneinaner und dann x reihen untereinander.
+Boxen bekommen feste Breite und festen Abstand zueinander.
+Bild oben mit Tesafilmeffekt, darunter zentriert die Schrift: Periode <br /> Vorame, Titel, Name
+evtl. Periode über das Bild schreiben, mal sehen wie das aussieht
+
+-> Einstellbar: wieviel Bilder in einer Zeile angezeigt werden.
+-> Einstellbar: ob Bilder links- rechtsbündig oder zentriert dargestellt werden.
+-> Einstellbar: ob Chronologisch auf- oder absteigend
+-> Einstellbar: Header wie bei den Mitgliedsausweisen
+-> Einstellbar: Ob Zug- , Corps- oder Schützenkönigschronik ausgegeben wird
+
+CSS-Drop-Shadow-Tut:
+--------------------
+http://robertnyman.com/2010/03/16/drop-shadow-with-css-for-all-web-browsers/
+
+Link zum Tesa-Tutorial:
+http://konigi.com/tools/css-sticky-notes
+
+CSS-Code:
+<p class="sticky taped" style="width: 250px;">
+  <strong>The Little Turtle</strong>.<br />
+  There was a little turtle.<br />
+  He lived in a box.<br />
+  He swam in a puddle.<br />
+  He climbed on the rocks.<br />
+  —Vachel Lindsay
+</p>
+
+.sticky {
+  -webkit-box-shadow: #DDD 0px 1px 2px;
+  position: relative;
+  background-color: #F4F39E;
+  border-color: #DEE184;
+  text-align: center;
+  margin: 2.5em 0px;
+  padding: 1.5em 1em;
+  -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+  font-family: Chalkboard, 'Comic Sans';
+}
+.sticky.taped:after {
+  display: block;
+  content: "";
+  position: absolute; 
+  width: 151px;
+  height: 35px;
+  top: -21px;
+  left: 25%;    
+  background: transparent url(../images/tape.png) 0 0 no-repeat;
+}
 
 
----------------------
-| Zug_aktivstatus   |
----------------------
-id              int
-status          int // 0=Passives Mitglied  1=Gastmarschierer  2=Anwärter  3=Aktiver Schütze
 
+Bekannte Bugs:
+--------------
+
+------------------------------------
+| Ungewiss, ob das eingebaut wird: |
+------------------------------------
+View Status verwalten:
+----------------------
+[] Filter für Zugkönig, Corpskönig, Pfand und Schützenkönig einbauen
+
+View Titel, Ränge, Funktionen verwalten:
+----------------------------------------
+[] Filter für Rang / Funktion einbauen
+
+
+-------------
+| Erledigt: |
+-------------
+[+] Titel des Königs (der I., II., III., ...) mit ausgeben/erfassen 
+[+] Konfiguration der Komponente
+   [+] Option für die Auswahl des zu verwendenden Tab-Plugins
+   [+] Pfad zum Zuglogo
+   [+] Pfad zum NoImage
+[+] View Mitgliedsausweis hat jetzt einen Header
+[!] getNextOrderingNr funktioniert in keinem der Admin-Models
+
+View Mitglieder verwalten:
+--------------------------
+[!] Sortieren der Spalten Rang und Funktion funktioniert nicht
+[!] Spalte für Reihenfolge im IE zu schmal
+
+View Status verwalten:
+----------------------
+[!] Spalte für Reihenfolge im IE zu schmal
+
+View Mitgliederauszeichnungen:
+------------------------------
+[!] Sortieren der Spalten Schütze und Mitgliederauszeichnung funktioniert nicht
+[+] Filter für Schütze, Auszeichnung und Periode einbauen
+
+View Mitgliederränge:
 ---------------------
-| Zug_function      |
----------------------
-id              int
-function        varchar(32)
-art             varchar(32) // Rang (Hauptmann, Leutnant, Spieß, Kassierer, Schütze), Funktion (Webmaster, Koch, Sani, ...)
+[X] Spalte für Reihenfolge im IE zu schmal
+[+] Filter für Schütze und Rang einbauen
+[!] Sortieren der Spalten Schütze und Rang funktioniert nicht

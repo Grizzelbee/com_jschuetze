@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_auszeichnungen` (
     `pfand`          SMALLINT DEFAULT 0,
     `ordering`       SMALLINT NOT NULL,
     `published`      SMALLINT NOT NULL,
+    `icon`           varchar(255),
    PRIMARY KEY (`id`) 
 ); 
 
@@ -61,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_mitgliedsausz` (
    `fk_mitglied`           INT , 
    `fk_auszeichnung`       INT,
    `auszeichnungsdatum`    DATE,
+   `titel`                 VARCHAR(16),
    `periode`               VARCHAR(32), 
    `foto_url`              VARCHAR(255), 
    PRIMARY KEY (`id`) 
@@ -76,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_memberranks` (
    PRIMARY KEY (`id`) 
 ); 
 
-ALTER TABLE `#__jschuetze_rang_func` 
+ALTER TABLE `#__jschuetze_memberranks` 
 CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
 
 ALTER TABLE `#__jschuetze_mitgliedsausz` 

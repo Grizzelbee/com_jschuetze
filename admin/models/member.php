@@ -66,6 +66,7 @@ class jSchuetzeModelMember extends JModelAdmin
         if (empty($data))
         {
             $data = $this->getItem();
+            
             if ($data->ordering == 0)
             {
                 $data->ordering = $this->getNextOrderingNr();
@@ -80,7 +81,7 @@ class jSchuetzeModelMember extends JModelAdmin
     {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
-        $query->select('max(ordering)');
+        $query->select('MAX(ordering)');
         $query->from('#__jschuetze_mitglieder');
 		$db->setQuery( $query );
 		$maxOrdering = $db->loadResult();

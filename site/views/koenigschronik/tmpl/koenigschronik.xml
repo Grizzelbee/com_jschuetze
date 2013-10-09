@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-    <layout title="COM_JSCHUETZE_VIEW_DEFAULT_TITLE">
+    <layout title="COM_JSCHUETZE_VIEW_KOENIGSCHRONIK_TITLE">
         <message>
-            <![CDATA[COM_JSCHUETZE_VIEW_DEFAULT_TITLE_DESC]]>
+            <![CDATA[COM_JSCHUETZE_VIEW_KOENIGSCHRONIK_TITLE_DESC]]>
         </message>
     </layout>
 
+    
+<!--> Einstellbar: ob Bilder links- rechtsbündig oder zentriert dargestellt werden. <-->
+  
     
     <!-- Add fields to the parameters object for the layout. -->
     <fields name="params">
         <!-- Page-Options. -->
         <fieldset   name        = "page-options"
                     label       = "COM_MENUS_PAGE_OPTIONS_LABEL">
-                    
-            <field  name        = "tab_plugin"
+
+            <field  name        = "kind_of_king"
                     type        = "list"
-                    default     = "1"
-                    label       = "COM_JSCHUETZE_FIELD_TABPLUGIN_LABEL"
-                    description = "COM_JSCHUETZE_FIELD_TABPLUGIN_LABEL_DESC">
-                <option value="0">COM_JSCHUETZE_JOOMLAWORKS</option>
-                <option value="1">COM_JSCHUETZE_TOOLJOOM</option>
+                    default     = "0"
+                    label       = "COM_JSCHUETZE_FIELD_KIND_OF_KING_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_KIND_OF_KING_LABEL_DESC">
+                <option value="1">COM_JSCHUETZE_ZUGKOENIG</option>
+                <option value="2">COM_JSCHUETZE_CORPSKOENIG</option>
+                <option value="3">COM_JSCHUETZE_BRUDERKOENIG</option>
+            </field>
+
+            <field  name        = "ordering"
+                    type        = "list"
+                    default     = "0"
+                    label       = "COM_JSCHUETZE_ORDERING"
+                    description = "COM_JSCHUETZE_ORDERING_DESC">
+                <option value="ASC">COM_JSCHUETZE_ASC</option>
+                <option value="DESC">COM_JSCHUETZE_DESC</option>
             </field>
 
             <field  name        = "show_headerimage"

@@ -7,12 +7,12 @@
     margin-left:20px;
     font-weight: bold;
     float:left;
-    width:300px;
+    width:270px;
 }
 .myContent{
     font-size: 1.4em;
     margin-bottom:6px;
-    width:300px;
+    width:270px;
 }
 
 .contentblock{
@@ -24,10 +24,23 @@
     float:right;
 }
 
-.logoimage{
+.logoblock{
     vertical-align:top;
     float:left;
     height:300px;
 }
+
+.logoimage{
+}
+
+.pfandimage{
+    padding-top:20px;
+    padding-bottom:8px;
+}
+
+.jwts_tabbertab{
+    height:300px;
+}
+
 
 </style>

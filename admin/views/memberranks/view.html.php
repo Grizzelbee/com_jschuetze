@@ -27,6 +27,10 @@ class jSchuetzeViewMemberranks extends JViewLegacy
         $this->listOrder = $this->escape($this->state->get( 'list.ordering'  ));
         $this->listDirn  = $this->escape($this->state->get( 'list.direction' ));
         
+        // include custom fields
+        require_once JPATH_COMPONENT .'/models/fields/rank.php';
+        require_once JPATH_COMPONENT .'/models/fields/member.php';
+
         parent::display($tpl); 
     } 
 
@@ -38,7 +42,7 @@ class jSchuetzeViewMemberranks extends JViewLegacy
         // Toolbar-Buttons
         JToolBarHelper::addNew('memberrank.add');
         JToolBarHelper::editList('memberrank.edit');
-        JToolBarHelper::deleteList('COM_SCHUETZE_DELETE_QUESTION', 'memberranks.delete');
+        JToolBarHelper::deleteList('COM_JSCHUETZE_DELETE_QUESTION', 'memberranks.delete');
         JToolBarHelper::divider();
         JToolBarHelper::publishList('memberranks.publish');
         JToolBarHelper::unpublishList('memberranks.unpublish');

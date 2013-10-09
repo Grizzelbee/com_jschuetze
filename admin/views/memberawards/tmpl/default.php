@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
@@ -23,9 +23,16 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>
         <div class="filter-select fltrt">
-            <select name="filter_state" class="inputbox" onchange="this.form.submit()">
-                <option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
-                <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.state'), true); ?>
+            <select name="filter_member" class="inputbox" onchange="this.form.submit()">
+                <?php echo JHtml::_('select.options', JFormFieldMember::getOptions(), 'value', 'text', $this->state->get('filter.member'), true);?>
+            </select>
+            <select name="filter_award" class="inputbox" onchange="this.form.submit()">
+                <option value=""><?php echo JText::_('COM_JSCHUETZE_CHOOSE_AWARD');?></option>
+                <?php echo JHtml::_('select.options', JFormFieldAward::getOptions(), 'value', 'text', $this->state->get('filter.award'), true);?>
+            </select>
+            <select name="filter_period" class="inputbox" onchange="this.form.submit()">
+                <option value=""><?php echo JText::_('COM_JSCHUETZE_CHOOSE_PERIOD');?></option>
+                <?php echo JHtml::_('select.options', JFormFieldPeriod::getOptions(), 'value', 'text', $this->state->get('filter.period'), true);?>
             </select>
         </div>
     </fieldset>
@@ -43,7 +50,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_MEMBER', 'member', $this->listDirn, $this->listOrder); ?>
                </th>
                 <th width="30%" align="center">
-                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_MEMBERAWARD', 'award', $this->listDirn, $this->listOrder); ?>
+                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_MEMBERAWARD', 'auszeichnung', $this->listDirn, $this->listOrder); ?>
                 </th>
                 <th width="20%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_PERIODE', 'periode', $this->listDirn, $this->listOrder); ?>
@@ -84,7 +91,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                                . $this->pagination->getResultsCounter(); 
                     ?>
                     <p>
-                    <center>jSchuetze  v<?php echo _jSCHUETZE_VERSION; ?></center>
+                    <center>jSchützenzug  v<?php echo _jSCHUETZE_VERSION; ?></center>
                     <center>Copyright &copy; <?php echo date('Y', time() )?> by Hanjo Hingsen, Webmaster of  <a href="http://www.treu-zu-kaarst.de">http://www.treu-zu-kaarst.de</a>, All Rights reserved</center>
                 </td>
             </tr>

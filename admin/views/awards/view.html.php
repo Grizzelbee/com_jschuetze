@@ -38,7 +38,7 @@ class jSchuetzeViewAwards extends JViewLegacy
         // Toolbar-Buttons
         JToolBarHelper::addNew('award.add');
         JToolBarHelper::editList('award.edit');
-        JToolBarHelper::deleteList('COM_SCHUETZE_DELETE_QUESTION', 'awards.delete');
+        JToolBarHelper::deleteList('COM_JSCHUETZE_DELETE_QUESTION', 'awards.delete');
         JToolBarHelper::divider();
         JToolBarHelper::publishList('awards.publish');
         JToolBarHelper::unpublishList('awards.unpublish');

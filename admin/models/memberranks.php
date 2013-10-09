@@ -24,7 +24,7 @@ class jSchuetzeModelMemberranks extends JModelList
     public function __construct($config = array())
     {
         if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array('id', 'fk_mitglied', 'fk_funktion', 'funktion_seit', 'funktion_bis');
+            $config['filter_fields'] = array('id', 'member', 'rang', 'funktion_seit', 'funktion_bis');
         }
         parent::__construct($config);
     }
@@ -59,6 +59,18 @@ class jSchuetzeModelMemberranks extends JModelList
             // $query->where('(published IN (0, 1))');
         // }
 
+        //Filter by Rank-ID
+        $rank = $this->getState('filter.rank');
+        if (is_numeric($rank)) {
+            $query->where('rank.fk_funktion = '.(int)$rank);
+        }
+
+        //Filter by Member-ID
+        $member = $this->getState('filter.member');
+        if (is_numeric($member)) {
+            $query->where('rank.fk_mitglied = '.(int)$member);
+        }
+
         //Add the list ordering clause.
         $orderCol  = $this->state->get('list.ordering');
         $orderDirn = $this->state->get('list.direction');
@@ -77,8 +89,14 @@ class jSchuetzeModelMemberranks extends JModelList
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
      
-        $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
-        $this->setState('filter.state', $state);
+        // $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
+        // $this->setState('filter.state', $state);
+
+        $member = $this->getUserStateFromRequest($this->context.'.filter.member', 'filter_member', '', 'string');
+        $this->setState('filter.member', $member);
+
+        $rank = $this->getUserStateFromRequest($this->context.'.filter.rank', 'filter_rank', '', 'string');
+        $this->setState('filter.rank', $rank);
 
         // List state information.
         parent::populateState('funktion_bis, funktion_seit', 'desc');
