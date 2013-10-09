@@ -1,6 +1,11 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.0.3
+    [~] Memberfiles-View so angepasst, dass das Layout eine dynamische Breite hat.
+    [~] Pfänder-Bild wird jetzt am unteren Rand ausgerichtet
+2013-04-03
+
 Version 1.0.2
     [+] In den Memberfiles fehlten die Geburtstage des Schützen und des Lebenspartners
     [+] Changelog hinzugefügt

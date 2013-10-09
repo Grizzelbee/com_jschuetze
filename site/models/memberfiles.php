@@ -149,79 +149,101 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
             }
 
             if (!empty($currentAward)) {
-                $memberImage = '<div class="logoblock"><img class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO').'"><br /><img class="pfandimage" src="'
-                                .$currentAward->icon.'" title="'.$currentAward->name.' - '.$currentAward->periode.'" alt="'.$currentAward->name.
-                                '"></div><img class="memberimage" src="'.$member->foto_url.'" alt="'.sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $member->vorname.' '.$member->name).'">';
+                $logoImage = '<div class="logoblock"><img class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO').'"><br />'
+                            .'<img class="pfandimage" src="'.$currentAward->icon.'" title="'.$currentAward->name.' - '.$currentAward->periode.'" alt="'.$currentAward->name.'"></div>';
             } else {
-                $memberImage = '<div class="logoblock"><img  class="logoimage"src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO')
-                                .'"></div><img class="memberimage" src="'.$member->foto_url.'" alt="'
-                                .sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $member->vorname.' '.$member->name).'">';
+                $logoImage = '<div class="logoblock"><img  class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO')
+                                .'"></div>';
             }
 
-//.'<div class="pagecontent">'            
+            $memberImage = '<img class="memberimage" src="'.$member->foto_url.'" alt="'
+                           .sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $member->vorname.' '.$member->name).'">';
             
             $cont = $tabsTag;
             // Tab: Mitgliedsinformationen
             $cont.= sprintf($tabTag, $member->vorname.' '.$member->name);
-            $cont.=$memberImage;
-            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')      .': <div class="myContent">'.$member->vorname.' '.$member->name.'</div></div><br /><br />';
-            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_RANK')      .': <div class="myContent">'.$member->rang.'</div></div><br />';
-            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_RANK_SINCE').': <div class="myContent">'.$this->getGermanLongDate(strtotime($member->funktion_seit)).'</div></div><br />';
+            $cont.=$logoImage;
+            $cont.='<div class="contentColumn">';
+            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')      .':<br />';
+            $cont.='<div class="inhalt">'.$member->vorname.' '.$member->name.'</div></div><br />';
+            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_RANK')      .':<br />';
+            $cont.='<div class="inhalt">'.$member->rang.'</div></div>';
+            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_RANK_SINCE').':<br />';
+            $cont.='<div class="inhalt">'.$this->getGermanLongDate(strtotime($member->funktion_seit)).'</div></div>';
             if (!empty($member->funktion)){
-                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_FUNCTION')  .': <div class="myContent">'.$member->funktion.'</div></div><br />';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_FUNCTION').':<br />';
+                $cont.='<div class="inhalt">'.$member->funktion.'</div></div>';
             }
-            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT')  .': <div class="myContent">'.$this->getGermanLongDate(strtotime($member->beitritt)).'</div></div><br />';
-            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT_BRUDER').': <div class="myContent">'.$this->getGermanLongDate(strtotime($member->beitritt_bruder)).'</div></div><br />';
-            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STATUS')   .': <div class="myContent">'.$member->status.'</div></div><br /><br />';
+            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT').':<br />';
+            $cont.='<div class="inhalt">'.$this->getGermanLongDate(strtotime($member->beitritt)).'</div></div>';
+            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT_BRUDER').':<br />';
+            $cont.='<div class="inhalt">'.$this->getGermanLongDate(strtotime($member->beitritt_bruder)).'</div></div>';
+            $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STATUS').':<br />';
+            $cont.='<div class="inhalt">'.$member->status.'</div></div>';
+            $cont.='</div>';
+            $cont.=$memberImage;
             $cont.=$tabEndtag;
             if (!empty($koenigschronik)){
                 // Tab: Königschronik
                 $cont.=sprintf($tabTag, JText::_('COM_JSCHUETZE_KOENIGSCHRONIK'));
-                $cont.=$memberImage;
+                $cont.=$logoImage;
+                $cont.='<div class="contentColumn">';
                 foreach($koenigschronik as $k => $koenig):
-                    $cont.='<div class="label">'.$koenig->periode.': <div class="myContent">'.$koenig->auszeichnung.'</div></div><br />';
+                    $cont.='<div class="label">'.$koenig->periode.':<br />';
+                    $cont.='<div class="inhalt">'.$koenig->auszeichnung.'</div></div>';
                 endforeach;
+                $cont.='</div>';
+                $cont.=$memberImage;
                 $cont.=$tabEndtag;
             }
             // Tab: Schützen-Vita
             $cont.=sprintf($tabTag, JText::_('COM_JSCHUETZE_VITA'));
-            $cont.=$memberImage;
+            $cont.=$logoImage;
+            $cont.='<div class="contentColumn">';
             foreach($vitae as $k => $vita):
                 if ($vita->funktion_bis==0) {
                         $enddate = JText::_('COM_JSCHUETZE_TODAY');
                     } else {
                         $enddate = $this->getGermanLongDate(strtotime($vita->funktion_bis));
                     };
-                $cont.='<div class="label">'.$vita->name.': <div class="myContent">'.$this->getGermanLongDate(strtotime($vita->funktion_seit)).' '.JText::_('COM_JSCHUETZE_UNTIL').' '. $enddate.'</div></div><br />';
+                $cont.='<div class="label">'.$vita->name.':<br />';
+                $cont.='<div class="inhalt">'.$this->getGermanLongDate(strtotime($vita->funktion_seit)).' '.JText::_('COM_JSCHUETZE_UNTIL').' '. $enddate.'</div></div>';
             endforeach;
+            $cont.='</div>';
+            $cont.=$memberImage;
             $cont.=$tabEndtag;
             if (!$user->guest){
                 // Tab: Adresse
                 $cont.=sprintf($tabTag, JText::_('COM_JSCHUETZE_ADRESS'));
+                $cont.=$logoImage;
+                $cont.='<div class="contentColumn">';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')  .':<br /><div class="inhalt">'.$member->vorname.' '.$member->name.'</div></div><br />';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STREET').':<br /><div class="inhalt">'.$member->strasse.'</div></div>';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_TOWN')  .':<br /><div class="inhalt">'.$member->plz.' '.$member->ort.'</div></div>';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .':<br /><div class="inhalt">'.$member->tel.'</div></div>';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').':<br /><div class="inhalt">'.$member->mobile.'</div></div>';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.$member->email_priv.'</div></div>';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .':<br /><div class="inhalt">'.date('d.m.Y', strtotime($member->geburtstag)).'</div></div>';
+                $cont.='</div>';
                 $cont.=$memberImage;
-                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')  .': <div class="myContent">'.$member->vorname.' '.$member->name.'</div></div><br /><br />';
-                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STREET').': <div class="myContent">'.$member->strasse.'</div></div><br />';
-                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_TOWN')  .': <div class="myContent">'.$member->plz.' '.$member->ort.'</div></div><br />';
-                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .': <div class="myContent">'.$member->tel.'</div></div><br />';
-                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').': <div class="myContent">'.$member->mobile.'</div></div><br />';
-                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .': <div class="myContent">'.$member->email_priv.'</div></div><br />';
-                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .': <div class="myContent">'.date('d.m.Y', strtotime($member->geburtstag)).'</div></div><br />';
                 $cont.=$tabEndtag;
                 if ($member->fk_lebenspartner != 0){
                     // Tab: Lebenspartner
                     $partner = $this->getLebenspartner($member->fk_lebenspartner);
                     if ($partner->foto_url == '') { $partner->foto_url = $noImage; }
-                    $memberImage = '<div class="logoblock"><img class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO').'"><br /></div><img class="memberimage" src="'
-                                   .$partner->foto_url.'" alt="'.sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $partner->vorname.' '.$partner->name).'">';
+                    $memberImage = '<img class="memberimage" src="'.$partner->foto_url.'" alt="'.sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $partner->vorname.' '.$partner->name).'">';
                     $cont.=sprintf($tabTag, JText::_('COM_JSCHUETZE_LEBENSPARTNER'));
+                    $cont.=$logoImage;
+                    $cont.='<div class="contentColumn">';
+                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')  .':<br /><div class="inhalt">'.$partner->vorname.' '.$partner->name.'</div></div><br />';
+                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STREET').':<br /><div class="inhalt">'.$partner->strasse.'</div></div>';
+                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_TOWN')  .':<br /><div class="inhalt">'.$partner->plz.' '.$partner->ort.'</div></div>';
+                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .':<br /><div class="inhalt">'.$partner->tel.'</div></div>';
+                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').':<br /><div class="inhalt">'.$partner->mobile.'</div></div>';
+                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.$partner->email_priv.'</div></div>';
+                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .':<br /><div class="inhalt">'.date('d.m.Y', strtotime($partner->geburtstag)).'</div></div>';
+                    $cont.='</div>';
                     $cont.=$memberImage;
-                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')  .': <div class="myContent">'.$partner->vorname.' '.$partner->name.'</div></div><br /><br />';
-                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STREET').': <div class="myContent">'.$partner->strasse.'</div></div><br />';
-                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_TOWN')  .': <div class="myContent">'.$partner->plz.' '.$partner->ort.'</div></div><br />';
-                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .': <div class="myContent">'.$partner->tel.'</div></div><br />';
-                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').': <div class="myContent">'.$partner->mobile.'</div></div><br />';
-                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .': <div class="myContent">'.$partner->email_priv.'</div></div><br />';
-                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .': <div class="myContent">'.date('d.m.Y', strtotime($partner->geburtstag)).'</div></div><br />';
                     $cont.=$tabEndtag;
                 }
             }

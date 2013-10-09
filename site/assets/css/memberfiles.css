@@ -2,44 +2,46 @@
 
 .dummy{}
 
-.label{
-    font-size: 1.0em;
-    margin-left:20px;
-    font-weight: bold;
+
+.contentColumn{    
     float:left;
-    width:270px;
-}
-.myContent{
-    font-size: 1.4em;
-    margin-bottom:6px;
-    width:270px;
+    text-align:left;
 }
 
-.contentblock{
-  text-align: justify;  
+
+.label{
+    font-size:1.0em;
+    font-weight:bold;
+    padding-left:10px;
+    padding-bottom:4px; 
+}
+.inhalt{
+    font-size:1.4em;
+    line-height:1.4em;
 }
 
 .memberimage{
-    vertical-align:top;
     float:right;
 }
 
 .logoblock{
-    vertical-align:top;
     float:left;
-    height:300px;
+    height:350px;
+    width:auto;
+    position:relative;
 }
 
 .logoimage{
 }
 
 .pfandimage{
-    padding-top:20px;
+    position:absolute;
+    bottom:0;
     padding-bottom:8px;
 }
 
 .jwts_tabbertab{
-    height:300px;
+    height:350px;
 }
 
 
