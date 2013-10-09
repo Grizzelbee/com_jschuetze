@@ -1,6 +1,25 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.0.9
+    [+] Neuen Front-End-View für die Adresslisten eingebaut
+        -> Es können eine interne Adressliste und ein Liste 
+           für die Bruderschaftsmeldung erstellt werden.
+    [+] Adressliste kann als PDF heruntergeladen werden
+    [+] Adressliste kann als CSV heruntergeladen werden
+2013-07-01
+
+Version 1.0.8
+    [!] Bausteine FUNDUS und Leihgaben enthielten noch kleine Fehler
+    [+] Neuen Front-End-View für die Fundus-Übersicht eingebaut
+    [+] Es können Leihgebühren für die Artikel im Fundus eingetragen werden
+2013-06-19
+
+Version 1.0.7
+    [+] Neue Bausteine FUNDUS und Leihgaben für eine komplette Fundusverwaltung eingebaut
+    [+] Leihgaben werden in den Mitgliedsausweisen auf einem eigenen Reiter angezeigt
+2013-06-14
+
 Version 1.0.6
     [!] Positionierungsprolbleme bei den Bildbefestigungen auf verschiedenen Sites behoben
     [!] Komponentenheader wird jetzt richtig und vor allem fehlerfrei erzeugt

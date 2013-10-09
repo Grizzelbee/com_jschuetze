@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <layout title="COM_JSCHUETZE_VIEW_ADRESSLIST_TITLE">
+        <message>
+            <![CDATA[COM_JSCHUETZE_VIEW_ADRESSLIST_TITLE_DESC]]>
+        </message>
+    </layout>
+
+    
+    <!-- Add fields to the parameters object for the layout. -->
+    <fields name="params">
+        <!-- Page-Options. -->
+        <fieldset   name        = "page-options"
+                    label       = "COM_MENUS_PAGE_OPTIONS_LABEL">
+
+            <field  name        = "listkind"
+                    type        = "list"
+                    default     = "0"
+                    label       = "COM_JSCHUETZE_FIELD_LISTKIND_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_LISTKIND_LABEL_DESC">
+                <option value="1">COM_JSCHUETZE_FIELD_LISTKIND_ADRESSES</option>
+                <option value="2">COM_JSCHUETZE_FIELD_LISTKIND_BROTHERHOOD</option>
+            </field>
+
+
+            <field  name        = "filename"
+                    type        = "text"
+                    label       = "COM_JSCHUETZE_FIELD_FILENAME_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_FILENAME_LABEL_DESC"
+                    size        = "25"
+                    default     = ""
+            />
+                    
+            <field  name        = "pdf_headline"
+                    type        = "text"
+                    label       = "COM_JSCHUETZE_FIELD_PDF_HEADLINE_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_PDF_HEADLINE_LABEL_DESC"
+                    size        = "50"
+                    default     = ""
+            />
+
+            <field  name        = "pdf_subtitle"
+                    type        = "text"
+                    label       = "COM_JSCHUETZE_FIELD_PDF_SUBTITLE_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_PDF_SUBTITLE_LABEL_DESC"
+                    size        = "50"
+                    default     = ""
+            />
+
+            <field  name        = "show_headerimage"
+                    type        = "radio"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_SHOWHEADERIMAGE_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOWHEADERIMAGE_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
+            <field  name        = "headerimage_left_right"
+                    type        = "list"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_HEADERIMAGELEFTRIGHT_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_HEADERIMAGELEFTRIGHT_LABEL_DESC">
+                <option value="0">COM_JSCHUETZE_LEFT</option>
+                <option value="1">COM_JSCHUETZE_RIGHT</option>
+            </field>
+            
+            <field  name        = "headerimage"
+                    type        = "media"
+                    label       = "COM_JSCHUETZE_FIELD_HEADERIMAGE_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_HEADERIMAGE_LABEL_DESC"
+                    default     = "">
+            </field>
+          
+            <field  name        = "preamble"
+                    type        = "textarea"
+                    label       = "COM_JSCHUETZE_FIELD_PREAMBLE_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_PREAMBLE_LABEL_DESC"
+                    class       = ""
+                    rows        = "10"
+                    cols        = "50"
+                    default     = ""
+            />
+        </fieldset>    
+    </fields>
+
+</metadata>
+    
