@@ -1,6 +1,12 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.1.2
+    [+] Auf den Adress-Seiten des Mitglieds und des Lebenspartners wird jetzt eine digitale
+        Visitenkarte in Form eines QR_Codes angezeigt
+    [+] Visitenkarte kann auch als VCF Datei heruntergeladen werden
+2013-07-15
+
 Version 1.1.1
     [+] Opt-In Möglichkeit eingebaut, um aus SCET per eMail Benachrichtigungen über Terminänderungen
         zu erhalten.

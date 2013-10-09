@@ -5,7 +5,7 @@
 // @file        : site/models/memberfiles.php                           //
 // @implements  : Class jSchuetzeModelMemberfiles                       //
 // @description : Model for the DB-Manipulation of the jSchuetze        //
-// Version      : 1.0.9                                                 //
+// Version      : 1.1.2                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -73,14 +73,14 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         return $row; 
     }
     
-    function getLebenspartner($partnerid) 
+    function getMemberData($memberId) 
     { 
         $db = JFactory::getDBO(); 
         $query = $db->getQuery(true);
 
         $query->select('*');
         $query->from('#__jschuetze_mitglieder');
-        $query->where('id = '.(int)$partnerid);
+        $query->where('id = '.(int)$memberId);
 
         $db->setQuery( $query ); 
         $row = $db->loadObject(); 
@@ -134,6 +134,25 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         return $rows; 
     } 
     
+    public function getVCard($user)
+    {
+        $vcard = "BEGIN:VCARD\r\nVERSION:3.0\r\n"
+                ."N:". $user->name . ";" . $user->vorname . "\r\n"
+                ."FN:" . $user->vorname . " " . $user->name . "\r\n"
+                ."TEL;TYPE=voice:" . $user->tel . "\r\n"
+                ."TEL;TYPE=cell:" . $user->mobile . "\r\n"
+                ."ADR;TYPE=home:;;".$user->strasse.";".$user->ort.";;".$user->plz."\r\n"
+                ."BDAY:".$user->geburtstag."\r\n"
+                ."EMAIL;TYPE=internet,pref:".$user->email_priv."\r\n"
+                ."END:VCARD";        
+
+        return $vcard;
+    }
+    
+    public function getVCardAsFile($user)
+    {
+        return $this->getVCard( $this->getMemberData($user) );
+    }
     
     function getMemberfiles($params) 
     { 
@@ -163,7 +182,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         foreach ($members as $i => $member):
             $koenigschronik =& $this->getZugkoenigschronik($member->id); 
             $vitae          =& $this->getMemberVita($member->id); 
-            $currentAwards   =& $this->getCurrentAwards($member->id);
+            $currentAwards  =& $this->getCurrentAwards($member->id);
             if ($member->foto_url == '') {
                 $member->foto_url = $noImage;
             }
@@ -180,7 +199,12 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
 				$logoImage = '<div class="logoblock"><img  class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO')
 							.'"></div>';
 			}
-				
+	
+            $adressImage  = '<div class="logoblock"><img class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO').'"/><br />';
+            $VCFImage  = '<img class="pfandimage" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=L|0&chl=' . urlencode($this->getVCard($member)) . '" alt="'.JText::_('COM_JSCHUETZE_BUSINESSCARD').'" title="'.JText::_('COM_JSCHUETZE_BUSINESSCARD_DESC').'" />';
+            $adressImage .= '<a href="'.JRoute::_('index.php?option=com_jschuetze&task=memberfiles.getVCardAsFile&format=raw&filename='.$member->vorname.'_'.$member->name.'&userid='.$member->id).'">'.$VCFImage.'</a>'; 
+            $adressImage .= '</div>';  
+    
 			$memberImage = '<img class="memberimage" src="'.$member->foto_url.'" alt="'
 						   .sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $member->vorname.' '.$member->name).'">';
            
@@ -240,7 +264,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
             if (!$user->guest){
                 // Tab: Adresse
                 $cont.=sprintf($tabTag, JText::_('COM_JSCHUETZE_ADRESS'));
-                $cont.=$logoImage;
+                $cont.=$adressImage;
                 $cont.='<div class="contentColumn">';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')  .':<br /><div class="inhalt">'.$member->vorname.' '.$member->name.'</div></div><br />';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STREET').':<br /><div class="inhalt">'.$member->strasse.'</div></div>';
@@ -267,11 +291,15 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
                 }
                 if ($member->fk_lebenspartner != 0){
                     // Tab: Lebenspartner
-                    $partner = $this->getLebenspartner($member->fk_lebenspartner);
+                    $partner = $this->getMemberData($member->fk_lebenspartner);
                     if ($partner->foto_url == '') { $partner->foto_url = $noImage; }
                     $memberImage = '<img class="memberimage" src="'.$partner->foto_url.'" alt="'.sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $partner->vorname.' '.$partner->name).'">';
+
                     $cont.=sprintf($tabTag, JText::_('COM_JSCHUETZE_LEBENSPARTNER'));
-                    $cont.=$logoImage;
+                    $cont.='<div class="logoblock"><img class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO').'"/><br />';
+                    $PartnerImage='<img class="pfandimage" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=L|0&chl=' . urlencode($this->getVCard($partner)) . '" alt="'.JText::_('COM_JSCHUETZE_BUSINESSCARD').'" title="'.JText::_('COM_JSCHUETZE_BUSINESSCARD_DESC').'" />';
+                    $cont.='<a href="'.JRoute::_('index.php?option=com_jschuetze&task=memberfiles.getVCardAsFile&format=raw&filename='.$partner->vorname.'_'.$partner->name.'&userid='.$partner->id).'">'.$PartnerImage.'</a>'; 
+                    $cont.='</div>';  
                     $cont.='<div class="contentColumn">';
                     $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')  .':<br /><div class="inhalt">'.$partner->vorname.' '.$partner->name.'</div></div><br />';
                     $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STREET').':<br /><div class="inhalt">'.$partner->strasse.'</div></div>';

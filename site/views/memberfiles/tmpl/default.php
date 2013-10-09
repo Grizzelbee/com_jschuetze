@@ -5,7 +5,7 @@
 // @file        : site/views/Memberfiles/tmpl/default.php               //
 // @implements  :                                                       //
 // @description : Entry-File for the jSchuetze-Standard-View            //
-// Version      : 1.1.0                                                 //
+// Version      : 1.1.2                                                 //
 // *********************************************************************//
 //Aufruf nur durch Joomla! zulassen
 defined('_JEXEC')or die('Restricted access'); 
