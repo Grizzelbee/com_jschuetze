@@ -2,20 +2,20 @@
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
-// @file        : site/models/fundus.php                                //
-// @implements  : Class jSchuetzeModelFundus                            //
+// @file        : site/models/assets.php                                //
+// @implements  : Class jSchuetzeModelAssets                            //
 // @description : Model for the DB-Manipulation of jSchuetze            //
-// Version      : 1.1.0                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
 // Include dependancy of the main model
 jimport('joomla.application.component.model');
 
-class jSchuetzeModelFundus extends JModelLegacy 
+class jSchuetzeModelAssets extends JModelLegacy 
 { 
     
-    function getFundus() 
+    public function getFundus() 
     { 
         $db = JFactory::getDBO(); 
         $query = $db->getQuery(true);

@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelTitles                            //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-Titles-List                                 //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -45,7 +45,7 @@ class jSchuetzeModelTitles extends JModelList
         //Search
         $search = $this->getState('filter.search');
         if (!empty($search)) {
-            $search = $db->Quote('%'.$db->getEscaped($search, true).'%', false);
+            $search = $db->Quote('%'.$db->escape($search, true).'%', false);
             $query->where('(name LIKE '.$search.')');
         }
 
@@ -64,7 +64,7 @@ class jSchuetzeModelTitles extends JModelList
             $orderCol  = 'ordering';
             $orderDirn = 'asc';
         }
-        $query->order($db->getEscaped($orderCol.' '.$orderDirn));
+        $query->order($db->escape($orderCol.' '.$orderDirn));
         
         return $query;
 	}

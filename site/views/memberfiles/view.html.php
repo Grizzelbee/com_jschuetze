@@ -5,13 +5,14 @@
 // @file        : site/views/memberfiles/view.html.php                  //
 // @implements  : Class jSchuetzeViewMemebrfiles                        //
 // @description : Entry-File for the schuetze-Standard-View             //
-// Version      : 1.1.3                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 defined('_JEXEC') or die( 'Restricted Access' ); 
 jimport('joomla.application.component.view'); 
 
 class jSchuetzeViewMemberfiles extends JViewLegacy
 { 
+    protected $content;
     
     function display($tpl = null) 
     { 
@@ -19,10 +20,10 @@ class jSchuetzeViewMemberfiles extends JViewLegacy
         // Get the parameters
 		$this->params        = $app->getParams();
         $this->model         = $this->getModel(); 
+        $this->content       = new StdClass();
 		$this->content->text = $this->model->getMemberfiles($this->params);
         $this->menu          = $app->getMenu();
 		$dispatcher	         = JDispatcher::getInstance();
-
 
 		// Process the content plugins.
 		JPluginHelper::importPlugin('content');

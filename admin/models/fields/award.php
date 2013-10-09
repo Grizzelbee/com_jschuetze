@@ -5,7 +5,7 @@
 // @file        : admin/models/fields/awards.php                        //
 // @implements  : Class JFormFieldAward                                 //
 // @description : Field to select one of the awards in jSchutze         //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
@@ -44,6 +44,7 @@ class JFormFieldAward extends JFormFieldList
 
         $query->select('id AS value, name AS text');
         $query->from('#__jschuetze_auszeichnungen');
+        $query->where('published = 1');
         $query->order('ordering ASC');
      
         // Get the options.

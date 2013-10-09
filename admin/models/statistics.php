@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelStatistics                        //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-statistics-List                             //
-// Version      : 1.1.0                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -42,7 +42,7 @@ class jSchuetzeModelStatistics extends JModelList
         $query->select('*');
         $query->from('#__jschuetze_statistics');
         //Add the list ordering clause.
-        $query->order('hits desc');
+        $query->order($db->escape('hits desc'));
         
         return $query;
 	}

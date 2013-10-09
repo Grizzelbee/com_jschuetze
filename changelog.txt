@@ -1,6 +1,27 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.1.5
+    [+] Auf der Mitgliederseite können nun alle Reiter einzeln ein- und ausgeblendet werden.
+2013-10-09, Hanjo Hingsen
+
+Version 1.1.4
+    [!] Durch die Änderungen in Version 1.1.3 wurde die Königs-Chronik bei den Mitgliedern nicht mehr angezeigt.
+        Das ist behoben und der Reiter wird wieder korrekt angezeigt.
+    [!] Es werden nur noch freigegebene Auszeichnungen in dem Drop-Down-Field zur Auswahl angeboten
+    [+] Freigegebene Auszeichnungen werden jetzt in der Schützenvita angezeigt
+    [+] Unterstützung für Tabs by NoNumber.nl eingebaut 
+    [+] Unterstützung für Core Design MagicTabs eingebaut (noch ungetestet)
+    [+] Unterstützung für Uygun Tabs by JoomlaBusiness.net eingebaut (noch ungetestet)
+    [-] Die DejaVu Schriften aus dem PDF-Paket entfernt um Platz zu sparen. Die werden ohnehin nicht verwendet.
+    [+] Die Eingabeformulare im Admin-Bereich halten jetzt die Session lebendig
+    [+] Die Eingabeformulare im Admin-Bereich sind jetzt Joomla 2.5 und 3.x kompatibel
+    [!] Bei der Deistallation wurden nicht alle Tabellen gelöscht
+    [!] kleinere Probleme mit den SQLs für die Listenansichten behoben
+    [~] Codepflege
+    [!] Fehler im Adresslisten-View behoben
+2013-08-22
+
 Version 1.1.3
     [+] Auf den Adresseiten werden jetzt die eMailadressen durch das eMail-Cloaking verschleiert
         Das ist wichtig, wenn die Seiten öffentlich angezeigt werden

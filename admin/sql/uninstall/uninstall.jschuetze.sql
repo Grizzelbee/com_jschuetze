@@ -1,6 +1,9 @@
-DROP TABLE `#__jschuetze_mitglieder`; 
-DROP TABLE `#__jschuetze_titel`; 
-DROP TABLE `#__jschuetze_status`; 
-DROP TABLE `#__jschuetze_auszeichnungen`; 
-DROP TABLE `#__jschuetze_mitgliedsausz`; 
-DROP TABLE `#__jschuetze_rang_func`;
+DROP TABLE IF EXISTS  `#__jschuetze_mitglieder`; 
+DROP TABLE IF EXISTS  `#__jschuetze_titel`; 
+DROP TABLE IF EXISTS  `#__jschuetze_status`; 
+DROP TABLE IF EXISTS  `#__jschuetze_auszeichnungen`; 
+DROP TABLE IF EXISTS  `#__jschuetze_mitgliedsausz`; 
+DROP TABLE IF EXISTS  `#__jschuetze_memberranks`;
+DROP TABLE IF EXISTS  `#__jschuetze_fundus`;
+DROP TABLE IF EXISTS  `#__jschuetze_lending`;
+DROP TABLE IF EXISTS  `#__jschuetze_statistics`;

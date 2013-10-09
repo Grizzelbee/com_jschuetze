@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-->
+//**********************************************************************//
+// Project      : jSchuetze for Joomla                                  //
+// @package     : com_jSchuetze                                         //
+// @file        : admin/language/de-DE/de-DE.com_jschuetze.ini          //
+// @implements  : german languagestrings                                //
+// @description : german backend languagestrings                        //
+// Version      : 1.1.5                                                 //
+// Change-Id: I0000000000000000000000000000000000000000                 //
+// Signed-off-by: Hanjo Hingsen <hanjo@hingsen.de>                      //
+//**********************************************************************//
+<-->
 <metadata>
     <layout title="COM_JSCHUETZE_VIEW_DEFAULT_TITLE">
         <message>
@@ -20,10 +32,54 @@
                     description = "COM_JSCHUETZE_FIELD_TABPLUGIN_LABEL_DESC">
                 <option value="0">COM_JSCHUETZE_JOOMLAWORKS</option>
                 <option value="1">COM_JSCHUETZE_TOOLJOOM</option>
+                <option value="2">COM_JSCHUETZE_MAGICTABS</option>
+                <option value="3">COM_JSCHUETZE_NONUMBERTABS</option>
+                <option value="4">COM_JSCHUETZE_UYGUNTABS</option>
+            </field>
+
+            <field  name        = "show_page_main"
+                    type        = "radio"
+                    class       = "btn-group"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_SHOW_PAGE_MAIN_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOW_PAGE_MAIN_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
+            <field  name        = "show_page_vita"
+                    type        = "radio"
+                    class       = "btn-group"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_SHOW_PAGE_VITA_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOW_PAGE_VITA_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
+            <field  name        = "show_page_kingchronicles"
+                    type        = "radio"
+                    class       = "btn-group"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_SHOW_PAGE_KINGCHRONICLES_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOW_PAGE_KINGCHRONICLES_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
+            <field  name        = "show_page_address"
+                    type        = "radio"
+                    class       = "btn-group"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_SHOW_PAGE_ADDRESS_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOW_PAGE_ADDRESS_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
             </field>
 
             <field  name        = "show_adress_public"
                     type        = "radio"
+                    class       = "btn-group"
                     default     = "0"
                     label       = "COM_JSCHUETZE_FIELD_SHOW_ADRESS_PUBLIC_LABEL"
                     description = "COM_JSCHUETZE_FIELD_SHOW_ADRESS_PUBLIC_LABEL_DESC">
@@ -33,6 +89,7 @@
 
             <field  name        = "show_vcard_public"
                     type        = "radio"
+                    class       = "btn-group"
                     default     = "0"
                     label       = "COM_JSCHUETZE_FIELD_SHOW_VCARD_PUBLIC_LABEL"
                     description = "COM_JSCHUETZE_FIELD_SHOW_VCARD_PUBLIC_LABEL_DESC">
@@ -42,6 +99,7 @@
 
             <field  name        = "vcard_as_qrcode"
                     type        = "radio"
+                    class       = "btn-group"
                     default     = "1"
                     label       = "COM_JSCHUETZE_FIELD_SHOW_VCARD_AS_QRCODE_LABEL"
                     description = "COM_JSCHUETZE_FIELD_SHOW_VCARD_AS_QRCODE_LABEL_DESC">
@@ -49,8 +107,29 @@
                 <option value="1">JYES</option>
             </field>
 
+            <field  name        = "show_page_lendings"
+                    type        = "radio"
+                    class       = "btn-group"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_SHOW_PAGE_LENDINGS_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOW_PAGE_LENDINGS_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
+            <field  name        = "show_page_partner"
+                    type        = "radio"
+                    class       = "btn-group"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_SHOW_PAGE_PARTNER_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOW_PAGE_PARTNER_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
             <field  name        = "show_headerimage"
                     type        = "radio"
+                    class       = "btn-group"
                     default     = "1"
                     label       = "COM_JSCHUETZE_FIELD_SHOWHEADERIMAGE_LABEL"
                     description = "COM_JSCHUETZE_FIELD_SHOWHEADERIMAGE_LABEL_DESC">

@@ -64,7 +64,7 @@ $this->model->setPagehit($menutitle);
 ?>    
 <p name="download_icons" id="download_icons" style="clear:both"><?php echo $csv_imageLink.$pdf_imageLink; ?></p>
 <div name="content" id="content">
-<?php echo $this->content->text; ?>
+<?php echo $this->item->text; ?>
 </div>
 
 <br><br>        

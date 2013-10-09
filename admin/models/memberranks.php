@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelmemberranks                      //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-Memberranks-List                           //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -47,7 +47,7 @@ class jSchuetzeModelMemberranks extends JModelList
         //Search
         $search = $this->getState('filter.search');
         if (!empty($search)) {
-            $search = $db->Quote('%'.$db->getEscaped($search, true).'%', false);
+            $search = $db->Quote('%'.$db->escape($search, true).'%', false);
             $query->where('(member.name LIKE '.$search.') OR (rank.name LIKE '.$search.') ');
         }
 
@@ -78,7 +78,7 @@ class jSchuetzeModelMemberranks extends JModelList
             $orderCol  = 'funktion_bis, funktion_seit';
             $orderDirn = 'desc';
         }
-        $query->order($db->getEscaped($orderCol.' '.$orderDirn));
+        $query->order($db->escape($orderCol.' '.$orderDirn));
         
         return $query;
 	}

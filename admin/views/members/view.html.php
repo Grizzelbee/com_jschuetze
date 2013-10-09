@@ -26,12 +26,7 @@ class jSchuetzeViewMembers extends JViewLegacy
         // Get order state
         $this->listOrder = $this->escape($this->state->get( 'list.ordering'  ));
         $this->listDirn  = $this->escape($this->state->get( 'list.direction' ));
-        
-        // include custom fields
-        // require_once JPATH_COMPONENT .'/models/fields/projects.php';
-        // require_once JPATH_COMPONENT .'/models/fields/categories.php';
-        // require_once JPATH_COMPONENT .'/models/fields/status.php';
-        
+      
         parent::display($tpl); 
     } 
 
@@ -50,6 +45,7 @@ class jSchuetzeViewMembers extends JViewLegacy
         JToolBarHelper::divider();
         JToolBarHelper::publishList('members.scet_mail_notificationpublish', 'COM_JSCHUETZE_SCET_MAILS');
         JToolBarHelper::unpublishList('members.scet_mail_notificationunpublish', 'COM_JSCHUETZE_SCET_MAILS');
+
     }
 
 } 

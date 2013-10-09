@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelmemberawards                      //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-Memberawards-List                           //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -47,14 +47,14 @@ class jSchuetzeModelMemberawards extends JModelList
         //Search
         $search = $this->getState('filter.search');
         if (!empty($search)) {
-            $search = $db->Quote('%'.$db->getEscaped($search, true).'%', false);
+            $search = $db->Quote('%'.$db->escape($search, true).'%', false);
             $query->where('(member.name LIKE '.$search.') OR (award.name LIKE '.$search.') ');
         }
 
         //Filter by period
         $period = $this->getState('filter.period');
         if (!empty($period)) {
-            $period = $db->Quote('%'.$db->getEscaped($period, true).'%', false);
+            $period = $db->Quote('%'.$db->escape($period, true).'%', false);
             $query->where('(periode LIKE '.$period.')');
         }
 
@@ -77,7 +77,7 @@ class jSchuetzeModelMemberawards extends JModelList
             $orderCol  = 'auszeichnungsdatum';
             $orderDirn = 'DESC';
         }
-        $query->order($db->getEscaped($orderCol.' '.$orderDirn));
+        $query->order($db->escape($orderCol.' '.$orderDirn));
         
         return $query;
 	}

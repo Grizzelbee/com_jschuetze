@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelAssets                            //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-Assets-List                                 //
-// Version      : 1.0.8                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -39,13 +39,13 @@ class jSchuetzeModelAssets extends JModelList
         $query = $db->getQuery(true);
 
         // Select some fields
-        $query->select('*');
+        $query->select('id, name, anzahl, fee, bestand, published, ordering');
         $query->from('#__jschuetze_fundus');
 
         //Search
         $search = $this->getState('filter.search');
         if (!empty($search)) {
-            $search = $db->Quote('%'.$db->getEscaped($search, true).'%', false);
+            $search = $db->Quote('%'.$db->escape($search, true).'%', false);
             $query->where('(name LIKE '.$search.')');
         }
 
@@ -62,9 +62,9 @@ class jSchuetzeModelAssets extends JModelList
         $orderDirn = $this->state->get('list.direction');
         if (empty($orderCol)){
             $orderCol  = 'ordering';
-            $orderDirn = 'asc';
+            $orderDirn = 'ASC';
         }
-        $query->order($db->getEscaped($orderCol.' '.$orderDirn));
+        $query->order($db->escape($orderCol.' '.$orderDirn));
         
         return $query;
 	}
@@ -79,7 +79,7 @@ class jSchuetzeModelAssets extends JModelList
         $this->setState('filter.state', $state);
 
         // List state information.
-        parent::populateState('ordering', 'asc');
+        parent::populateState('ordering', 'ASC');
     }
 
     

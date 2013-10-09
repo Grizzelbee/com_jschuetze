@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModellendings                          //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-lendings-List                               //
-// Version      : 1.1.1                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -48,36 +48,29 @@ class jSchuetzeModellendings extends JModelList
         //Search
         $search = $this->getState('filter.search');
         if (!empty($search)) {
-            $search = $db->Quote('%'.$db->getEscaped($search, true).'%', false);
+            $search = $db->Quote('%'.$db->escape($search, true).'%', false);
             $query->where('(fundus.name LIKE '.$search.') OR (member.name LIKE '.$search.') OR (member.vorname LIKE '.$search.')');
         }
 
-		// @ToDo:
-		// hier muss nachgebessert werden. Das SQL zum suchen funktioniert so nicht.
-		// vermutlich müssen da noch mindestens zwei Joins rein.
-        //Filter by Member-ID
-
         $member = $this->getState('filter.member');
         if (is_numeric($member)) {
-            $query->where('fk_schuetze = '.(int)$member);
+            $query->where('lending.fk_schuetze = '.(int)$member);
         }
 		
         // Filter by published state
         $published = $this->getState('filter.state');
         if (is_numeric($published)) {
-            $query->where('published = '.(int) $published);
-        } else if ($published == '') {
-            $query->where('(lending.published IN (0, 1))');
+            $query->where('lending.published = '.(int) $published);
         }
 
         //Add the list ordering clause.
         $orderCol  = $this->state->get('list.ordering');
         $orderDirn = $this->state->get('list.direction');
         if (empty($orderCol)){
-            $orderCol  = 'ordering';
-            $orderDirn = 'asc';
+            $orderCol  = 'lending.ordering';
+            $orderDirn = 'ASC';
         }
-        $query->order($db->getEscaped($orderCol.' '.$orderDirn));
+        $query->order($db->escape($orderCol.' '.$orderDirn));
         
         return $query;
 	}
@@ -95,7 +88,7 @@ class jSchuetzeModellendings extends JModelList
         $this->setState('filter.state', $state);
 
         // List state information.
-        parent::populateState('ordering', 'asc');
+        parent::populateState('lending.ordering', 'ASC');
     }
 
     

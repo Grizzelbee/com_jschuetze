@@ -15,6 +15,7 @@
                     
             <field  name        = "show_headerimage"
                     type        = "radio"
+                    class       = "btn-group"
                     default     = "1"
                     label       = "COM_JSCHUETZE_FIELD_SHOWHEADERIMAGE_LABEL"
                     description = "COM_JSCHUETZE_FIELD_SHOWHEADERIMAGE_LABEL_DESC">

@@ -5,7 +5,7 @@
 // @file        : admin/views/memberawards/tmpl/default.php             //
 // @implements  :                                                       //
 // @description : Template for the memberawards-List-View               //
-// Version      : 1.1.3                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -14,28 +14,31 @@ JHTML::_('behavior.multiselect');
 require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 ?> 
 <form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=memberawards'); ?>" method="post" name="adminForm" id="adminForm">
-
 	<fieldset id="filter-bar">
-		<div class="filter-search fltlft">
-			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_JSCHUETZE_ITEMS_SEARCH_FILTER'); ?>" />
-			<button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
-			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
-		</div>
-        <div class="filter-select fltrt">
-            <select name="filter_member" class="inputbox" onchange="this.form.submit()">
-                <?php echo JHtml::_('select.options', JFormFieldMember::getOptions(), 'value', 'text', $this->state->get('filter.member'), true);?>
-            </select>
-            <select name="filter_award" class="inputbox" onchange="this.form.submit()">
-                <option value=""><?php echo JText::_('COM_JSCHUETZE_CHOOSE_AWARD');?></option>
-                <?php echo JHtml::_('select.options', JFormFieldAward::getOptions(), 'value', 'text', $this->state->get('filter.award'), true);?>
-            </select>
-            <select name="filter_period" class="inputbox" onchange="this.form.submit()">
-                <option value=""><?php echo JText::_('COM_JSCHUETZE_CHOOSE_PERIOD');?></option>
-                <?php echo JHtml::_('select.options', JFormFieldPeriod::getOptions(), 'value', 'text', $this->state->get('filter.period'), true);?>
-            </select>
+        <div id="filter-bar" class="btn-toolbar">
+            <div class="filter-search fltlft btn-group">
+                <label class="filter-search-lbl pull-left" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
+                <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_JSCHUETZE_ITEMS_SEARCH_FILTER'); ?>" />
+                <button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
+                <button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
+            </div>
+            <div class="filter-select fltrt btn-group pull-right">
+                <select name="filter_member" class="inputbox" onchange="this.form.submit()">
+                    <?php echo JHtml::_('select.options', JFormFieldMember::getOptions(), 'value', 'text', $this->state->get('filter.member'), true);?>
+                </select>
+                <select name="filter_award" class="inputbox" onchange="this.form.submit()">
+                    <option value=""><?php echo JText::_('COM_JSCHUETZE_CHOOSE_AWARD');?></option>
+                    <?php echo JHtml::_('select.options', JFormFieldAward::getOptions(), 'value', 'text', $this->state->get('filter.award'), true);?>
+                </select>
+                <select name="filter_period" class="inputbox" onchange="this.form.submit()">
+                    <option value=""><?php echo JText::_('COM_JSCHUETZE_CHOOSE_PERIOD');?></option>
+                    <?php echo JHtml::_('select.options', JFormFieldPeriod::getOptions(), 'value', 'text', $this->state->get('filter.period'), true);?>
+                </select>
+            </div>
         </div>
     </fieldset>
+    <div class="clr"> </div>
+
     
     <table class="adminlist">
         <thead>
@@ -65,7 +68,6 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
         </thead>
         <tbody>
             <?php  
-            if ( !empty($this->items) ) {
                 foreach($this->items as $i => $item) : 
                 $link           = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=memberaward.edit&cid[]='.(int)$item->id );
                 $singleItemLink = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=memberaward.edit&id='.(int)$item->id );
@@ -82,7 +84,6 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                     </tr>
                 <?php 
                 endforeach; 
-            }
             ?>
         <tbody>
         <tfoot>

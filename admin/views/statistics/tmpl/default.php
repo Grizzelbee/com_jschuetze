@@ -5,7 +5,7 @@
 // @file        : admin/views/Statistics/tmpl/default.php               //
 // @implements  :                                                       //
 // @description : Template for the Statistics-List-View                 //
-// Version      : 1.1.3                                                 //
+// Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -36,7 +36,6 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
         </thead>
         <tbody>
             <?php  
-            if (!empty($this->items)) {
                 foreach($this->items as $i => $item) : 
                 ?>
                     <tr class="row<?php echo $i % 2; ?>">
@@ -48,7 +47,6 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                     </tr>
                 <?php 
                 endforeach; 
-            }
             ?>
         <tbody>
         <tfoot>
