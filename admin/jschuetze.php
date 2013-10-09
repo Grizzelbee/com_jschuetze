@@ -5,12 +5,17 @@
 // @file        : admin/jschuetze.php (Joomla-Entry-File)               //
 // @implements  :                                                       //
 // @description : Main-Backend-Entry-File for the jSchuetze-Component   //
-// Version      : 1.0.3                                                 //
+// Version      : 1.0.4                                                 //
 // *********************************************************************//
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-define('_jSCHUETZE_VERSION','1.0.3');
+define('_jSCHUETZE_VERSION','1.0.4');
+ 
+// for Joomla 3 Compatibility
+if(!defined('DS')){
+    define('DS',DIRECTORY_SEPARATOR);
+}  
  
 // import joomla controller library
 jimport('joomla.application.component.controller');

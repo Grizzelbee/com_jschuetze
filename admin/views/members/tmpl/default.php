@@ -5,7 +5,7 @@
 // @file        : admin/views/members/tmpl/default.php                  //
 // @implements  :                                                       //
 // @description : Template for the Members-List-View                    //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -33,10 +33,10 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
     <table class="adminlist">
         <thead>
             <tr>
-                <th width="5">
+                <th width="5%">
                     <?php echo JText::_( '#' ); ?>
                 </th>
-                <th width="20">
+                <th width="20%">
                     <input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->items ); ?>);" />
                 </th>
                 <th class="title">
@@ -54,7 +54,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ORT', 'ort', $this->listDirn, $this->listOrder); ?>
                </th>
-                <th width="80" align="center">
+                <th width="80px" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_BEITRITT', 'beitritt', $this->listDirn, $this->listOrder); ?>
                </th>
                 <th width="12%">
@@ -63,36 +63,38 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                         <?php echo JHTML::_('grid.order', $this->items, 'filesave.png', 'members.saveorder'); ?>
                     </span>
                 </th>
-                <th width="5">
+                <th width="5%">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ID', 'id', $this->listDirn, $this->listOrder); ?>
                 </th>
             </tr>
         </thead>
         <tbody>
             <?php  
-            foreach($this->items as $i => $item) : 
-            $link           = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=member.edit&cid[]='.(int)$item->id );
-            $singleItemLink = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=member.edit&id='.(int)$item->id );
-   			$ordering	= ($this->listOrder == 'ordering');
-            ?>
-                <tr class="row<?php echo $i % 2; ?>">
-                    <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
-                    <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
-                    <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->vorname .' '. $item->name; ?></a></td>
-                    <td align="center"><?php echo $item->rang;?></td>
-                    <td align="center"><?php echo $item->funktion;?></td>
-                    <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'members.' ); ?></td>
-                    <td align="center"><?php echo $item->ort;?></td>
-                    <td align="center"><?php echo $item->beitritt;?></td>
-                    <td class = "order" align="center">
-                        <span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->ordering <= $item->ordering), 'members.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                        <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->ordering >= $item->ordering), 'members.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                        <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="text-area-order" />
-                    </td>
-                    <td><?php echo $item->id; ?></td>
-                </tr>
-            <?php 
-            endforeach; 
+            if (!empty($this->items)) {
+                foreach($this->items as $i => $item) : 
+                $link           = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=member.edit&cid[]='.(int)$item->id );
+                $singleItemLink = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=member.edit&id='.(int)$item->id );
+                $ordering	= ($this->listOrder == 'ordering');
+                ?>
+                    <tr class="row<?php echo $i % 2; ?>">
+                        <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
+                        <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
+                        <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->vorname .' '. $item->name; ?></a></td>
+                        <td align="center"><?php echo $item->rang;?></td>
+                        <td align="center"><?php echo $item->funktion;?></td>
+                        <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'members.' ); ?></td>
+                        <td align="center"><?php echo $item->ort;?></td>
+                        <td align="center"><?php echo $item->beitritt;?></td>
+                        <td class = "order" align="center">
+                            <span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->ordering <= $item->ordering), 'members.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+                            <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->ordering >= $item->ordering), 'members.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+                            <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="text-area-order" />
+                        </td>
+                        <td><?php echo $item->id; ?></td>
+                    </tr>
+                <?php 
+                endforeach; 
+            }
             ?>
         <tbody>
         <tfoot>

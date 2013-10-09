@@ -5,7 +5,7 @@
 // @file        : site/views/koenigschronik/tmpl/koenigschronik.php     //
 // @implements  :                                                       //
 // @description : Entry-File for the jSchuetze-koenigschronik-View      //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.4                                                 //
 // *********************************************************************//
 //Aufruf nur durch Joomla! zulassen
 defined('_JEXEC')or die('Restricted access'); 
@@ -16,7 +16,11 @@ if ( $this->params->get('bildbefestigung') == 1) {
 } else {
     $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/koenigschronik_nailed.css');
 }
+$menu      = &JSite::getMenu();
+$active    = $menu->getActive();
+$menutitle = $active->title;
 ?> 
+<div class="componentheading"><b><?php echo $menutitle; ?></b></div>
 <div>
     <?php
     if ( $this->params->get('show_headerimage') == 1) 

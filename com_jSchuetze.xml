@@ -2,8 +2,8 @@
 <extension type="component" version="2.5.0" client = "site" method="upgrade">
 
     <name>com_jschuetze</name> 
-    <version>1.0.0</version>
-    <creationDate>28.02.2013</creationDate>
+    <version>1.0.4</version>
+    <creationDate>2013-04-16</creationDate>
     <author>Hanjo Hingsen</author>
 	<authorEmail>webmaster@treu-zu-kaarst.de</authorEmail>
 	<authorUrl>http://www.treu-zu-kaarst.de</authorUrl>

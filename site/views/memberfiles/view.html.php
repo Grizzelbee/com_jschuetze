@@ -19,7 +19,6 @@ class jSchuetzeViewMemberfiles extends JViewLegacy
         // Get the parameters
 		$this->params        = $app->getParams();
         $this->model         = $this->getModel(); 
-        //$this->members       = $this->model->getMembersForMemberfile();
 		$this->content->text = $this->model->getMemberfiles($this->params);
 		$dispatcher	         =& JDispatcher::getInstance();
 

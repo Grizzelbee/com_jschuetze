@@ -5,17 +5,18 @@
 // @file        : site/views/Memberfiles/tmpl/default.php               //
 // @implements  :                                                       //
 // @description : Entry-File for the jSchuetze-Standard-View            //
-// Version      : 1.0.0                                                 //
+// Version      : 1.0.4                                                 //
 // *********************************************************************//
 //Aufruf nur durch Joomla! zulassen
 defined('_JEXEC')or die('Restricted access'); 
 // get document to add scripts or StyleSheets
 $document = JFactory::getDocument();
 $document->addStyleSheet($this->baseurl.'/components/com_jschuetze/assets/css/memberfiles.css');
-// JHtml::_('behavior.tooltip');
-// JHtml::_('behavior.formvalidation');
-// JHtml::_('behavior.keepalive');
+$menu      = &JSite::getMenu();
+$active    = $menu->getActive();
+$menutitle = $active->title;
 ?> 
+<div class="componentheading"><b><?php echo $menutitle; ?></b></div>
 <div>
     <?php
     if ( $this->params->get('show_headerimage') == 1) 

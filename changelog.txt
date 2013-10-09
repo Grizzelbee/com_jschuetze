@@ -1,6 +1,13 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.0.4
+    [+] Die Seiten haben jetzt einen Joomla-konformen Header, der eine gestichelte Linie und 
+        den Titel des Menülinks zeigt
+    [~] Headerausgabe angepasst; Die Seitenüberschrift wird jetzt automatisch auf das Bild
+        zentiert.
+2013-04-12
+
 Version 1.0.3
     [~] Memberfiles-View so angepasst, dass das Layout eine dynamische Breite hat.
     [~] Pfänder-Bild wird jetzt am unteren Rand ausgerichtet
