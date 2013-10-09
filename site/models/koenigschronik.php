@@ -5,7 +5,7 @@
 // @file        : site/models/koenigschronik.php                        //
 // @implements  : Class jSchuetzeModelKoenigschronik                    //
 // @description : Model for the DB-Manipulation of the jSchuetze        //
-// Version      : 1.1.0                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -23,17 +23,20 @@ class jSchuetzeModelKoenigschronik extends JModelLegacy
         $query->select('member.vorname, award.titel, member.name, award.periode, award.foto_url as award_foto_url, member.foto_url as member_foto_url, zug');
         $query->from('#__jschuetze_mitglieder   AS member');
         $query->join('','#__jschuetze_mitgliedsausz  AS award  ON (award.fk_mitglied     = member.id)');
-        $query->join('','#__jschuetze_auszeichnungen AS awards ON (award.fk_auszeichnung = awards.id)');
+        //$query->join('','#__jschuetze_auszeichnungen AS awards ON (award.fk_auszeichnung = awards.id)');
         //$query->where('member.published        = 1');
-        if ($params->get('kind_of_king')==1){
-            $query->where('awards.zugkoenig = 1');
-        }
-        if ($params->get('kind_of_king')==2){
-            $query->where('awards.corpskoenig = 1');
-        }
-        if ($params->get('kind_of_king')==3){
-            $query->where('awards.bruderkoenig = 1');
-        }
+        // if ($params->get('kind_of_king')==1){
+            // $query->where('awards.zugkoenig = 1');
+        // }
+        // if ($params->get('kind_of_king')==2){
+            // $query->where('awards.corpskoenig = 1');
+        // }
+        // if ($params->get('kind_of_king')==3){
+            // $query->where('awards.bruderkoenig = 1');
+        // }
+
+        $query->where( 'award.fk_auszeichnung = '.(int)$params->get('kind_of_king') );
+
         $query->order('award.auszeichnungsdatum '.$params->get('ordering'));
 
         $db->setQuery( $query ); 

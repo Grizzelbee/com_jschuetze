@@ -5,7 +5,7 @@
 // @file        : admin/views/members/tmpl/default.php                  //
 // @implements  :                                                       //
 // @description : Template for the Members-List-View                    //
-// Version      : 1.1.1                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -13,7 +13,7 @@ JHTML::_('behavior.tooltip');
 JHTML::_('behavior.multiselect'); 
 require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 ?> 
-<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=members'); ?>" method="post" name="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=members'); ?>" method="post" name="adminForm" id="adminForm">
 
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
@@ -42,6 +42,9 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                 <th class="title">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_NAME', 'name', $this->listDirn, $this->listOrder); ?>
                 </th>
+                <th class="title">
+                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_JUSER', 'juser', $this->listDirn, $this->listOrder); ?>
+                </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_RANK', 'rang', $this->listDirn, $this->listOrder); ?>
                 </th>
@@ -49,7 +52,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_FUNCTION', 'funktion', $this->listDirn, $this->listOrder); ?>
                 </th>
                 <th width="5%" align="center">
-                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_PUBLISHED', 'published', $this->listDirn, $this->listOrder); ?>
+                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_MEMBERPAGE', 'published', $this->listDirn, $this->listOrder); ?>
                 </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_SCET_MAILS', 'scet_mail_notification', $this->listDirn, $this->listOrder); ?>
@@ -83,6 +86,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                         <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
                         <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
                         <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->vorname .' '. $item->name; ?></a></td>
+                        <td align="center"><?php echo $item->juser;?></td>
                         <td align="center"><?php echo $item->rang;?></td>
                         <td align="center"><?php echo $item->funktion;?></td>
                         <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'members.' ); ?></td>
@@ -103,7 +107,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
         <tbody>
         <tfoot>
             <tr>
-                <td colspan="10">
+                <td colspan="12">
                     <?php echo $this->pagination->getListFooter() 
                                .'<br>'
                                . $this->pagination->getResultsCounter(); 

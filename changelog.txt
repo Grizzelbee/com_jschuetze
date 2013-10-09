@@ -1,6 +1,22 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.1.3
+    [+] Auf den Adresseiten werden jetzt die eMailadressen durch das eMail-Cloaking verschleiert
+        Das ist wichtig, wenn die Seiten öffentlich angezeigt werden
+    [+] Neue Konfigurationsoption: Adressseite öffentlich anzeigen
+    [+] Neue Konfigurationsoption: QR-Code oder nur VCF-Download oder nichts davon anbieten
+    [+] Erste Schritte auf dem Weg zur Joomla 3 Kompatibilität gemacht
+    [!] Fehlermeldungen bei einigen Admin-Seiten behoben, wenn die DB-Tabellen leer sind.
+    [-] Auszeichnungstypen: Zugkönig, Corpskönig und Schützenkönig entfernt
+    [+] Auszeichnungsqualifier Mitgliederseite hinzugefügt. damit kann gesteuert werden, ob diese Auszeichnung
+        in den Mitgliederausweisen angezeigt wird.
+    [+] Bei der Königschronik können jetzt alle Auszeichnungen ausgewählt werden
+    [+] Die Mitgliedereinträge können jetzt zu den Joomla-Usern verlinkt werden.
+    [+] Neuen Site-View zum Ändern des Schützenprofils eingebaut
+    [!] Darstellungsfehler der Download-Icons auf den Adressseiten behoben.
+2013-08-15
+
 Version 1.1.2
     [+] Auf den Adress-Seiten des Mitglieds und des Lebenspartners wird jetzt eine digitale
         Visitenkarte in Form eines QR_Codes angezeigt

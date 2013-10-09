@@ -5,7 +5,7 @@
 // @file        : site/models/memberfiles.php                           //
 // @implements  : Class jSchuetzeModelMemberfiles                       //
 // @description : Model for the DB-Manipulation of the jSchuetze        //
-// Version      : 1.1.2                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -62,8 +62,8 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         $query->select('fk_mitglied, name, auszeichnungsdatum, periode, icon');
         $query->from('#__jschuetze_mitgliedsausz  as memberaward');
         $query->join('', '#__jschuetze_auszeichnungen as award on (memberaward.fk_auszeichnung = award.id)');
-        //$query->where('(zugkoenig = 1 or pfand = 1)');
-        $query->where('award.published = 1');
+        $query->where('award.memberfiles = 1');
+        $query->where('award.published   = 1');
         $query->where('fk_mitglied='.(int)$memberId);
         $query->where('auszeichnungsdatum = (select MAX(auszeichnungsdatum) from #__jschuetze_mitgliedsausz as temp where temp.fk_auszeichnung = memberaward.fk_auszeichnung)');
         $query->order('pfand desc');
@@ -156,8 +156,9 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
     
     function getMemberfiles($params) 
     { 
-        $members =& $this->getMembersForMemberfile();
-        $user    =& JFactory::getUser(); 
+        $members = $this->getMembersForMemberfile();
+        $user    = JFactory::getUser(); 
+        $content = '';
         
         
         if ($params->get('tab_plugin') == 1){
@@ -180,9 +181,9 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         $noImage = $params->get('noimage');    //'images/stories/TzK_Mitglieder/kein_bild.png';
 
         foreach ($members as $i => $member):
-            $koenigschronik =& $this->getZugkoenigschronik($member->id); 
-            $vitae          =& $this->getMemberVita($member->id); 
-            $currentAwards  =& $this->getCurrentAwards($member->id);
+            $koenigschronik = $this->getZugkoenigschronik($member->id); 
+            $vitae          = $this->getMemberVita($member->id); 
+            $currentAwards  = $this->getCurrentAwards($member->id);
             if ($member->foto_url == '') {
                 $member->foto_url = $noImage;
             }
@@ -201,10 +202,14 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
 			}
 	
             $adressImage  = '<div class="logoblock"><img class="logoimage" src="'.$zugLogo.'" alt="'.JText::_('COM_JSCHUETZE_ALT_LOGO').'"/><br />';
-            $VCFImage  = '<img class="pfandimage" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=L|0&chl=' . urlencode($this->getVCard($member)) . '" alt="'.JText::_('COM_JSCHUETZE_BUSINESSCARD').'" title="'.JText::_('COM_JSCHUETZE_BUSINESSCARD_DESC').'" />';
+            if ($params->get('vcard_as_qrcode') == 1) {
+                $VCFImage  = '<img class="pfandimage" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chld=L|0&chl=' . urlencode($this->getVCard($member)) . '" alt="'.JText::_('COM_JSCHUETZE_BUSINESSCARD_QR').'" title="'.JText::_('COM_JSCHUETZE_BUSINESSCARD_QR_DESC').'" />';
+            } else {
+                $VCFImage  = '<img class="pfandimage" src="media/com_jschuetze/images/vcard_dl.png" alt="'.JText::_('COM_JSCHUETZE_BUSINESSCARD').'" title="'.JText::_('COM_JSCHUETZE_BUSINESSCARD_DESC').'" />';            
+            }
             $adressImage .= '<a href="'.JRoute::_('index.php?option=com_jschuetze&task=memberfiles.getVCardAsFile&format=raw&filename='.$member->vorname.'_'.$member->name.'&userid='.$member->id).'">'.$VCFImage.'</a>'; 
             $adressImage .= '</div>';  
-    
+
 			$memberImage = '<img class="memberimage" src="'.$member->foto_url.'" alt="'
 						   .sprintf(JText::_('COM_JSCHUETZE_ALT_USERIMAGE'), $member->vorname.' '.$member->name).'">';
            
@@ -261,21 +266,28 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
             $cont.='</div>';
             $cont.=$memberImage;
             $cont.=$tabEndtag;
-            if (!$user->guest){
+            
+            if ( (!$user->guest) or ($params->get('show_adress_public') == 1) ){
                 // Tab: Adresse
                 $cont.=sprintf($tabTag, JText::_('COM_JSCHUETZE_ADRESS'));
-                $cont.=$adressImage;
+                if ( (!$user->guest) or ($user->guest and $params->get('show_vcard_public') == 1) ) {
+                    $cont.=$adressImage;
+                } else {
+                    $cont.=$logoImage;
+                }
                 $cont.='<div class="contentColumn">';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_NAME')  .':<br /><div class="inhalt">'.$member->vorname.' '.$member->name.'</div></div><br />';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_STREET').':<br /><div class="inhalt">'.$member->strasse.'</div></div>';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_TOWN')  .':<br /><div class="inhalt">'.$member->plz.' '.$member->ort.'</div></div>';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .':<br /><div class="inhalt">'.$member->tel.'</div></div>';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').':<br /><div class="inhalt">'.$member->mobile.'</div></div>';
-                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.$member->email_priv.'</div></div>';
+                $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.JHTML::_('email.cloak',$member->email_priv).'</div></div>';
                 $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .':<br /><div class="inhalt">'.date('d.m.Y', strtotime($member->geburtstag)).'</div></div>';
                 $cont.='</div>';
                 $cont.=$memberImage;
                 $cont.=$tabEndtag;
+            }
+            if (!$user->guest){
                 // tab: Lendings
                 $lendings = $this->getMemberLendings($member->id);
                 if (!empty($lendings)){
@@ -306,7 +318,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
                     $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_TOWN')  .':<br /><div class="inhalt">'.$partner->plz.' '.$partner->ort.'</div></div>';
                     $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .':<br /><div class="inhalt">'.$partner->tel.'</div></div>';
                     $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').':<br /><div class="inhalt">'.$partner->mobile.'</div></div>';
-                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.$partner->email_priv.'</div></div>';
+                    $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.JHTML::_('email.cloak',$partner->email_priv).'</div></div>';
                     $cont.='<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .':<br /><div class="inhalt">'.date('d.m.Y', strtotime($partner->geburtstag)).'</div></div>';
                     $cont.='</div>';
                     $cont.=$memberImage;

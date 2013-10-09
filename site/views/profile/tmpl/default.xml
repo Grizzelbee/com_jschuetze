@@ -1,51 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-    <layout title="COM_JSCHUETZE_VIEW_KOENIGSCHRONIK_TITLE">
+    <layout title="COM_JSCHUETZE_VIEW_PROFILE_TITLE">
         <message>
-            <![CDATA[COM_JSCHUETZE_VIEW_KOENIGSCHRONIK_TITLE_DESC]]>
+            <![CDATA[COM_JSCHUETZE_VIEW_PROFILE_TITLE_DESC]]>
         </message>
     </layout>
 
-    
-<!--> Einstellbar: ob Bilder links- rechtsbündig oder zentriert dargestellt werden. <-->
-  
     
     <!-- Add fields to the parameters object for the layout. -->
     <fields name="params">
         <!-- Page-Options. -->
         <fieldset   name        = "page-options"
                     label       = "COM_MENUS_PAGE_OPTIONS_LABEL">
-
-            <field  name        = "kind_of_king"
-                    type        = "sql"
-                    query       = "SELECT name AS value, id FROM #__jschuetze_auszeichnungen WHERE published=1 ORDER BY ordering ASC"
-                    key_field   = "id" 
-                    value_field = "value"
-                    default     = "0"
-                    label       = "COM_JSCHUETZE_FIELD_KIND_OF_KING_LABEL"
-                    description = "COM_JSCHUETZE_FIELD_KIND_OF_KING_LABEL_DESC">
-            </field>
-
-            <field  name        = "bildbefestigung"
-                    type        = "list"
-                    default     = "1"
-                    label       = "COM_JSCHUETZE_FIELD_BILDBEFESTIGUNG_LABEL"
-                    description = "COM_JSCHUETZE_FIELD_BILDBEFESTIGUNG_LABEL_DESC">
-                <option value="1">COM_JSCHUETZE_TAPED</option>
-                <option value="2">COM_JSCHUETZE_NAILED</option>
-                <option value="3">COM_JSCHUETZE_PINNED</option>
-                <option value="4">COM_JSCHUETZE_PINNED_ABOVE</option>
-            </field>
-
-            <field  name        = "ordering"
-                    type        = "list"
-                    default     = "0"
-                    label       = "COM_JSCHUETZE_ORDERING"
-                    description = "COM_JSCHUETZE_ORDERING_DESC">
-                <option value="ASC">COM_JSCHUETZE_ASC</option>
-                <option value="DESC">COM_JSCHUETZE_DESC</option>
-            </field>
-
+                    
             <field  name        = "show_headerimage"
                     type        = "radio"
                     default     = "1"
@@ -75,13 +42,6 @@
                     type        = "media"
                     label       = "COM_JSCHUETZE_FIELD_LOGOIMAGE_LABEL"
                     description = "COM_JSCHUETZE_FIELD_LOGOIMAGE_LABEL_DESC"
-                    default     = "">
-            </field>
-
-            <field  name        = "noimage"
-                    type        = "media"
-                    label       = "COM_JSCHUETZE_FIELD_NOIMAGE_LABEL"
-                    description = "COM_JSCHUETZE_FIELD_NOIMAGE_LABEL_DESC"
                     default     = "">
             </field>
 

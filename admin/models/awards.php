@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelAwards                            //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-awards-List                                 //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -24,7 +24,7 @@ class jSchuetzeModelAwards extends JModelList
     public function __construct($config = array())
     {
         if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array('id', 'name', 'zugkoenig', 'corpskoenig', 'bruderkoenig', 'pfand', 'published', 'ordering');
+            $config['filter_fields'] = array('id', 'name', 'memberfiles', 'pfand', 'published', 'ordering');
         }
         parent::__construct($config);
     }
@@ -82,6 +82,6 @@ class jSchuetzeModelAwards extends JModelList
         parent::populateState('ordering', 'asc');
     }
 
-    
+
 }
 ?>

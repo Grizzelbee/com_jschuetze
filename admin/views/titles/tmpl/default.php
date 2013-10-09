@@ -5,7 +5,7 @@
 // @file        : admin/views/titles/tmpl/default.php                   //
 // @implements  :                                                       //
 // @description : Template for the Titles-List-View                     //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -13,7 +13,7 @@ JHTML::_('behavior.tooltip');
 JHTML::_('behavior.multiselect'); 
 require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 ?> 
-<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=titles'); ?>" method="post" name="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=titles'); ?>" method="post" name="adminForm" id="adminForm">
 
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
@@ -61,26 +61,28 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
         </thead>
         <tbody>
             <?php  
-            foreach($this->items as $i => $item) : 
-            $link           = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=title.edit&cid[]='.(int)$item->id );
-            $singleItemLink = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=title.edit&id='.(int)$item->id );
-   			$ordering	= ($this->listOrder == 'ordering');
-            ?>
-                <tr class="row<?php echo $i % 2; ?>">
-                    <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
-                    <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
-                    <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->name; ?></a></td>
-                    <td align="center"><?php echo JHTML::_('jgrid.published', $item->rank, $i, '' );?></td>
-                    <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'titles.' ); ?></td>
-                    <td class = "order" align="center">
-                        <span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->ordering <= $item->ordering), 'titles.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                        <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->ordering >= $item->ordering), 'titles.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                        <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="text-area-order" />
-                    </td>
-                    <td><?php echo $item->id; ?></td>
-                </tr>
-            <?php 
-            endforeach; 
+            if (!empty($this->items)) {
+                foreach($this->items as $i => $item) : 
+                $link           = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=title.edit&cid[]='.(int)$item->id );
+                $singleItemLink = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=title.edit&id='.(int)$item->id );
+                $ordering	= ($this->listOrder == 'ordering');
+                ?>
+                    <tr class="row<?php echo $i % 2; ?>">
+                        <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
+                        <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
+                        <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->name; ?></a></td>
+                        <td align="center"><?php echo JHTML::_('jgrid.published', $item->rank, $i, '' );?></td>
+                        <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'titles.' ); ?></td>
+                        <td class = "order" align="center">
+                            <span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->ordering <= $item->ordering), 'titles.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+                            <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->ordering >= $item->ordering), 'titles.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+                            <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="text-area-order" />
+                        </td>
+                        <td><?php echo $item->id; ?></td>
+                    </tr>
+                <?php 
+                endforeach; 
+            }
             ?>
         <tbody>
         <tfoot>

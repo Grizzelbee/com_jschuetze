@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_mitglieder` (
     `ordering`               SMALLINT NOT NULL,
     `published`              SMALLINT NOT NULL,
     `scet_mail_notification` SMALLINT NOT NULL,
+    `fk_juser`               SMALLINT,
    PRIMARY KEY (`id`) 
 ); 
 ALTER TABLE `#__jschuetze_mitglieder` 
@@ -53,15 +54,13 @@ CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
 
 
 CREATE TABLE IF NOT EXISTS `#__jschuetze_auszeichnungen` ( 
-    `id`             INT NOT NULL AUTO_INCREMENT, 
-    `name`           VARCHAR(32) CHARACTER SET utf8, 
-    `zugkoenig`      SMALLINT DEFAULT 0,
-    `corpskoenig`    SMALLINT DEFAULT 0,
-    `bruderkoenig`   SMALLINT DEFAULT 0,
-    `pfand`          SMALLINT DEFAULT 0,
-    `ordering`       SMALLINT NOT NULL,
-    `published`      SMALLINT NOT NULL,
-    `icon`           varchar(255),
+    `id`                INT NOT NULL AUTO_INCREMENT, 
+    `name`              VARCHAR(32) CHARACTER SET utf8, 
+    `memberfiles`       SMALLINT DEFAULT 0,
+    `pfand`             SMALLINT DEFAULT 0,
+    `ordering`          SMALLINT NOT NULL,
+    `published`         SMALLINT NOT NULL,
+    `icon`              varchar(255),
    PRIMARY KEY (`id`) 
 ); 
 ALTER TABLE `#__jschuetze_auszeichnungen` 
@@ -95,7 +94,6 @@ ALTER TABLE `#__jschuetze_memberranks`
 CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
 
 
---- V1.0.7 ---
 CREATE TABLE IF NOT EXISTS `#__jschuetze_fundus` ( 
     `id`             INT NOT NULL AUTO_INCREMENT, 
     `name`           VARCHAR(128), 
@@ -125,9 +123,7 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_lending` (
 ); 
 ALTER TABLE `#__jschuetze_lending` 
 CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
---- V1.0.7 ---
 
---- V1.1.0 ---
 CREATE TABLE IF NOT EXISTS `#__jschuetze_statistics` ( 
     `id`             INT NOT NULL AUTO_INCREMENT, 
 	`viewname`   	 VARCHAR(128),
@@ -136,4 +132,3 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_statistics` (
 ); 
 ALTER TABLE `#__jschuetze_statistics` 
 CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
---- V1.1.0 ---

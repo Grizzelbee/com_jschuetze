@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelMember                            //
 // @description : Model for the DB-Manipulation of a single             //
 //                jSchuetze-Member; not for the list                    //
-// Version      : 2.5.18                                                 //
+// Version      : 1.1.1                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 

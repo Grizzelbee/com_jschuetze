@@ -21,6 +21,8 @@ class jSCHUETZEController extends JControllerLegacy
  
 		// call parent behavior
 		parent::display($cachable);	
+        
+        return $this;
     }
 
 }

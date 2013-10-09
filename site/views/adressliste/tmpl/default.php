@@ -5,7 +5,7 @@
 // @file        : site/views/adressliste/tmpl/default.php               //
 // @implements  :                                                       //
 // @description : Entry-File for the jSchuetze-adressliste-View         //
-// Version      : 1.0.9                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 //Aufruf nur durch Joomla! zulassen
 defined('_JEXEC')or die('Restricted access'); 
@@ -43,7 +43,6 @@ $this->model->setPagehit($menutitle);
     ?>
 </div>
 <div class="page_body"> 
-<form action="<?php echo JRoute::_('index.php'); ?>" method="post" name="siteForm">
 <?php 
     switch($this->params->get('listkind'))
     {
@@ -63,11 +62,10 @@ $this->model->setPagehit($menutitle);
     $image         = '<img style="float:right; width:64px; height: 64px;" src="components/com_jschuetze/assets/images/pdf_dl.png" alt="'.JTEXT::_('COM_JSCHUETZE_GENERATE_PDF').'" title="'.JTEXT::_('COM_JSCHUETZE_GENERATE_PDF').'"/>';
     $pdf_imageLink = '<a class="jgrid" href="'.$link_PDF.'")" title="'.JText::_('COM_JSCHUETZE_GENERATE_PDF').'">'.$image. '</a>';
 ?>    
-    <?php echo $csv_imageLink.$pdf_imageLink; ?>
-
+<p name="download_icons" id="download_icons" style="clear:both"><?php echo $csv_imageLink.$pdf_imageLink; ?></p>
+<div name="content" id="content">
 <?php echo $this->content->text; ?>
-
-</form>
+</div>
 
 <br><br>        
 <center>jSchützenzug v<?php echo _JSCHUETZE_VERSION; ?></center>

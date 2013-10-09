@@ -2,8 +2,8 @@
 <extension type="component" version="2.5.0" client = "site" method="upgrade">
 
     <name>com_jschuetze</name> 
-    <version>1.1.2</version>
-    <creationDate>2013-07-15</creationDate>
+    <version>1.1.3</version>
+    <creationDate>2013-08-15</creationDate>
     <author>Hanjo Hingsen</author>
 	<authorEmail>webmaster@treu-zu-kaarst.de</authorEmail>
 	<authorUrl>http://www.treu-zu-kaarst.de</authorUrl>
@@ -66,14 +66,14 @@
         <menu link="option=com_jschuetze&amp;view=members" img="components/com_jschuetze/assets/images/jschuetze_16.png">COM_JSCHUETZE</menu> 
         <submenu> 
 			<menu link="option=com_jschuetze&amp;view=members" img="../media/com_jschuetze/images/users.png">COM_JSCHUETZE_MEMBERS</menu>
-			<menu link="option=com_jschuetze&amp;view=memberawards" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_MEMBERAWARDS</menu>
-			<menu link="option=com_jschuetze&amp;view=memberranks" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_MEMBERRANKS</menu>
-			<menu link="option=com_jschuetze&amp;view=lendings" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_LENDINGS</menu>
-			<menu link="option=com_jschuetze&amp;view=assets" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_ASSETS</menu>
-			<menu link="option=com_jschuetze&amp;view=titles" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_TITLES</menu>
-			<menu link="option=com_jschuetze&amp;view=states" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_STATES</menu>
-			<menu link="option=com_jschuetze&amp;view=awards" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_AWARDS</menu>
-			<menu link="option=com_jschuetze&amp;view=statistics" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_STATISTICS</menu>
+			<menu link="option=com_jschuetze&amp;view=memberawards" img="../media/com_jschuetze/images/memberawards.png">COM_JSCHUETZE_MEMBERAWARDS</menu>
+			<menu link="option=com_jschuetze&amp;view=memberranks" img="../media/com_jschuetze/images/ranks.png">COM_JSCHUETZE_MEMBERRANKS</menu>
+			<menu link="option=com_jschuetze&amp;view=lendings" img="../media/com_jschuetze/images/share.png">COM_JSCHUETZE_LENDINGS</menu>
+			<menu link="option=com_jschuetze&amp;view=assets" img="../media/com_jschuetze/images/fundus.png">COM_JSCHUETZE_ASSETS</menu>
+			<menu link="option=com_jschuetze&amp;view=titles" img="../media/com_jschuetze/images/ranks.png">COM_JSCHUETZE_TITLES</menu>
+			<menu link="option=com_jschuetze&amp;view=states" img="../media/com_jschuetze/images/state.png">COM_JSCHUETZE_STATES</menu>
+			<menu link="option=com_jschuetze&amp;view=awards" img="../media/com_jschuetze/images/awards.png">COM_JSCHUETZE_AWARDS</menu>
+			<menu link="option=com_jschuetze&amp;view=statistics" img="../media/com_jschuetze/images/statistics.png">COM_JSCHUETZE_STATISTICS</menu>
         </submenu> 
        
         <languages folder="admin/language">

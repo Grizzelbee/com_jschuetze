@@ -5,7 +5,7 @@
 // @file        : admin/views/memberawards/tmpl/default.php             //
 // @implements  :                                                       //
 // @description : Template for the memberawards-List-View               //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -13,7 +13,7 @@ JHTML::_('behavior.tooltip');
 JHTML::_('behavior.multiselect'); 
 require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 ?> 
-<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=memberawards'); ?>" method="post" name="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=memberawards'); ?>" method="post" name="adminForm" id="adminForm">
 
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
@@ -65,22 +65,24 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
         </thead>
         <tbody>
             <?php  
-            foreach($this->items as $i => $item) : 
-            $link           = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=memberaward.edit&cid[]='.(int)$item->id );
-            $singleItemLink = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=memberaward.edit&id='.(int)$item->id );
-   			$ordering	= ($this->listOrder == 'ordering');
-            ?>
-                <tr class="row<?php echo $i % 2; ?>">
-                    <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
-                    <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
-                    <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->member; ?></a></td>
-                    <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->auszeichnung; ?></a></td>
-                    <td align="left"><?php echo $item->periode; ?></td>
-                    <td align="center"><?php echo $item->auszeichnungsdatum; ?></td>
-                    <td><?php echo $item->id; ?></td>
-                </tr>
-            <?php 
-            endforeach; 
+            if ( !empty($this->items) ) {
+                foreach($this->items as $i => $item) : 
+                $link           = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=memberaward.edit&cid[]='.(int)$item->id );
+                $singleItemLink = JRoute::_( 'index.php?option=COM_JSCHUETZE&task=memberaward.edit&id='.(int)$item->id );
+                $ordering	= ($this->listOrder == 'ordering');
+                ?>
+                    <tr class="row<?php echo $i % 2; ?>">
+                        <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
+                        <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
+                        <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->member; ?></a></td>
+                        <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->auszeichnung; ?></a></td>
+                        <td align="left"><?php echo $item->periode; ?></td>
+                        <td align="center"><?php echo $item->auszeichnungsdatum; ?></td>
+                        <td><?php echo $item->id; ?></td>
+                    </tr>
+                <?php 
+                endforeach; 
+            }
             ?>
         <tbody>
         <tfoot>

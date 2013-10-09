@@ -5,7 +5,7 @@
 // @file        : admin/views/lendings/tmpl/default.php                 //
 // @implements  :                                                       //
 // @description : Template for the lendings-List-View                   //
-// Version      : 1.1.1                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -13,7 +13,7 @@ JHTML::_('behavior.tooltip');
 JHTML::_('behavior.multiselect'); 
 require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 ?> 
-<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=lendings'); ?>" method="post" name="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=lendings'); ?>" method="post" name="adminForm" id="adminForm">
 
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">

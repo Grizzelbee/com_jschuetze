@@ -22,6 +22,33 @@
                 <option value="1">COM_JSCHUETZE_TOOLJOOM</option>
             </field>
 
+            <field  name        = "show_adress_public"
+                    type        = "radio"
+                    default     = "0"
+                    label       = "COM_JSCHUETZE_FIELD_SHOW_ADRESS_PUBLIC_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOW_ADRESS_PUBLIC_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
+            <field  name        = "show_vcard_public"
+                    type        = "radio"
+                    default     = "0"
+                    label       = "COM_JSCHUETZE_FIELD_SHOW_VCARD_PUBLIC_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOW_VCARD_PUBLIC_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
+            <field  name        = "vcard_as_qrcode"
+                    type        = "radio"
+                    default     = "1"
+                    label       = "COM_JSCHUETZE_FIELD_SHOW_VCARD_AS_QRCODE_LABEL"
+                    description = "COM_JSCHUETZE_FIELD_SHOW_VCARD_AS_QRCODE_LABEL_DESC">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
             <field  name        = "show_headerimage"
                     type        = "radio"
                     default     = "1"

@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelAward                             //
 // @description : Model for the DB-Manipulation of a single             //
 //                jSchuetze-Award; not for the list                     //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -86,7 +86,19 @@ class jSchuetzeModelAward extends JModelAdmin
 		return ($maxOrdering + 1)  ;
 	}
     
-    
+    public function changeDBField($fieldname, $value, $cid)
+    {
+        $db    = JFactory::getDBO();
+        $query = $db->getQuery(true);
+        $update = 'UPDATE `#__jschuetze_auszeichnungen` '
+                 .'SET '.$fieldname.' = '.(int)$value.' '
+                 .'WHERE id in ('.implode($cid).');';
+        
+        $db->setQuery($update);
+        $db->query();
+        
+        return $db->getAffectedRows();
+    }    
     
     
     

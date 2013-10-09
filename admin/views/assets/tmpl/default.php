@@ -5,7 +5,7 @@
 // @file        : admin/views/assets/tmpl/default.php                   //
 // @implements  :                                                       //
 // @description : Template for the Assets-List-View                     //
-// Version      : 1.0.8                                                 //
+// Version      : 1.1.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -13,7 +13,7 @@ JHTML::_('behavior.tooltip');
 JHTML::_('behavior.multiselect'); 
 require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 ?> 
-<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=assets'); ?>" method="post" name="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_jschuetze&view=assets'); ?>" method="post" name="adminForm" id="adminForm">
 
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
