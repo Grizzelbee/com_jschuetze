@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModellendings                          //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-lendings-List                               //
-// Version      : 1.0.8                                                 //
+// Version      : 1.1.1                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -55,7 +55,12 @@ class jSchuetzeModellendings extends JModelList
 		// @ToDo:
 		// hier muss nachgebessert werden. Das SQL zum suchen funktioniert so nicht.
 		// vermutlich müssen da noch mindestens zwei Joins rein.
-		
+        //Filter by Member-ID
+
+        $member = $this->getState('filter.member');
+        if (is_numeric($member)) {
+            $query->where('fk_schuetze = '.(int)$member);
+        }
 		
         // Filter by published state
         $published = $this->getState('filter.state');
@@ -83,6 +88,9 @@ class jSchuetzeModellendings extends JModelList
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
      
+        $member = $this->getUserStateFromRequest($this->context.'.filter.member', 'filter_member', '', 'string');
+        $this->setState('filter.member', $member);
+
         $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
         $this->setState('filter.state', $state);
 

@@ -24,7 +24,7 @@ class jSchuetzeModelMembers extends JModelList
     public function __construct($config = array())
     {
         if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array('id', 'name', 'vorname', 'ort', 'beitritt', 'published', 'ordering', 'rang', 'funktion', 'funktion_seit', 'funktion_bis');
+            $config['filter_fields'] = array('id', 'name', 'vorname', 'ort', 'beitritt', 'published', 'ordering', 'rang', 'funktion', 'funktion_seit', 'funktion_bis', 'scet_mail_notification');
         }
         parent::__construct($config);
     }
@@ -39,7 +39,7 @@ class jSchuetzeModelMembers extends JModelList
         $query = $db->getQuery(true);
 
         // Select some fields
-        $query->select('member.id AS id, member.name AS name, member.vorname AS vorname, member.ort AS ort, member.beitritt AS beitritt, member.published AS published, member.ordering as ordering, rank.name as rang, funktion.name AS funktion, memberrank.funktion_seit, memberrank.funktion_bis');
+        $query->select('member.id AS id, member.name AS name, member.vorname AS vorname, member.ort AS ort, member.beitritt AS beitritt, member.published AS published, member.ordering as ordering, rank.name as rang, funktion.name AS funktion, memberrank.funktion_seit, memberrank.funktion_bis, scet_mail_notification');
         $query->from('#__jschuetze_mitglieder    AS member');
         $query->join('LEFT', '#__jschuetze_memberranks AS memberrank ON (memberrank.fk_mitglied = member.id)');
         $query->join('LEFT', '#__jschuetze_titel       AS rank       ON (memberrank.fk_funktion = rank.id)');
@@ -86,6 +86,5 @@ class jSchuetzeModelMembers extends JModelList
         parent::populateState('ordering', 'asc');
     }
 
-    
 }
 ?>

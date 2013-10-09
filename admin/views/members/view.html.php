@@ -5,7 +5,7 @@
 // @file        : admin/views/members/view.html.php                     //
 // @implements  : Class jSchuetzeViewMembers                            //
 // @description : Main-entry for the Members-ListView                   //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.1                                                 //
 // *********************************************************************//
 // no direct access to this file
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -47,6 +47,9 @@ class jSchuetzeViewMembers extends JViewLegacy
         JToolBarHelper::divider();
         JToolBarHelper::publishList('members.publish');
         JToolBarHelper::unpublishList('members.unpublish');
+        JToolBarHelper::divider();
+        JToolBarHelper::publishList('members.scet_mail_notificationpublish', 'COM_JSCHUETZE_SCET_MAILS');
+        JToolBarHelper::unpublishList('members.scet_mail_notificationunpublish', 'COM_JSCHUETZE_SCET_MAILS');
     }
 
 } 

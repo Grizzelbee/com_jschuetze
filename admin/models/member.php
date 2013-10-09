@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelMember                            //
 // @description : Model for the DB-Manipulation of a single             //
 //                jSchuetze-Member; not for the list                    //
-// Version      : 1.0.0                                                 //
+// Version      : 2.5.18                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -75,8 +75,6 @@ class jSchuetzeModelMember extends JModelAdmin
         return $data;	
     }
     
-    
-    
     function getNextOrderingNr()
     {
         $db    = JFactory::getDBO();
@@ -90,6 +88,22 @@ class jSchuetzeModelMember extends JModelAdmin
 	}
     
     
+    public function setScetmailNotificationState($newState, $users)
+    {
+        $db    = JFactory::getDBO();
+        $query = $db->getQuery(true);
+
+        $cids = implode(',', $users);
+        
+        $sql = 'UPDATE #__jschuetze_mitglieder '
+              .'SET scet_mail_notification = '.(int)$newState
+              .' WHERE id IN ('.$cids.')';
+        
+        $db->setQuery($sql);
+        $db->query();
+        
+        return $db->getAffectedRows();
+    }
     
     
     

@@ -5,7 +5,7 @@
 // @file        : admin/views/members/tmpl/default.php                  //
 // @implements  :                                                       //
 // @description : Template for the Members-List-View                    //
-// Version      : 1.0.4                                                 //
+// Version      : 1.1.1                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -44,16 +44,19 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                 </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_RANK', 'rang', $this->listDirn, $this->listOrder); ?>
-               </th>
+                </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_FUNCTION', 'funktion', $this->listDirn, $this->listOrder); ?>
-               </th>
+                </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_PUBLISHED', 'published', $this->listDirn, $this->listOrder); ?>
-               </th>
+                </th>
+                <th width="5%" align="center">
+                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_SCET_MAILS', 'scet_mail_notification', $this->listDirn, $this->listOrder); ?>
+                </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ORT', 'ort', $this->listDirn, $this->listOrder); ?>
-               </th>
+                </th>
                 <th width="80px" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_BEITRITT', 'beitritt', $this->listDirn, $this->listOrder); ?>
                </th>
@@ -83,6 +86,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                         <td align="center"><?php echo $item->rang;?></td>
                         <td align="center"><?php echo $item->funktion;?></td>
                         <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'members.' ); ?></td>
+                        <td align="center"><?php echo JHTML::_('jgrid.published', $item->scet_mail_notification, $i, 'members.scet_mail_notification' ); ?></td>
                         <td align="center"><?php echo $item->ort;?></td>
                         <td align="center"><?php echo $item->beitritt;?></td>
                         <td class = "order" align="center">

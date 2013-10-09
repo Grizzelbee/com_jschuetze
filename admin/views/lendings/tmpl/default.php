@@ -5,7 +5,7 @@
 // @file        : admin/views/lendings/tmpl/default.php                 //
 // @implements  :                                                       //
 // @description : Template for the lendings-List-View                   //
-// Version      : 1.0.8                                                 //
+// Version      : 1.1.1                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -23,6 +23,9 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
 			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>
         <div class="filter-select fltrt">
+            <select name="filter_member" class="inputbox" onchange="this.form.submit()">
+                <?php echo JHtml::_('select.options', JFormFieldMember::getOptions(), 'value', 'text', $this->state->get('filter.member'), true);?>
+            </select>
             <select name="filter_state" class="inputbox" onchange="this.form.submit()">
                 <option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
                 <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.state'), true); ?>

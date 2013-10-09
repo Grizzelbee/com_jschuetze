@@ -1,6 +1,12 @@
 Changelog für com_jSchuetze
 ---------------------------
 
+Version 1.1.1
+    [+] Opt-In Möglichkeit eingebaut, um aus SCET per eMail Benachrichtigungen über Terminänderungen
+        zu erhalten.
+    [+] Im Leihgaben-View im Backend einen Filter über die Zugmitglieder hinzugefügt   
+2013-07-10
+
 Version 1.1.0
     [+] Neuen Back-End-View für Seitenstatistiken eingebaut.
         Damit kann man sehen, welche der eingerichteten Seiten wie oft abgerufen wurde.

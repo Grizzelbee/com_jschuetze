@@ -5,7 +5,7 @@
 // @file        : admin/models/fields/member.php                        //
 // @implements  : Class JFormFieldMember                                //
 // @description : Field to select one of the Members in jSchutze        //
-// Version      : 1.0.0                                                 //
+// Version      : 1.1.1                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
@@ -22,19 +22,24 @@ class JFormFieldMember extends JFormFieldList
 	 * Method to get the field options.
 	 * @return	array	The field option objects.
 	 */
-	public function getOptions()
+	public function getOptions($group=0)
 	{
 		$options = array();
+        
+        // Es sollen nicht immer alle in der Datenbank befindlichen Personen geliefert werden.
+        // Deshalb kann genauer unterschieden werden
+        // $group = 0 => ALLE Personen in der Datenbank (default)
+        // $group = 1 => ALLE veröffentlichten Zugmitglieder
+        // $group = 2 => Alle Lebenspartner 
+        // $group = 3 => ALLE aktiven/passiven/ausgeschiedenen Zugmitglieder; Also alle, die keine Lebenspartner sind
 
         $db		= JFactory::getDbo();
         $query	= $db->getQuery(true);
 
         $query->select("id AS value, CONCAT(name, ', ', vorname) AS text");
         $query->from('#__jschuetze_mitglieder');
-        //$query->where('published = 1');
         $query->order('name ASC');
-     
-        // Get the options.
+
         $db->setQuery($query);
      
         $options = $db->loadObjectList();

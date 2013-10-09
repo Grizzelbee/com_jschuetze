@@ -26,6 +26,9 @@ class jSchuetzeViewLendings extends JViewLegacy
         // Get order state
         $this->listOrder = $this->escape($this->state->get( 'list.ordering'  ));
         $this->listDirn  = $this->escape($this->state->get( 'list.direction' ));
+
+        // include custom fields
+        require_once JPATH_COMPONENT .'/models/fields/member.php';
         
         parent::display($tpl); 
     } 
