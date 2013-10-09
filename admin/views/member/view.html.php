@@ -33,6 +33,7 @@ class jSchuetzeViewMember extends JViewLegacy
 		$text = $isNew ? JText::_( 'COM_JSCHUETZE_NEW' ) : JText::_( 'COM_JSCHUETZE_EDIT' );
         JHtml::stylesheet('com_jschuetze/views.css', array(), true, false, false);
 		JToolBarHelper::title(   JText::_( 'COM_JSCHUETZE_HEAD_MEMBERS_MANAGER' ).': <small>[ ' . $text.' ]</small>' , 'jschuetze');
+		JToolBarHelper::apply('member.apply');
         JToolBarHelper::save2new('member.save2new');
 		JToolBarHelper::save('member.save');
 		JToolBarHelper::cancel('member.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');

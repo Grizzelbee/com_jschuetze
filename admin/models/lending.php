@@ -2,21 +2,18 @@
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
-// @file        : admin/models/state.php                                //
-// @implements  : Class jSchuetzeModelState                             //
+// @file        : admin/models/lending.php                              //
+// @implements  : Class jSchuetzeModellending                           //
 // @description : Model for the DB-Manipulation of a single             //
-//                jSchuetze-state; not for the list                     //
-// Version      : 1.0.0                                                 //
+//                jSchuetze-lending; not for the list                   //
+// Version      : 1.0.7                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
 jimport( 'joomla.application.component.modeladmin' );
 
-class jSchuetzeModelState extends JModelAdmin
+class jSchuetzeModelLending extends JModelAdmin
 {
-   	var $_categories = null;
-
-    
     /**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
@@ -26,7 +23,7 @@ class jSchuetzeModelState extends JModelAdmin
 	 * @return	JTable	A database object
 	 * @since	1.6
 	 */
-    public function getTable($type = 'state', $prefix = 'jSchuetzeTable', $config = array())
+    public function getTable($type = 'lending', $prefix = 'jSchuetzeTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -42,8 +39,8 @@ class jSchuetzeModelState extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
         $form = $this->loadForm(
-                'com_jschuetze.state', 
-                'state', 
+                'com_jschuetze.lending', 
+                'lending', 
                  array('control' => 'jform', 'load_data' => $loadData));
         if (empty($form))
         {
@@ -62,7 +59,7 @@ class jSchuetzeModelState extends JModelAdmin
     protected function loadFormData()
     {
         // Check the session for previously entered form data.
-        $data = JFactory::getApplication()->getUserState('com_jschuetze.edit.state.data', array());
+        $data = JFactory::getApplication()->getUserState('com_jschuetze.edit.lending.data', array());
         if (empty($data))
         {
             $data = $this->getItem();
@@ -79,16 +76,58 @@ class jSchuetzeModelState extends JModelAdmin
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
         $query->select('max(ordering)');
-        $query->from('#__jschuetze_status');
+        $query->from('#__jschuetze_lending');
 		$db->setQuery( $query );
 		$maxOrdering = $db->loadResult();
 
 		return ($maxOrdering + 1)  ;
 	}
     
-    
-    
-    
+    public function returnOneItem($id)
+    {
+		$db	=& JFactory::getDBO();
+        $query  = 'UPDATE #__jschuetze_lending';
+		$query .= ' SET anzahl_rueck = anzahl_rueck + 1,';
+		$query .= ' rueckgabe = CURRENT_DATE';
+		$query .= ' WHERE id = '. $id;
+		$db->setQuery( $query );
+        if (!$db->query()) {
+            return -1;
+        };
+        
+        $query = $db->getQuery(true);
+        $query->select('fk_fundus');
+        $query->from('#__jschuetze_lending');
+        $query->where('id = '.$id);
+        $db->setQuery( $query );
+        $fk_asset = $db->loadResult();
+        
+        $query  = 'UPDATE #__jschuetze_fundus';
+		$query .= ' SET bestand = bestand + 1';
+		$query .= ' WHERE id = '. $fk_asset;
+		$db->setQuery( $query );
+        if (!$db->query()) {
+            return -1;
+        };
+
+        return $db->getAffectedRows();
+    }
+  
+    public function save()
+    {
+        parent::save();
+        
+        // select fk_fundus, anzahl_aus
+        // from   lending
+        // where  id= $id;
+        
+        // update fundus
+        // set    bestand = bestand - anzahl_aus
+        // where  id = fk_fundus
+        echo 'Overwritten.Save';
+        die;
+    }
+
     
 }
 ?>

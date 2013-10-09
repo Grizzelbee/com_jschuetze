@@ -2,16 +2,16 @@
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
-// @file        : admin/views/state/view.html.php                       //
-// @implements  : Class jSchuetzeViewstate                              //
-// @description : Main-entry for the single state-View                  //
-// Version      : 1.0.0                                                 //
+// @file        : admin/views/asset/view.html.php                       //
+// @implements  : Class jSchuetzeViewAsset                              //
+// @description : Main-entry for the single Asset-View                  //
+// Version      : 1.0.7                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted Access!');
 jimport( 'joomla.application.component.view' );
 
-class jSchuetzeViewState extends JViewLegacy
+class jSchuetzeViewAsset extends JViewLegacy
 {
 	/**
 	 * display method of ToDo view
@@ -32,11 +32,11 @@ class jSchuetzeViewState extends JViewLegacy
     {
 		$text = $isNew ? JText::_( 'COM_JSCHUETZE_NEW' ) : JText::_( 'COM_JSCHUETZE_EDIT' );
         JHtml::stylesheet('com_jschuetze/views.css', array(), true, false, false);
-		JToolBarHelper::title(   JText::_( 'COM_JSCHUETZE_HEAD_STATES_MANAGER' ).': <small>[ ' . $text.' ]</small>' , 'jschuetze');
-		JToolBarHelper::apply('state.apply');
-        JToolBarHelper::save2new('state.save2new');
-		JToolBarHelper::save('state.save');
-		JToolBarHelper::cancel('state.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
+		JToolBarHelper::title(   JText::_( 'COM_JSCHUETZE_MANAGE_ASSETS' ).': <small>[ ' . $text.' ]</small>' , 'jschuetze');
+		JToolBarHelper::apply('asset.apply');
+        JToolBarHelper::save2new('asset.save2new');
+		JToolBarHelper::save('asset.save');
+		JToolBarHelper::cancel('asset.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
     }
     
     

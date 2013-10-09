@@ -24,6 +24,38 @@ Könnte das Aussehen eines "Personalausweises" haben (mit Schlagschatten).
 
 Neue Features:
 --------------
+Fundus-Verwaltung einbauen
+--------------------------
+Das Zugeigentum soll erfasst und verwaltet werden.
+Zudem muss verwaltet werden, welchem Schützen welche Dinge geliehen wurden.
+Leihgaben an einzelne Schützen werden auf einem neuen Reiter bei der Mitgliederliste
+ausgegeben. Zudem soll es eine Gesamtübersichtsseite über den Fundus geben.
+
+Tabellen:
+com_schuetze_fundus
+-------------------
+id
+name
+anzahl
+bestand
+
+com_schuetze_lending
+------------------
+id
+fk_schuetze
+fk_fundus
+anzahl_aus
+ausgabe
+anzahl_rueck
+rueckgabe
+
+
+
+
+
+
+
+
 (beide) Königsseiten:
 ---------------------
 bekommen das Aussehen einer Bildergalerie, die mit tesafilm an die Wand geklebt wurden.

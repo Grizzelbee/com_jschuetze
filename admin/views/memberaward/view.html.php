@@ -33,6 +33,7 @@ class jSchuetzeViewMemberaward extends JViewLegacy
 		$text = $isNew ? JText::_( 'COM_JSCHUETZE_NEW' ) : JText::_( 'COM_JSCHUETZE_EDIT' );
         JHtml::stylesheet('com_jschuetze/views.css', array(), true, false, false);
 		JToolBarHelper::title(   JText::_( 'COM_JSCHUETZE_HEAD_MEMBERAWARDS_MANAGER' ).': <small>[ ' . $text.' ]</small>' , 'jschuetze');
+		JToolBarHelper::apply('memberaward.apply');
         JToolBarHelper::save2new('memberaward.save2new');
 		JToolBarHelper::save('memberaward.save');
 		JToolBarHelper::cancel('memberaward.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');

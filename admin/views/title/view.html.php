@@ -33,6 +33,7 @@ class jSchuetzeViewTitle extends JViewLegacy
 		$text = $isNew ? JText::_( 'COM_JSCHUETZE_NEW' ) : JText::_( 'COM_JSCHUETZE_EDIT' );
         JHtml::stylesheet('com_jschuetze/views.css', array(), true, false, false);
 		JToolBarHelper::title(   JText::_( 'COM_JSCHUETZE_HEAD_TITLES_MANAGER' ).': <small>[ ' . $text.' ]</small>' , 'jschuetze');
+		JToolBarHelper::apply('title.apply');
         JToolBarHelper::save2new('title.save2new');
 		JToolBarHelper::save('title.save');
 		JToolBarHelper::cancel('title.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');

@@ -68,13 +68,13 @@ class jSchuetzeModelAward extends JModelAdmin
             $data = $this->getItem();
             if ($data->ordering == 0)
             {
-                $data->ordering = $this->getNextOderingNr();
+                $data->ordering = $this->getNextOrderingNr();
             }
         }
         return $data;	
     }
     
-    function getNextOderingNr()
+    function getNextOrderingNr()
     {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);

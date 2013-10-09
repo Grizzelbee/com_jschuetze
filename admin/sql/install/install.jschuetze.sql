@@ -24,6 +24,9 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_mitglieder` (
     `published`             SMALLINT NOT NULL,
    PRIMARY KEY (`id`) 
 ); 
+ALTER TABLE `#__jschuetze_mitglieder` 
+CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
+
 
 CREATE TABLE IF NOT EXISTS `#__jschuetze_status` ( 
     `id`             INT NOT NULL AUTO_INCREMENT, 
@@ -32,6 +35,9 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_status` (
     `published`      SMALLINT NOT NULL,
     PRIMARY KEY (`id`)
 ); 
+ALTER TABLE `#__jschuetze_status` 
+CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
+
 
 CREATE TABLE IF NOT EXISTS `#__jschuetze_titel` ( 
     `id`             INT NOT NULL AUTO_INCREMENT, 
@@ -41,6 +47,8 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_titel` (
     `published`      SMALLINT NOT NULL,
     PRIMARY KEY (`id`)
 ); 
+ALTER TABLE `#__jschuetze_titel` 
+CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
 
 
 CREATE TABLE IF NOT EXISTS `#__jschuetze_auszeichnungen` ( 
@@ -55,6 +63,8 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_auszeichnungen` (
     `icon`           varchar(255),
    PRIMARY KEY (`id`) 
 ); 
+ALTER TABLE `#__jschuetze_auszeichnungen` 
+CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
 
 
 CREATE TABLE IF NOT EXISTS `#__jschuetze_mitgliedsausz` ( 
@@ -68,6 +78,8 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_mitgliedsausz` (
    `zug`                   VARCHAR(255),
    PRIMARY KEY (`id`) 
 ); 
+ALTER TABLE `#__jschuetze_mitgliedsausz` 
+CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
 
 
 CREATE TABLE IF NOT EXISTS `#__jschuetze_memberranks` ( 
@@ -78,21 +90,36 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_memberranks` (
     `funktion_bis`          DATE,  
    PRIMARY KEY (`id`) 
 ); 
-
 ALTER TABLE `#__jschuetze_memberranks` 
 CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
 
-ALTER TABLE `#__jschuetze_mitgliedsausz` 
+
+--- V1.0.7 ---
+CREATE TABLE IF NOT EXISTS `#__jschuetze_fundus` ( 
+    `id`             INT NOT NULL AUTO_INCREMENT, 
+    `name`           VARCHAR(128), 
+	`anzahl`		 SMALLINT NOT NULL,
+	`bestand`  		 SMALLINT NOT NULL,
+    `ordering`       SMALLINT NOT NULL,
+    `published`      SMALLINT NOT NULL,
+    PRIMARY KEY (`id`)
+); 
+ALTER TABLE `#__jschuetze_fundus` 
 CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
 
-ALTER TABLE `#__jschuetze_mitglieder` 
-CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
 
-ALTER TABLE `#__jschuetze_status` 
+CREATE TABLE IF NOT EXISTS `#__jschuetze_lending` ( 
+    `id`             INT NOT NULL AUTO_INCREMENT, 
+	`fk_schuetze`	 SMALLINT NOT NULL,
+	`fk_fundus`      SMALLINT NOT NULL,
+	`anzahl_aus`	 SMALLINT NOT NULL,
+	`ausgabe`		 DATE,
+	`anzahl_rueck`	 SMALLINT NOT NULL,
+	`rueckgabe`		 DATE,
+    `ordering`       SMALLINT NOT NULL,
+    `published`      SMALLINT NOT NULL,
+    PRIMARY KEY (`id`)
+); 
+ALTER TABLE `#__jschuetze_lending` 
 CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
-
-ALTER TABLE `#__jschuetze_titel` 
-CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
-
-ALTER TABLE `#__jschuetze_auszeichnungen` 
-CONVERT TO CHARACTER SET utf8 COLLATE `utf8_general_ci`;
+--- V1.0.7 ---

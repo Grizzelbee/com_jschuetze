@@ -10,7 +10,7 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-define('_jSCHUETZE_VERSION','1.0.6');
+define('_jSCHUETZE_VERSION','1.0.6.01');
  
 // for Joomla 3 Compatibility
 if(!defined('DS')){

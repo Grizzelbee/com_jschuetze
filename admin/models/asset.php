@@ -2,17 +2,17 @@
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
-// @file        : admin/models/state.php                                //
-// @implements  : Class jSchuetzeModelState                             //
+// @file        : admin/models/asset.php                                //
+// @implements  : Class jSchuetzeModelAsset                             //
 // @description : Model for the DB-Manipulation of a single             //
-//                jSchuetze-state; not for the list                     //
-// Version      : 1.0.0                                                 //
+//                jSchuetze-Asset; not for the list                     //
+// Version      : 1.0.7                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
 jimport( 'joomla.application.component.modeladmin' );
 
-class jSchuetzeModelState extends JModelAdmin
+class jSchuetzeModelAsset extends JModelAdmin
 {
    	var $_categories = null;
 
@@ -26,7 +26,7 @@ class jSchuetzeModelState extends JModelAdmin
 	 * @return	JTable	A database object
 	 * @since	1.6
 	 */
-    public function getTable($type = 'state', $prefix = 'jSchuetzeTable', $config = array())
+    public function getTable($type = 'asset', $prefix = 'jSchuetzeTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -42,8 +42,8 @@ class jSchuetzeModelState extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
         $form = $this->loadForm(
-                'com_jschuetze.state', 
-                'state', 
+                'com_jschuetze.asset', 
+                'asset', 
                  array('control' => 'jform', 'load_data' => $loadData));
         if (empty($form))
         {
@@ -62,7 +62,7 @@ class jSchuetzeModelState extends JModelAdmin
     protected function loadFormData()
     {
         // Check the session for previously entered form data.
-        $data = JFactory::getApplication()->getUserState('com_jschuetze.edit.state.data', array());
+        $data = JFactory::getApplication()->getUserState('com_jschuetze.edit.asset.data', array());
         if (empty($data))
         {
             $data = $this->getItem();
@@ -79,7 +79,7 @@ class jSchuetzeModelState extends JModelAdmin
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
         $query->select('max(ordering)');
-        $query->from('#__jschuetze_status');
+        $query->from('#__jschuetze_fundus');
 		$db->setQuery( $query );
 		$maxOrdering = $db->loadResult();
 

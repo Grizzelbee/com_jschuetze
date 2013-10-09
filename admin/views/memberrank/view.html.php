@@ -33,6 +33,7 @@ class jSchuetzeViewMemberrank extends JViewLegacy
 		$text = $isNew ? JText::_( 'COM_JSCHUETZE_NEW' ) : JText::_( 'COM_JSCHUETZE_EDIT' );
         JHtml::stylesheet('com_jschuetze/views.css', array(), true, false, false);
 		JToolBarHelper::title(   JText::_( 'COM_JSCHUETZE_HEAD_MEMBERRANKS_MANAGER' ).': <small>[ ' . $text.' ]</small>' , 'jschuetze');
+		JToolBarHelper::apply('memberrank.apply');
         JToolBarHelper::save2new('memberrank.save2new');
 		JToolBarHelper::save('memberrank.save');
 		JToolBarHelper::cancel('memberrank.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
