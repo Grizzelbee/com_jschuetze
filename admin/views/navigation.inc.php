@@ -14,8 +14,9 @@ $document->addStyleSheet(JURI::root().'media/com_jschuetze/css/views.css');
 
 function getNavContainer($activeView)
 {
-	$knownViews = ['members', 'memberawards', 'memberranks', 'lendings', 'assets', 'titles', 'states', 'awards'];
-
+	$knownViews = array('members', 'memberawards', 'memberranks', 'lendings', 'assets', 'titles', 'states', 'awards');
+	$navContainer = '';
+    
 	foreach ($knownViews as $v => $view):
  		if ($view == $activeView) {
 			$activeState = 'id="active"';

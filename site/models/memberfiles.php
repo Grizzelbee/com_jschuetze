@@ -5,7 +5,7 @@
 // @file        : site/models/memberfiles.php                           //
 // @implements  : Class jSchuetzeModelMemberfiles                       //
 // @description : Model for the DB-Manipulation of the jSchuetze        //
-// Version      : 1.0.6                                                 //
+// Version      : 1.0.7                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -113,6 +113,26 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
               
         return $monate[date('m', $aDate)].' '.date('Y', $aDate);
     }
+
+
+    function getMemberLendings($memberId) 
+    { 
+        $db = JFactory::getDBO(); 
+        $query = $db->getQuery(true);
+
+        $query->select('fundus.name AS item, (lending.anzahl_aus - lending.anzahl_rueck) AS anzahl, ausgabe');
+        $query->from('#__jschuetze_lending   AS lending');
+        $query->join('','#__jschuetze_fundus AS fundus ON (lending.fk_fundus = fundus.id)');
+        $query->where('fundus.published        = 1');
+        $query->where('lending.published       = 1');
+        $query->where('lending.anzahl_aus - lending.anzahl_rueck != 0');
+        $query->where('lending.fk_schuetze     = '.(int)$memberId);
+        $query->order('ausgabe asc');
+        $db->setQuery( $query ); 
+        $rows = $db->loadObjectList(); 
+
+        return $rows; 
+    } 
     
     
     function getMemberfiles($params) 
@@ -232,6 +252,19 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
                 $cont.='</div>';
                 $cont.=$memberImage;
                 $cont.=$tabEndtag;
+                // tab: Lendings
+                $lendings = $this->getMemberLendings($member->id);
+                if (!empty($lendings)){
+                    $cont.=sprintf($tabTag, JText::_('COM_JSCHUETZE_LENDINGS'));
+                    $cont.=$logoImage;
+                    $cont.='<div class="contentColumn">';
+                    foreach ($lendings as $l => $lending):
+                        $cont.='<div class="label" style="text-align: justify">'.date('d.m.Y', strtotime($lending->ausgabe)).': '.$lending->anzahl.' '.$lending->item.'</div>';
+                    endforeach;
+                    $cont.='</div>';
+                    $cont.=$memberImage;
+                    $cont.=$tabEndtag;        
+                }
                 if ($member->fk_lebenspartner != 0){
                     // Tab: Lebenspartner
                     $partner = $this->getLebenspartner($member->fk_lebenspartner);

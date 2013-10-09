@@ -113,19 +113,26 @@ class jSchuetzeModelLending extends JModelAdmin
         return $db->getAffectedRows();
     }
   
-    public function save()
+    public function updateBestand($fk_fundus, $differenz) {
+        $db	=& JFactory::getDBO();
+        $query  = 'UPDATE #__jschuetze_fundus';
+		$query .= ' SET bestand = bestand - '.$differenz;
+		$query .= ' WHERE id = '. $fk_fundus;
+		$db->setQuery( $query );
+        if (!$db->query()) {
+            return -1;
+        };
+        return 0;
+    }
+  
+    public function save($array)
     {
-        parent::save();
+        if ($array[id] == 0) {
+            // Neuer Datensatz !
+            $result = $this->updateBestand($array[fk_fundus], $array[anzahl_aus]);
+        }
         
-        // select fk_fundus, anzahl_aus
-        // from   lending
-        // where  id= $id;
-        
-        // update fundus
-        // set    bestand = bestand - anzahl_aus
-        // where  id = fk_fundus
-        echo 'Overwritten.Save';
-        die;
+        return parent::save($array);
     }
 
     
