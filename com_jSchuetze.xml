@@ -2,8 +2,8 @@
 <extension type="component" version="2.5.0" client = "site" method="upgrade">
 
     <name>com_jschuetze</name> 
-    <version>1.0.7</version>
-    <creationDate>2013-06-16</creationDate>
+    <version>1.0.8</version>
+    <creationDate>2013-06-18</creationDate>
     <author>Hanjo Hingsen</author>
 	<authorEmail>webmaster@treu-zu-kaarst.de</authorEmail>
 	<authorUrl>http://www.treu-zu-kaarst.de</authorUrl>
@@ -64,12 +64,16 @@
 
     <administration> 
         <menu link="option=com_jschuetze&amp;view=members" img="components/com_jschuetze/assets/images/jschuetze_16.png">COM_JSCHUETZE</menu> 
-        <!--submenu> 
-			<menu link="option=com_jschuetze&amp;controller=project&amp;view=projects" img="../media/media/images/folder_sm.png">COM_jschuetze_MANAGE_PROJECTS</menu>
-			<menu link="option=com_jschuetze&amp;controller=category&amp;view=categories" img="../media/media/images/folder_sm.png">COM_jschuetze_MANAGE_CATEGORIES</menu>
-			<menu link="option=com_jschuetze&amp;controller=todo&amp;view=todos" img="components/com_jschuetze/assets/images/todo-16.png">COM_jschuetze_MANAGE_TODOS</menu>
-			<menu link="option=com_jschuetze&amp;controller=todo&amp;view=mapping" img="../media/com_jschuetze/images/users.png">COM_jschuetze_MANAGE_MAPPINGS</menu>
-        </submenu--> 
+        <submenu> 
+			<menu link="option=com_jschuetze&amp;view=members" img="../media/com_jschuetze/images/users.png">COM_JSCHUETZE_MEMBERS</menu>
+			<menu link="option=com_jschuetze&amp;view=memberawards" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_MEMBERAWARDS</menu>
+			<menu link="option=com_jschuetze&amp;view=memberranks" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_MEMBERRANKS</menu>
+			<menu link="option=com_jschuetze&amp;view=lendings" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_LENDINGS</menu>
+			<menu link="option=com_jschuetze&amp;view=assets" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_ASSETS</menu>
+			<menu link="option=com_jschuetze&amp;view=titles" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_TITLES</menu>
+			<menu link="option=com_jschuetze&amp;view=states" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_STATES</menu>
+			<menu link="option=com_jschuetze&amp;view=awards" img="../media/media/images/folder_sm.png">COM_JSCHUETZE_AWARDS</menu>
+        </submenu> 
        
         <languages folder="admin/language">
             <language tag="de-DE">de-DE/de-DE.com_jschuetze.ini</language>

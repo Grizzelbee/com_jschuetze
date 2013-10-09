@@ -1,0 +1,37 @@
+﻿<?php 
+// *********************************************************************//
+// Project      : jSchuetze for Joomla                                  //
+// @package     : com_jSchuetze                                         //
+// @file        : site/models/fundus.php                                //
+// @implements  : Class jSchuetzeModelFundus                            //
+// @description : Model for the DB-Manipulation of jSchuetze            //
+// Version      : 1.0.8                                                 //
+// *********************************************************************//
+// Check to ensure this file is included in Joomla!
+defined('_JEXEC') or die( 'Restricted Access' ); 
+// Include dependancy of the main model
+jimport('joomla.application.component.model');
+
+class jSchuetzeModelFundus extends JModelLegacy 
+{ 
+    
+    function getFundus() 
+    { 
+        $db = JFactory::getDBO(); 
+        $query = $db->getQuery(true);
+
+        $query->select('*');
+        $query->from('#__jschuetze_fundus');
+        $query->where('published = 1');
+        $query->order('ordering');
+
+        $db->setQuery( $query ); 
+        $rows = $db->loadObjectList(); 
+
+        return $rows; 
+    } 
+
+
+
+} 
+?>

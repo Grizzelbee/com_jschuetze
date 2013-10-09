@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelAssets                            //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-Assets-List                                 //
-// Version      : 1.0.7                                                 //
+// Version      : 1.0.8                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -24,7 +24,7 @@ class jSchuetzeModelAssets extends JModelList
     public function __construct($config = array())
     {
         if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array('id', 'name', 'anzahl', 'bestand', 'published', 'ordering');
+            $config['filter_fields'] = array('id', 'name', 'anzahl', 'fee', 'bestand', 'published', 'ordering');
         }
         parent::__construct($config);
     }

@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModellendings                          //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-lendings-List                               //
-// Version      : 1.0.7                                                 //
+// Version      : 1.0.8                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -24,7 +24,7 @@ class jSchuetzeModellendings extends JModelList
     public function __construct($config = array())
     {
         if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array('id', 'name', 'gegenstand', 'anzahl_aus', 'ausgabe', 'anzahl_rueck', 'rueckgabe', 'published', 'ordering');
+            $config['filter_fields'] = array('id', 'name', 'fee_paied', 'gegenstand', 'anzahl_aus', 'ausgabe', 'anzahl_rueck', 'rueckgabe', 'published', 'ordering');
         }
         parent::__construct($config);
     }
@@ -39,7 +39,7 @@ class jSchuetzeModellendings extends JModelList
         $query = $db->getQuery(true);
 
         // Select some fields
-        $query->select('CONCAT(member.vorname, \' \', member.name) AS name, fundus.name AS gegenstand, anzahl_aus, ausgabe, anzahl_rueck, rueckgabe, lending.published, lending.ordering,lending.id, (anzahl_aus - anzahl_rueck) AS itemsopen');
+        $query->select('CONCAT(member.vorname, \' \', member.name) AS name, fundus.name AS gegenstand, anzahl_aus, ausgabe, anzahl_rueck, rueckgabe, lending.published, lending.ordering,lending.id, (anzahl_aus - anzahl_rueck) AS itemsopen, fee_paied');
         $query->from('#__jschuetze_lending        AS lending');
         $query->join('', '#__jschuetze_fundus     AS fundus ON (lending.fk_fundus   = fundus.id)');
         $query->join('', '#__jschuetze_mitglieder AS member ON (lending.fk_schuetze = member.id)');

@@ -5,7 +5,7 @@
 // @file        : admin/views/lendings/tmpl/default.php                 //
 // @implements  :                                                       //
 // @description : Template for the lendings-List-View                   //
-// Version      : 1.0.7                                                 //
+// Version      : 1.0.8                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -44,26 +44,29 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                 </th>
                 <th width="20%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ITEM', 'gegenstand', $this->listDirn, $this->listOrder); ?>
-               </th>
+                </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ANZAHL_AUS', 'anzahl_aus', $this->listDirn, $this->listOrder); ?>
-               </th>
+                </th>
                 <th width="10%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_DATUM_AUS', 'ausgabe', $this->listDirn, $this->listOrder); ?>
-               </th>
+                </th>
+                <th width="5%" align="center">
+                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_FEE_PAIED', 'FEE_PAIED', $this->listDirn, $this->listOrder); ?>
+                </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ANZAHL_RUECK', 'anzahl_rueck', $this->listDirn, $this->listOrder); ?>
-               </th>
+                </th>
                 <th width="10%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_DATUM_RUECK', 'rueckgabe', $this->listDirn, $this->listOrder); ?>
-               </th>
+                </th>
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_PUBLISHED', 'published', $this->listDirn, $this->listOrder); ?>
                </th>
                 <th width="12%">
                     <span>
                         <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ORDERING', 'ordering', $this->listDirn, $this->listOrder); ?>
-                        <?php echo JHTML::_('grid.order', $this->items, 'filesave.png', 'titles.saveorder'); ?>
+                        <?php echo JHTML::_('grid.order', $this->items, 'filesave.png', 'lendings.saveorder'); ?>
                     </span>
                 </th>
                 <th width="3%">
@@ -86,6 +89,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                         <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->gegenstand; ?></a></td>
                         <td align="center"><?php echo $item->anzahl_aus;  ?></td>
                         <td align="center"><?php echo $item->ausgabe; ?></td>
+                        <td align="center"><?php echo JHTML::_('jgrid.published', $item->fee_paied, $i, 'lendings.fee_paied' ); ?></td>
                         <td align="center"><?php echo $item->anzahl_rueck . $this->getAddImage($i, $item->itemsopen);  ?></td>
                         <td align="center"><?php echo $item->rueckgabe; ?></td>
                         <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'lendings.' ); ?></td>

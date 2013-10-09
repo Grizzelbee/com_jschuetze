@@ -100,6 +100,7 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_fundus` (
     `name`           VARCHAR(128), 
 	`anzahl`		 SMALLINT NOT NULL,
 	`bestand`  		 SMALLINT NOT NULL,
+	`fee`    		 SMALLINT NOT NULL,
     `ordering`       SMALLINT NOT NULL,
     `published`      SMALLINT NOT NULL,
     PRIMARY KEY (`id`)
@@ -114,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `#__jschuetze_lending` (
 	`fk_fundus`      SMALLINT NOT NULL,
 	`anzahl_aus`	 SMALLINT NOT NULL,
 	`ausgabe`		 DATE,
+	`fee_paied`  	 SMALLINT NOT NULL,
 	`anzahl_rueck`	 SMALLINT NOT NULL,
 	`rueckgabe`		 DATE,
     `ordering`       SMALLINT NOT NULL,

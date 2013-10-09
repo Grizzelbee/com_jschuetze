@@ -1,0 +1,35 @@
+<style type="text/css">
+  
+.NoFunction{}
+
+
+.fundustable {
+    width:100%;
+    border-spacing:0px;
+    border:1px solid black; 
+    border-collapse:collapse;
+}
+
+.fundustable th{
+    background-color: grey; 
+    text-align: center;
+    font-weight: bold;
+    color:white;
+    border-collapse:collapse; 
+}
+
+.td_center{
+    text-align:center;
+    height:38px;
+}
+
+.td_left{
+    text-align:left;
+    height:38px;
+}
+
+.fundustable tr:hover{
+    background-color: #FDFAD7; 
+}
+
+</style>

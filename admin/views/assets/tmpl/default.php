@@ -5,7 +5,7 @@
 // @file        : admin/views/assets/tmpl/default.php                   //
 // @implements  :                                                       //
 // @description : Template for the Assets-List-View                     //
-// Version      : 1.0.7                                                 //
+// Version      : 1.0.8                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access'); 
@@ -43,6 +43,9 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ITEM', 'name', $this->listDirn, $this->listOrder); ?>
                 </th>
                 <th width="5%" align="center">
+                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_FEE', 'fee', $this->listDirn, $this->listOrder); ?>
+               </th>
+                <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ANZAHL', 'anzahl', $this->listDirn, $this->listOrder); ?>
                </th>
                 <th width="5%" align="center">
@@ -54,7 +57,7 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
                 <th width="12%">
                     <span>
                         <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ORDERING', 'ordering', $this->listDirn, $this->listOrder); ?>
-                        <?php echo JHTML::_('grid.order', $this->items, 'filesave.png', 'titles.saveorder'); ?>
+                        <?php echo JHTML::_('grid.order', $this->items, 'filesave.png', 'assets.saveorder'); ?>
                     </span>
                 </th>
                 <th width="5">
@@ -64,27 +67,30 @@ require(JPATH_COMPONENT.DS.'views'.DS.'navigation.inc.php');
         </thead>
         <tbody>
             <?php  
-            foreach($this->items as $i => $item) : 
-            $link           = JRoute::_( 'index.php?option=com_jschuetze&task=asset.edit&cid[]='.(int)$item->id );
-            $singleItemLink = JRoute::_( 'index.php?option=com_jschuetze&task=asset.edit&id='.(int)$item->id );
-   			$ordering	= ($this->listOrder == 'ordering');
-            ?>
-                <tr class="row<?php echo $i % 2; ?>">
-                    <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
-                    <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
-                    <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->name; ?></a></td>
-                    <td align="center"><?php echo $item->anzahl;  ?></td>
-                    <td align="center"><?php echo $item->bestand; ?></td>
-                    <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'assets.' ); ?></td>
-                    <td class = "order" align="center">
-                        <span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->ordering <= $item->ordering), 'assets.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                        <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->ordering >= $item->ordering), 'assets.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-                        <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="text-area-order" />
-                    </td>
-                    <td><?php echo $item->id; ?></td>
-                </tr>
-            <?php 
-            endforeach; 
+            if (!empty($this->items)) {
+                foreach($this->items as $i => $item) : 
+                $link           = JRoute::_( 'index.php?option=com_jschuetze&task=asset.edit&cid[]='.(int)$item->id );
+                $singleItemLink = JRoute::_( 'index.php?option=com_jschuetze&task=asset.edit&id='.(int)$item->id );
+                $ordering	= ($this->listOrder == 'ordering');
+                ?>
+                    <tr class="row<?php echo $i % 2; ?>">
+                        <td><?php echo sprintf('%02d', $this->pagination->limitstart+$i+1); ?></td>
+                        <td><?php echo JHTML::_('grid.id', $i, $item->id); ?></td>
+                        <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->name; ?></a></td>
+                        <td align="center"><?php echo $item->fee;  ?></td>
+                        <td align="center"><?php echo $item->anzahl;  ?></td>
+                        <td align="center"><?php echo $item->bestand; ?></td>
+                        <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'assets.' ); ?></td>
+                        <td class = "order" align="center">
+                            <span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->ordering <= $item->ordering), 'assets.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+                            <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->ordering >= $item->ordering), 'assets.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+                            <input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" class="text-area-order" />
+                        </td>
+                        <td><?php echo $item->id; ?></td>
+                    </tr>
+                <?php 
+                endforeach; 
+            }
             ?>
         <tbody>
         <tfoot>
