@@ -273,6 +273,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
     protected function getLendingsPage($tabTag, $tabEndTag, $logoImage, $memberImage, $member)
     {
         $lendings = $this->getMemberLendings($member->id);
+        $cont = '';
 
         if (!empty($lendings)){
             $cont  = sprintf($tabTag, JText::_('COM_JSCHUETZE_LENDINGS'));
