@@ -1,5 +1,13 @@
 Changelog für com_jSchuetze
 ---------------------------
+ToDo:
+1. Datumsumrechnung für MySQL Testen
+        // Aus Admin.Model.EasyBookReloaded
+        $mainframe = JFactory::getApplication();
+        $date = JFactory::getDate($data['gbdate'], $mainframe->getCfg('offset'));
+        $data['gbdate'] = $date->toMySQL();
+2. Updateserver einbauen
+3. Adress-Seite liefert bei fehlender eMailadresse keinen Fehler mehr.
 
 Version 1.1.5
     [+] Auf der Mitgliederseite können nun alle Reiter einzeln ein- und ausgeblendet werden.

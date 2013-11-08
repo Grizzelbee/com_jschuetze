@@ -5,7 +5,7 @@
 // @file        : site/models/memberfiles.php                           //
 // @implements  : Class jSchuetzeModelMemberfiles                       //
 // @description : Model for the DB-Manipulation of the jSchuetze        //
-// Version      : 1.1.5                                                 //
+// Version      : 1.1.6                                                 //
 // Change-Id: I0000000000000000000000000000000000000000                 //
 // Signed-off-by: Hanjo Hingsen <hanjo@hingsen.de>                      //
 // *********************************************************************//
@@ -261,7 +261,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_TOWN')  .':<br /><div class="inhalt">'.$member->plz.' '.$member->ort.'</div></div>';
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .':<br /><div class="inhalt">'.$member->tel.'</div></div>';
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').':<br /><div class="inhalt">'.$member->mobile.'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.JHTML::_('email.cloak',$member->email_priv).'</div></div>';
+        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.($member->email_priv!='')? JHTML::_('email.cloak',$member->email_priv):'';.'</div></div>';
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .':<br /><div class="inhalt">'.date('d.m.Y', strtotime($member->geburtstag)).'</div></div>';
         $cont .= '</div>';
         $cont .= $memberImage;
