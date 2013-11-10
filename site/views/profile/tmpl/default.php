@@ -5,7 +5,9 @@
 // @file        : site/views/profile/tmpl/default.php                   //
 // @implements  :                                                       //
 // @description : Entry-File for the jSchuetze-Profile-View             //
-// Version      : 1.1.3                                                 //
+// Version      : 1.1.6                                                 //
+// Change-Id: I0000000000000000000000000000000000000000                 //
+// Signed-off-by: Hanjo Hingsen <hanjo@hingsen.de>                      //
 // *********************************************************************//
 //Aufruf nur durch Joomla! zulassen
 defined('_JEXEC')or die('Restricted access'); 
@@ -46,7 +48,8 @@ $menutitle = $active->title;
 <div class="page_body"> 
     <?php if ( empty ($this->item) ) {
         echo JText::_('COM_JSCHUETZE_ERROR_PROFILE_NOT_LINKED_TO_JOOMLA');
-    } else { ?>
+    } else { 
+		$timezone = JFactory::getApplication()->getCfg('timezone');?>
         
     <form name="adminForm" id="adminForm" action="<?php JRoute::_('index.php'); ?>" target="_top" method="post" class="form-validate form-horizontal">
     <div class="span10 form-horizontal">
@@ -129,7 +132,7 @@ $menutitle = $active->title;
                     <label for="geburtstag" class="hasTip required" title="<?php echo JText::_('COM_JSCHUETZE_GEBURTSTAG_DESC'); ?>"><?php echo JText::_('COM_JSCHUETZE_BIRTHDAY'); ?>:</label>
                 </div>
                 <div class="controls">
-                    <input name="geburtstag" id="geburtstag" value="<?php echo $this->item->geburtstag; ?>" />
+                    <input name="geburtstag" id="geburtstag" value="<?php echo JHTML::_('date', $this->item->geburtstag, 'd.m.Y', $timezone); ?>" />
                 </div>
             </div>
             <div class="control-group">
@@ -138,6 +141,22 @@ $menutitle = $active->title;
                 </div>
                 <div class="controls">
                     <input name="religion" id="religion" value="<?php echo $this->item->religion; ?>" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <label for="eintritt" class="hasTip required" title="<?php echo JText::_('COM_JSCHUETZE_BEITRITT_DESC'); ?>"><?php echo JText::_('COM_JSCHUETZE_BEITRITT'); ?>:</label>
+                </div>
+                <div class="controls">
+                    <input name="eintritt" id="eintritt" value="<?php echo JHTML::_('date', $this->item->beitritt, 'd.m.Y', $timezone); ?>" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <label for="eintritt_bruderschaft" class="hasTip required" title="<?php echo JText::_('COM_JSCHUETZE_BEITRITT_BRUDER_DESC'); ?>"><?php echo JText::_('COM_JSCHUETZE_BEITRITT_BRUDER'); ?>:</label>
+                </div>
+                <div class="controls">
+                    <input name="eintritt_bruderschaft" id="eintritt_bruderschaft" value="<?php echo JHTML::_('date', $this->item->beitritt_bruder, 'd.m.Y', $timezone); ?>" />
                 </div>
             </div>
             <div class="control-group">

@@ -1,13 +1,10 @@
 Changelog für com_jSchuetze
 ---------------------------
-ToDo:
-1. Datumsumrechnung für MySQL Testen
-        // Aus Admin.Model.EasyBookReloaded
-        $mainframe = JFactory::getApplication();
-        $date = JFactory::getDate($data['gbdate'], $mainframe->getCfg('offset'));
-        $data['gbdate'] = $date->toMySQL();
-2. Updateserver einbauen
-3. Adress-Seite liefert bei fehlender eMailadresse keinen Fehler mehr.
+Version 1.1.6
+    [!] Adress-Seite liefert bei fehlender eMailadresse keinen Fehler mehr.
+    [+] Im View Profile können jetzt auch Eintritt und Eintritt in die Bruderschaft geändert werden
+    [+] Updateserver geht in Betrieb
+2013-11-09, Hanjo Hingsen
 
 Version 1.1.5
     [+] Auf der Mitgliederseite können nun alle Reiter einzeln ein- und ausgeblendet werden.

@@ -30,8 +30,13 @@ class jSchuetzeModelProfile extends JModelLegacy
         return $user; 
     } 
 
+
     public function save($data)
     {
+    	$data['geburtstag']            = JFactory::getDate($data['geburtstag'], 'UTC')->toMySQL();
+    	$data['eintritt']              = JFactory::getDate($data['eintritt'], 'UTC')->toMySQL();
+    	$data['eintritt_bruderschaft'] = JFactory::getDate($data['eintritt_bruderschaft'], 'UTC')->toMySQL();
+    	
         $db		= $this->getDbo();
 		$query	= $db->getQuery(true);
 		$query->update('#__jschuetze_mitglieder');

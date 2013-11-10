@@ -255,13 +255,14 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         } else {
             $cont .= $logoImage;
         }
+        $member->email_priv = ($member->email_priv != '')? JHTML::_('email.cloak',$member->email_priv):'N/A';
         $cont .= '<div class="contentColumn">';
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_NAME')  .':<br /><div class="inhalt">'.$member->vorname.' '.$member->name.'</div></div><br />';
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_STREET').':<br /><div class="inhalt">'.$member->strasse.'</div></div>';
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_TOWN')  .':<br /><div class="inhalt">'.$member->plz.' '.$member->ort.'</div></div>';
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .':<br /><div class="inhalt">'.$member->tel.'</div></div>';
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').':<br /><div class="inhalt">'.$member->mobile.'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.($member->email_priv!='')? JHTML::_('email.cloak',$member->email_priv):'';.'</div></div>';
+        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.$member->email_priv.'</div></div>';
         $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .':<br /><div class="inhalt">'.date('d.m.Y', strtotime($member->geburtstag)).'</div></div>';
         $cont .= '</div>';
         $cont .= $memberImage;
