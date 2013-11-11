@@ -5,7 +5,7 @@
 // @file        : site/models/profilephp                                //
 // @implements  : Class jSchuetzeModelProfile                           //
 // @description : Model for the DB-Manipulation of jSchuetze            //
-// Version      : 1.1.3                                                 //
+// Version      : 1.1.6                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -50,6 +50,8 @@ class jSchuetzeModelProfile extends JModelLegacy
 		$query->set('email_priv = \''.$data[email_priv].'\'');
 		$query->set('religion = \''.$data[religion].'\'');
 		$query->set('geburtstag = \''.$data[geburtstag].'\'');
+		$query->set('beitritt = \''.$data[eintritt].'\'');
+		$query->set('beitritt_bruder = \''.$data[eintritt_bruderschaft].'\'');
 		$query->set('scet_mail_notification = \''.$data[scet_mail_notification].'\'');
 		$query->where('id = ' . (int)$data[id]);
 
