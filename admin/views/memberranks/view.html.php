@@ -29,7 +29,7 @@ class jSchuetzeViewMemberranks extends JViewLegacy
         require_once JPATH_COMPONENT .'/models/fields/member.php';
 
         // Add Toolbar to View
-        jschuetzeHelper::addSubmenu('members');
+        jschuetzeHelper::addSubmenu('memberranks');
         $this-> addToolbar();
         $this->sidebar = JHtmlSidebar::render();
 

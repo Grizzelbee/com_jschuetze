@@ -25,7 +25,7 @@ class jSchuetzeViewStates extends JViewLegacy
         $this->listDirn  = $this->escape($this->state->get( 'list.direction' ));
 
         // Add Toolbar to View
-        jschuetzeHelper::addSubmenu('members');
+        jschuetzeHelper::addSubmenu('states');
         $this-> addToolbar();
         $this->sidebar = JHtmlSidebar::render();
 

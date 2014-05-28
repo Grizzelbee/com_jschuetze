@@ -28,7 +28,7 @@ class jSchuetzeViewLendings extends JViewLegacy
         require_once JPATH_COMPONENT .'/models/fields/member.php';
 
         // Add Toolbar to View
-        jschuetzeHelper::addSubmenu('members');
+        jschuetzeHelper::addSubmenu('lendings');
         $this-> addToolbar();
         $this->sidebar = JHtmlSidebar::render();
 
