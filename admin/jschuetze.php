@@ -6,13 +6,12 @@
 // @implements  :                                                       //
 // @description : Main-Backend-Entry-File for the jSchuetze-Component   //
 // Version      : 2.0.0                                                 //
-// Change-Id: I0000000000000000000000000000000000000000                 //
 // Signed-off-by: Hanjo Hingsen <hanjo@hingsen.de>                      //
 // *********************************************************************//
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-define('_jSCHUETZE_VERSION','1.1.6');
+define('_jSCHUETZE_VERSION','2.0.0');
 
 // for Joomla 3 Compatibility
 if(!defined('DS')){

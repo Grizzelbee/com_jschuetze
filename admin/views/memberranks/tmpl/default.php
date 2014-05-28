@@ -66,7 +66,7 @@ $sortFields = $this->getSortFields();
         <thead>
             <tr>
                <th width="1%" class="nowrap center hidden-phone">
-                  <?php echo JHtml::_('searchtools.sort', '', 'member.ordering', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
+					<?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'ordering', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
                </th>
                <th width="1%" class="hidden-phone">
                   <?php echo JHtml::_('grid.checkall'); ?>

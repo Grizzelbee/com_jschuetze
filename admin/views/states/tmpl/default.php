@@ -13,7 +13,7 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
 
-$saveOrder	= $this->listOrder == 'member.ordering';
+$saveOrder	= $this->listOrder == 'ordering';
 if ($saveOrder)
 {
    $saveOrderingUrl = 'index.php?option=com_jschuetze&task=members.saveOrderAjax&tmpl=component';
@@ -66,7 +66,7 @@ $sortFields = $this->getSortFields();
         <thead>
             <tr>
                <th width="1%" class="nowrap center hidden-phone">
-                  <?php echo JHtml::_('searchtools.sort', '', 'member.ordering', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
+					<?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'ordering', $this->listDirn, $this->listOrder, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
                </th>
                <th width="1%" class="hidden-phone">
                   <?php echo JHtml::_('grid.checkall'); ?>
@@ -74,7 +74,7 @@ $sortFields = $this->getSortFields();
                 <th class="state">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_state', 'name', $this->listDirn, $this->listOrder); ?>
                 </th>
-                <th width="5%" align="center">
+                <th width="5%" >
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_PUBLISHED', 'published', $this->listDirn, $this->listOrder); ?>
                </th>
                 <th width="5">
@@ -108,7 +108,7 @@ $sortFields = $this->getSortFields();
                         </td>
                         <td class="center hidden-phone"><?php echo JHtml::_('grid.id', $i, $item->id); ?></td>
                                             <td><a href="<?php echo $singleItemLink; ?>"><?php echo $item->name; ?></a></td>
-                        <td align="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'states.' ); ?></td>
+                        <td class="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'states.' ); ?></td>
                         <td><?php echo $item->id; ?></td>
                     </tr>
                 <?php

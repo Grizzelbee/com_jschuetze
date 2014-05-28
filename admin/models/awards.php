@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
@@ -6,10 +6,10 @@
 // @implements  : Class jSchuetzeModelAwards                            //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-awards-List                                 //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted Access' ); 
+defined('_JEXEC') or die( 'Restricted Access' );
 jimport( 'joomla.application.component.modellist' );
 
 class jSchuetzeModelAwards extends JModelList
@@ -28,7 +28,7 @@ class jSchuetzeModelAwards extends JModelList
         }
         parent::__construct($config);
     }
-    
+
 	/**
 	 * Returns the query
 	 * @return string The query to be used to retrieve the rows from the database
@@ -65,16 +65,16 @@ class jSchuetzeModelAwards extends JModelList
             $orderDirn = 'asc';
         }
         $query->order($db->escape($orderCol.' '.$orderDirn));
-        
+
         return $query;
 	}
-   
+
 
     protected function populateState($ordering = null, $direction = null)
     {
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-     
+
         $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
         $this->setState('filter.state', $state);
 

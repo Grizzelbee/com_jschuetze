@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<extension type="component" version="2.5.0" client = "site" method="upgrade">
+<extension type="component" version="3.0.0" client = "site" method="upgrade">
 
     <name>com_jschuetze</name> 
-    <version>1.1.6</version>
-    <creationDate>2013-11-08</creationDate>
+    <version>2.0.0</version>
+    <creationDate>2014-05-28</creationDate>
     <author>Hanjo Hingsen</author>
 	<authorEmail>webmaster@treu-zu-kaarst.de</authorEmail>
 	<authorUrl>http://www.treu-zu-kaarst.de</authorUrl>

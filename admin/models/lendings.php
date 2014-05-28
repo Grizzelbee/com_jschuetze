@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
@@ -6,10 +6,10 @@
 // @implements  : Class jSchuetzeModellendings                          //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-lendings-List                               //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted Access' ); 
+defined('_JEXEC') or die( 'Restricted Access' );
 jimport( 'joomla.application.component.modellist' );
 
 class jSchuetzeModellendings extends JModelList
@@ -28,7 +28,7 @@ class jSchuetzeModellendings extends JModelList
         }
         parent::__construct($config);
     }
-    
+
 	/**
 	 * Returns the query
 	 * @return string The query to be used to retrieve the rows from the database
@@ -43,8 +43,8 @@ class jSchuetzeModellendings extends JModelList
         $query->from('#__jschuetze_lending        AS lending');
         $query->join('', '#__jschuetze_fundus     AS fundus ON (lending.fk_fundus   = fundus.id)');
         $query->join('', '#__jschuetze_mitglieder AS member ON (lending.fk_schuetze = member.id)');
-		
-		
+
+
         //Search
         $search = $this->getState('filter.search');
         if (!empty($search)) {
@@ -56,7 +56,7 @@ class jSchuetzeModellendings extends JModelList
         if (is_numeric($member)) {
             $query->where('lending.fk_schuetze = '.(int)$member);
         }
-		
+
         // Filter by published state
         $published = $this->getState('filter.state');
         if (is_numeric($published)) {
@@ -71,16 +71,16 @@ class jSchuetzeModellendings extends JModelList
             $orderDirn = 'ASC';
         }
         $query->order($db->escape($orderCol.' '.$orderDirn));
-        
+
         return $query;
 	}
-   
+
 
     protected function populateState($ordering = null, $direction = null)
     {
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-     
+
         $member = $this->getUserStateFromRequest($this->context.'.filter.member', 'filter_member', '', 'string');
         $this->setState('filter.member', $member);
 
@@ -91,6 +91,6 @@ class jSchuetzeModellendings extends JModelList
         parent::populateState('lending.ordering', 'ASC');
     }
 
-    
+
 }
 ?>

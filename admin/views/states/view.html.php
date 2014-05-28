@@ -60,6 +60,7 @@ class jSchuetzeViewStates extends JViewLegacy
       return array(
          'ordering' => JText::_('JGRID_HEADING_ORDERING'),
          'published' => JText::_('JSTATUS'),
+      	 'name' => JText::_('COM_JSCHUETZE_STATE'),
          'id' => JText::_('JGRID_HEADING_ID')
       );
    }

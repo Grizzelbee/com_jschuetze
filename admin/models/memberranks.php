@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
@@ -6,10 +6,10 @@
 // @implements  : Class jSchuetzeModelmemberranks                      //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-Memberranks-List                           //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted Access' ); 
+defined('_JEXEC') or die( 'Restricted Access' );
 jimport( 'joomla.application.component.modellist' );
 
 class jSchuetzeModelMemberranks extends JModelList
@@ -28,7 +28,7 @@ class jSchuetzeModelMemberranks extends JModelList
         }
         parent::__construct($config);
     }
-    
+
 	/**
 	 * Returns the query
 	 * @return string The query to be used to retrieve the rows from the database
@@ -48,7 +48,7 @@ class jSchuetzeModelMemberranks extends JModelList
         $search = $this->getState('filter.search');
         if (!empty($search)) {
             $search = $db->Quote('%'.$db->escape($search, true).'%', false);
-            $query->where('(member.name LIKE '.$search.') OR (rank.name LIKE '.$search.') ');
+            $query->where('(member.name LIKE '.$search.') OR (member.vorname LIKE '.$search.') OR (title.name LIKE '.$search.') ');
         }
 
         // Filter by published state
@@ -79,16 +79,16 @@ class jSchuetzeModelMemberranks extends JModelList
             $orderDirn = 'desc';
         }
         $query->order($db->escape($orderCol.' '.$orderDirn));
-        
+
         return $query;
 	}
-   
+
 
     protected function populateState($ordering = null, $direction = null)
     {
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-     
+
         // $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
         // $this->setState('filter.state', $state);
 
@@ -102,6 +102,6 @@ class jSchuetzeModelMemberranks extends JModelList
         parent::populateState('funktion_bis, funktion_seit', 'desc');
     }
 
-    
+
 }
 ?>
