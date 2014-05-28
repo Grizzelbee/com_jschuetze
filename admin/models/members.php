@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
@@ -6,10 +6,10 @@
 // @implements  : Class jSchuetzeModelMembers                           //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-Members-List                                //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted Access' ); 
+defined('_JEXEC') or die( 'Restricted Access' );
 jimport( 'joomla.application.component.modellist' );
 
 class jSchuetzeModelMembers extends JModelList
@@ -24,17 +24,17 @@ class jSchuetzeModelMembers extends JModelList
     public function __construct($config = array())
     {
         if (empty($config['filter_fields'])) {
-            $config['filter_fields'] = array('id', 'name', 'vorname', 'ort', 'beitritt', 'published', 'ordering', 'rang', 'funktion', 'funktion_seit', 'funktion_bis', 'scet_mail_notification');
+            $config['filter_fields'] = array('id', 'name', 'vorname', 'ort', 'beitritt', 'published', 'member.ordering', 'rang', 'funktion', 'funktion_seit', 'funktion_bis', 'scet_mail_notification');
         }
         parent::__construct($config);
     }
-    
-	/**
-	 * Returns the query
-	 * @return string The query to be used to retrieve the rows from the database
-	 */
-	protected function getListQuery()
-	{
+
+   /**
+    * Returns the query
+    * @return string The query to be used to retrieve the rows from the database
+    */
+   protected function getListQuery()
+   {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
 
@@ -46,12 +46,20 @@ class jSchuetzeModelMembers extends JModelList
         $query->join('LEFT', '#__jschuetze_titel       AS funktion   ON (member.fk_funktion     = funktion.id)');
         $query->join('LEFT', '#__users                 AS users      ON (member.fk_juser        = users.id)');
         $query->group('member.name, member.vorname, member.strasse, member.beitritt');
-        
-        //Search
+
+        // Filter by search in title
         $search = $this->getState('filter.search');
-        if (!empty($search)) {
-            $search = $db->Quote('%'.$db->escape($search, true).'%', false);
-            $query->where('(member.name LIKE '.$search.')');
+        if (!empty($search))
+        {
+           if (stripos($search, 'id:') === 0)
+           {
+              $query->where('id = ' . (int) substr($search, 3));
+           }
+           else
+           {
+              $search = $db->quote('%' . $db->escape($search, true) . '%');
+              $query->where('(member.name  LIKE ' . $search . ')');
+           }
         }
 
         // Filter by published state
@@ -70,21 +78,21 @@ class jSchuetzeModelMembers extends JModelList
             $orderDirn = 'asc';
         }
         $query->order($db->escape($orderCol.' '.$orderDirn));
-        
+
         return $query;
-	}
-   
+   }
+
 
     protected function populateState($ordering = null, $direction = null)
     {
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-     
+
         $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
         $this->setState('filter.state', $state);
 
         // List state information.
-        parent::populateState('ordering', 'asc');
+        parent::populateState('member.ordering', 'asc');
     }
 
 }

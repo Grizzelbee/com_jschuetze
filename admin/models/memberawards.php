@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
@@ -6,10 +6,10 @@
 // @implements  : Class jSchuetzeModelmemberawards                      //
 // @description : Model for the DB-Manipulation of the                  //
 //                jSchuetze-Memberawards-List                           //
-// Version      : 1.1.4                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted Access' ); 
+defined('_JEXEC') or die( 'Restricted Access' );
 jimport( 'joomla.application.component.modellist' );
 
 class jSchuetzeModelMemberawards extends JModelList
@@ -28,13 +28,13 @@ class jSchuetzeModelMemberawards extends JModelList
         }
         parent::__construct($config);
     }
-    
-	/**
-	 * Returns the query
-	 * @return string The query to be used to retrieve the rows from the database
-	 */
-	protected function getListQuery()
-	{
+
+   /**
+    * Returns the query
+    * @return string The query to be used to retrieve the rows from the database
+    */
+   protected function getListQuery()
+   {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
 
@@ -46,10 +46,19 @@ class jSchuetzeModelMemberawards extends JModelList
 
         //Search
         $search = $this->getState('filter.search');
-        if (!empty($search)) {
-            $search = $db->Quote('%'.$db->escape($search, true).'%', false);
-            $query->where('(member.name LIKE '.$search.') OR (award.name LIKE '.$search.') ');
+        if (!empty($search))
+        {
+           if (stripos($search, 'id:') === 0)
+           {
+              $query->where('id = ' . (int) substr($search, 3));
+           }
+           else
+           {
+              $search = $db->quote('%' . $db->escape($search, true) . '%');
+              $query->where('(member.name LIKE '.$search.') OR (award.name LIKE '.$search.') ');
+           }
         }
+
 
         //Filter by period
         $period = $this->getState('filter.period');
@@ -78,15 +87,15 @@ class jSchuetzeModelMemberawards extends JModelList
             $orderDirn = 'DESC';
         }
         $query->order($db->escape($orderCol.' '.$orderDirn));
-        
+
         return $query;
-	}
-   
+   }
+
     protected function populateState($ordering = null, $direction = null)
     {
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-     
+
         $member = $this->getUserStateFromRequest($this->context.'.filter.member', 'filter_member', '', 'string');
         $this->setState('filter.member', $member);
 
@@ -100,6 +109,6 @@ class jSchuetzeModelMemberawards extends JModelList
         parent::populateState('auszeichnungsdatum', 'desc');
     }
 
-    
+
 }
 ?>

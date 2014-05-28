@@ -1,4 +1,4 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
@@ -9,7 +9,7 @@
 // Version      : 1.1.4                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted Access' ); 
+defined('_JEXEC') or die( 'Restricted Access' );
 jimport( 'joomla.application.component.modellist' );
 
 class jSchuetzeModelStatistics extends JModelList
@@ -28,31 +28,47 @@ class jSchuetzeModelStatistics extends JModelList
         }
         parent::__construct($config);
     }
-    
-	/**
-	 * Returns the query
-	 * @return string The query to be used to retrieve the rows from the database
-	 */
-	protected function getListQuery()
-	{
+
+   /**
+    * Returns the query
+    * @return string The query to be used to retrieve the rows from the database
+    */
+   protected function getListQuery()
+   {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
 
         // Select some fields
         $query->select('*');
         $query->from('#__jschuetze_statistics');
+
+        // Filter by search in title
+        $search = $this->getState('filter.search');
+        if (!empty($search))
+        {
+              if (stripos($search, 'id:') === 0)
+              {
+                 $query->where('id = ' . (int) substr($search, 3));
+              }
+              else
+              {
+                 $search = $db->quote('%' . $db->escape($search, true) . '%');
+                 $query->where('(viewname LIKE ' . $search . ')');
+              }
+        }
+
         //Add the list ordering clause.
         $query->order($db->escape('hits desc'));
-        
+
         return $query;
-	}
-   
+   }
+
 
     protected function populateState($ordering = null, $direction = null)
     {
         $search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-     
+
         $state = $this->getUserStateFromRequest($this->context.'.filter.state', 'filter_state', '', 'string');
         $this->setState('filter.state', $state);
 
@@ -60,6 +76,6 @@ class jSchuetzeModelStatistics extends JModelList
         parent::populateState('hits', 'desc');
     }
 
-    
+
 }
 ?>

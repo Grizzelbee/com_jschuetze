@@ -1,23 +1,20 @@
-<?php 
+<?php
 // *********************************************************************//
 // Project      : jSchuetze for Joomla                                  //
 // @package     : com_jSchuetze                                         //
 // @file        : admin/views/lendings/view.html.php                    //
 // @implements  : Class jSchuetzeViewlendings                           //
 // @description : Main-entry for the lendings-ListView                  //
-// Version      : 1.0.7                                                 //
+// Version      : 2.0.0                                                 //
 // *********************************************************************//
 // no direct access to this file
-defined('_JEXEC') or die( 'Restricted Access' ); 
-jimport('joomla.application.component.view'); 
+defined('_JEXEC') or die( 'Restricted Access' );
+jimport('joomla.application.component.view');
 
 class jSchuetzeViewLendings extends JViewLegacy
-{ 
-    function display($tpl = null) 
+{
+    function display($tpl = null)
     {
-        // Add Toolbar to View
-        $this->addToolbar();
-        
         // Get data from the model
         $this->pagination = $this->get( 'Pagination' );
         $this->items	  = $this->get( 'Items' );
@@ -29,9 +26,14 @@ class jSchuetzeViewLendings extends JViewLegacy
 
         // include custom fields
         require_once JPATH_COMPONENT .'/models/fields/member.php';
-        
-        parent::display($tpl); 
-    } 
+
+        // Add Toolbar to View
+        jschuetzeHelper::addSubmenu('members');
+        $this-> addToolbar();
+        $this->sidebar = JHtmlSidebar::render();
+
+        parent::display($tpl);
+    }
 
     function addToolbar()
     {
@@ -45,9 +47,33 @@ class jSchuetzeViewLendings extends JViewLegacy
         JToolBarHelper::divider();
         JToolBarHelper::publishList('lendings.publish');
         JToolBarHelper::unpublishList('lendings.unpublish');
+
+       JHtmlSidebar::setAction('index.php?option=com_jschuetze');
+
+       JHtmlSidebar::addFilter(
+          JText::_('JOPTION_SELECT_PUBLISHED'),
+          'filter_published',
+          JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true)
+       );
+
+       JHtmlSidebar::addFilter(
+          JText::_('COM_JSCHUETZE_CHOOSE_MEMBER'),
+          'filter_member',
+          JHtml::_('select.options', JFormFieldMember::getOptions(), 'value', 'text', $this->state->get('filter.member'), true)
+       );
+
     }
-    
-    function getAddImage($rowID, $items) 
+
+   protected function getSortFields()
+   {
+      return array(
+         'ordering' => JText::_('JGRID_HEADING_ORDERING'),
+         'published' => JText::_('JSTATUS'),
+         'id' => JText::_('JGRID_HEADING_ID')
+      );
+   }
+
+    function getAddImage($rowID, $items)
     {
         if ($items == 0){
             $ausgabe = '';
@@ -58,5 +84,5 @@ class jSchuetzeViewLendings extends JViewLegacy
         }
         return $ausgabe;
     }
-} 
+}
 ?>

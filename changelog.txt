@@ -1,5 +1,11 @@
 Changelog für com_jSchuetze
 ---------------------------
+Version 2.0.0
+    [-] Komponente ist nicht mehr zu Joomla 2.x kompatibel
+    [+] Volle Kompatibilität zu Joomla 3 hergestellt
+    [+] An Look & Feel von Joomla 3 angeopasst.
+2014-06-01, Hanjo Hingsen
+
 Version 1.1.6
     [!] Adress-Seite liefert bei fehlender eMailadresse keinen Fehler mehr.
     [+] Im View Profile können jetzt auch Eintritt und Eintritt in die Bruderschaft geändert werden
@@ -15,7 +21,7 @@ Version 1.1.4
         Das ist behoben und der Reiter wird wieder korrekt angezeigt.
     [!] Es werden nur noch freigegebene Auszeichnungen in dem Drop-Down-Field zur Auswahl angeboten
     [+] Freigegebene Auszeichnungen werden jetzt in der Schützenvita angezeigt
-    [+] Unterstützung für Tabs by NoNumber.nl eingebaut 
+    [+] Unterstützung für Tabs by NoNumber.nl eingebaut
     [+] Unterstützung für Core Design MagicTabs eingebaut (noch ungetestet)
     [+] Unterstützung für Uygun Tabs by JoomlaBusiness.net eingebaut (noch ungetestet)
     [-] Die DejaVu Schriften aus dem PDF-Paket entfernt um Platz zu sparen. Die werden ohnehin nicht verwendet.
@@ -52,7 +58,7 @@ Version 1.1.2
 Version 1.1.1
     [+] Opt-In Möglichkeit eingebaut, um aus SCET per eMail Benachrichtigungen über Terminänderungen
         zu erhalten.
-    [+] Im Leihgaben-View im Backend einen Filter über die Zugmitglieder hinzugefügt   
+    [+] Im Leihgaben-View im Backend einen Filter über die Zugmitglieder hinzugefügt
 2013-07-10
 
 Version 1.1.0
@@ -62,7 +68,7 @@ Version 1.1.0
 
 Version 1.0.9
     [+] Neuen Front-End-View für die Adresslisten eingebaut
-        -> Es können eine interne Adressliste und ein Liste 
+        -> Es können eine interne Adressliste und ein Liste
            für die Bruderschaftsmeldung erstellt werden.
     [+] Adressliste kann als PDF heruntergeladen werden
     [+] Adressliste kann als CSV heruntergeladen werden
@@ -87,12 +93,12 @@ Version 1.0.6
 2013-05-14
 
 Version 1.0.5
-    [+] Feld Zug bei den Mitgliedsauszeichnugen eingeführt; dadurch kann die Königsseite 
+    [+] Feld Zug bei den Mitgliedsauszeichnugen eingeführt; dadurch kann die Königsseite
         auch vernüftig beim Corps oder der Bruderschaft eingesetzt werden.
 2013-05-07
 
 Version 1.0.4
-    [+] Die Seiten haben jetzt einen Joomla-konformen Header, der eine gestichelte Linie und 
+    [+] Die Seiten haben jetzt einen Joomla-konformen Header, der eine gestichelte Linie und
         den Titel des Menülinks zeigt
     [~] Headerausgabe angepasst; Die Seitenüberschrift wird jetzt automatisch auf das Bild
         zentiert.
