@@ -5,7 +5,7 @@
 // @file        : site/models/profilephp                                //
 // @implements  : Class jSchuetzeModelProfile                           //
 // @description : Model for the DB-Manipulation of jSchuetze            //
-// Version      : 1.1.6                                                 //
+// Version      : 2.0.1                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -33,9 +33,9 @@ class jSchuetzeModelProfile extends JModelLegacy
 
     public function save($data)
     {
-    	$data['geburtstag']            = JFactory::getDate($data['geburtstag'], 'UTC')->toMySQL();
-    	$data['eintritt']              = JFactory::getDate($data['eintritt'], 'UTC')->toMySQL();
-    	$data['eintritt_bruderschaft'] = JFactory::getDate($data['eintritt_bruderschaft'], 'UTC')->toMySQL();
+    	$data['geburtstag']            = JFactory::getDate($data['geburtstag'], 'UTC')->toSQL();
+    	$data['eintritt']              = JFactory::getDate($data['eintritt'], 'UTC')->toSQL();
+    	$data['eintritt_bruderschaft'] = JFactory::getDate($data['eintritt_bruderschaft'], 'UTC')->toSQL();
     	
         $db		= $this->getDbo();
 		$query	= $db->getQuery(true);

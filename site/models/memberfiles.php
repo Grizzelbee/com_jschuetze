@@ -175,21 +175,21 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         $cont  = sprintf($tabTag, $member->vorname.' '.$member->name);
         $cont .= $logoImage;
         $cont .= '<div class="contentColumn">';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_NAME')      .':<br />';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_NAME')      .':<br />';
         $cont .= '<div class="inhalt">'.$member->vorname.' '.$member->name.'</div></div><br />';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_RANK')      .':<br />';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_RANK')      .':<br />';
         $cont .= '<div class="inhalt">'.$member->rang.'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_RANK_SINCE').':<br />';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_RANK_SINCE').':<br />';
         $cont .= '<div class="inhalt">'.$this->getGermanLongDate(strtotime($member->funktion_seit)).'</div></div>';
         if (!empty($member->funktion)){
-            $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_FUNCTION').':<br />';
+            $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_FUNCTION').':<br />';
             $cont .= '<div class="inhalt">'.$member->funktion.'</div></div>';
         }
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT').':<br />';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_BEITRITT').':<br />';
         $cont .= '<div class="inhalt">'.$this->getGermanLongDate(strtotime($member->beitritt)).'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_BEITRITT_BRUDER').':<br />';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_BEITRITT_BRUDER').':<br />';
         $cont .= '<div class="inhalt">'.$this->getGermanLongDate(strtotime($member->beitritt_bruder)).'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_STATUS').':<br />';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_STATUS').':<br />';
         $cont .= '<div class="inhalt">'.$member->status.'</div></div>';
         $cont .= '</div>';
         $cont .= $memberImage;
@@ -204,7 +204,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         $cont .= $logoImage;
         $cont .= '<div class="contentColumn">';
         foreach($koenigschronik as $k => $koenig):
-            $cont .= '<div class="label">'.$koenig->periode.':<br />';
+            $cont .= '<div class="member_label">'.$koenig->periode.':<br />';
             $cont .= '<div class="inhalt">'.$koenig->auszeichnung.'</div></div>';
         endforeach;
         $cont .= '</div>';
@@ -225,7 +225,7 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
                 } else {
                     $enddate = $this->getGermanLongDate(strtotime($vita->funktion_bis));
                 };
-            $cont .= '<div class="label">'.$vita->name.':<br />';
+            $cont .= '<div class="member_label">'.$vita->name.':<br />';
             if ( $vita->award == 0) {
                 $cont .= '<div class="inhalt">'.$this->getGermanLongDate(strtotime($vita->funktion_seit)).' '.JText::_('COM_JSCHUETZE_UNTIL').' '. $enddate.'</div></div>';
             } else {
@@ -257,13 +257,13 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
         }
         $member->email_priv = ($member->email_priv != '')? JHTML::_('email.cloak',$member->email_priv):'N/A';
         $cont .= '<div class="contentColumn">';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_NAME')  .':<br /><div class="inhalt">'.$member->vorname.' '.$member->name.'</div></div><br />';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_STREET').':<br /><div class="inhalt">'.$member->strasse.'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_TOWN')  .':<br /><div class="inhalt">'.$member->plz.' '.$member->ort.'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_PHONE') .':<br /><div class="inhalt">'.$member->tel.'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_MOBILE').':<br /><div class="inhalt">'.$member->mobile.'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.$member->email_priv.'</div></div>';
-        $cont .= '<div class="label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .':<br /><div class="inhalt">'.date('d.m.Y', strtotime($member->geburtstag)).'</div></div>';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_NAME')  .':<br /><div class="inhalt">'.$member->vorname.' '.$member->name.'</div></div><br />';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_STREET').':<br /><div class="inhalt">'.$member->strasse.'</div></div>';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_TOWN')  .':<br /><div class="inhalt">'.$member->plz.' '.$member->ort.'</div></div>';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_PHONE') .':<br /><div class="inhalt">'.$member->tel.'</div></div>';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_MOBILE').':<br /><div class="inhalt">'.$member->mobile.'</div></div>';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_EMAIL') .':<br /><div class="inhalt">'.$member->email_priv.'</div></div>';
+        $cont .= '<div class="member_label">'.JText::_('COM_JSCHUETZE_BIRTHDAY') .':<br /><div class="inhalt">'.date('d.m.Y', strtotime($member->geburtstag)).'</div></div>';
         $cont .= '</div>';
         $cont .= $memberImage;
         $cont .= $tabEndTag;
@@ -281,7 +281,8 @@ class jSchuetzeModelMemberfiles extends JModelLegacy
             $cont .= $logoImage;
             $cont .= '<div class="contentColumn">';
             foreach ($lendings as $l => $lending):
-                $cont .= '<div class="label" style="text-align: justify">'.date('d.m.Y', strtotime($lending->ausgabe)).': '.$lending->anzahl.' '.$lending->item.'</div>';
+				$cont .= '<div class="member_label">'.date('d.m.Y', strtotime($lending->ausgabe)).':<br /><div class="inhalt">'.$lending->anzahl.' '.$lending->item.'</div></div>';
+                //$cont .= '<div class="member_label" style="text-align: justify">'.date('d.m.Y', strtotime($lending->ausgabe)).': '.$lending->anzahl.' '.$lending->item.'</div>';
             endforeach;
             $cont .= '</div>';
             $cont .= $memberImage;

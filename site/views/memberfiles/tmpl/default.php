@@ -34,7 +34,7 @@ $this->model->setPagehit($menutitle);
     if ( $this->params->get('show_page_heading') == 1) 
     {
     ?>
-        <h1 style="vertical-align:middle;"><?php echo $this->params->get('page_heading'); ?></h1><p />
+        <h1 class="memberfiles_h1"><?php echo $this->params->get('page_heading'); ?></h1><p />
         <div style="width:100%; text-align: justify; text-justify: newspaper"><?php echo $this->params->get('preamble'); ?></div>
         <p style="clear:both;"></p>
     <?php

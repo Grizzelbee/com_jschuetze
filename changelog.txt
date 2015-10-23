@@ -1,9 +1,19 @@
 Changelog für com_jSchuetze
 ---------------------------
+Version 2.0.2
+    [!] Mitgliederliste funktioniert jetzt auf verschiedenen Templates richtig. 
+        Da gab es Darstellungsprobleme.
+    [~] Ausgeliehene Sachen werden jetzt etwas anders dargestellt.   
+2015-10-23, Hanjo Hingsen
+
+Version 2.0.1
+    [!] Änderung des Schützenprofils brach mit einer Fehlermeldung ab
+2015-01-29, Hanjo Hingsen
+
 Version 2.0.0
     [-] Komponente ist nicht mehr zu Joomla 2.x kompatibel
     [+] Volle Kompatibilität zu Joomla 3 hergestellt
-    [+] An Look & Feel von Joomla 3 angeopasst.
+    [+] An Look & Feel von Joomla 3 angepasst.
 2014-06-01, Hanjo Hingsen
 
 Version 1.1.6

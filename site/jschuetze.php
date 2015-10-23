@@ -5,13 +5,13 @@
 // @file        : site/jschuetze.php (Joomla-Entry-File)                //
 // @implements  :                                                       //
 // @description : Main-Frontend-Entry-File for the jSchuetze-Component  //
-// Version      : 2.0.0                                                 //
+// Version      : 2.0.2                                                 //
 // Signed-off-by: Hanjo Hingsen <hanjo@hingsen.de>                      //
 // *********************************************************************//
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
-define('_JSCHUETZE_VERSION','2.0.0');
+define('_JSCHUETZE_VERSION','2.0.2');
 
 // import joomla controller library
 jimport('joomla.application.component.controller');

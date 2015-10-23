@@ -2,6 +2,13 @@
 
 .dummy{}
 
+.memberfiles_h1{
+    font-size:2.3em;
+    font-weight:bold;
+	vertical-align:middle;
+	padding-top:20px;
+}
+
 .lendingsContainer{
     width:100%;
     float:left;
@@ -18,18 +25,22 @@
 .contentColumn{    
     float:left;
     text-align:left;
+	width:50%;
 }
 
-
-.label{
+.member_label{
     font-size:1.0em;
     font-weight:bold;
     padding-left:10px;
     padding-bottom:4px; 
+	color:#888;
+	background:transparent;
 }
 .inhalt{
     font-size:1.4em;
     line-height:1.4em;
+	color:black;
+	background:transparent;
 }
 
 .memberimage{
