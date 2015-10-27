@@ -5,7 +5,7 @@
 // @file        : admin/views/members/tmpl/default.php                  //
 // @implements  :                                                       //
 // @description : Template for the Members-List-View                    //
-// Version      : 2.0.0                                                 //
+// Version      : 2.1.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC')or die('Restricted access');
@@ -83,14 +83,14 @@ $sortFields = $this->getSortFields();
                 <th width="5%" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_FUNCTION', 'funktion', $this->listDirn, $this->listOrder); ?>
                 </th>
+                <th width="5%" align="center">
+                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_STATUS', 'memberstatus', $this->listDirn, $this->listOrder); ?>
+                </th>
                 <th width="5%" class="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_MEMBERPAGE', 'published', $this->listDirn, $this->listOrder); ?>
                 </th>
                 <th width="5%" class="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_SCET_MAILS', 'scet_mail_notification', $this->listDirn, $this->listOrder); ?>
-                </th>
-                <th width="5%" align="center">
-                    <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_ORT', 'ort', $this->listDirn, $this->listOrder); ?>
                 </th>
                 <th width="80px" align="center">
                     <?php echo JHTML::_('grid.sort', 'COM_JSCHUETZE_BEITRITT', 'beitritt', $this->listDirn, $this->listOrder); ?>
@@ -129,9 +129,9 @@ $sortFields = $this->getSortFields();
                         <td ><?php echo $item->juser;?></td>
                         <td ><?php echo $item->rang;?></td>
                         <td ><?php echo $item->funktion;?></td>
+                        <td ><?php echo $item->memberstatus;?></td>
                         <td class="center"><?php echo JHTML::_('jgrid.published', $item->published, $i, 'members.' ); ?></td>
                         <td class="center"><?php echo JHTML::_('jgrid.published', $item->scet_mail_notification, $i, 'members.scet_mail_notification' ); ?></td>
-                        <td ><?php echo $item->ort;?></td>
                         <td ><?php echo $item->beitritt;?></td>
                         <td><?php echo $item->id; ?></td>
                     </tr>

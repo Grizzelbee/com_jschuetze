@@ -1,5 +1,14 @@
 Changelog für com_jSchuetze
 ---------------------------
+Version 2.1.0
+	[!] Das Feld Status im Formular Mitgleid ist wieder zur richtigen Referenztabelle verknüpft.
+	[+] Datumsformate sind jetzt deutsch
+	[!] Datumsangaben können jetzt in beliebiger Notation angegeben werden und werden korrekt gespeichert.
+	[+] Wenn ein Datumsfeld beim Speichern leer war, ist es das nach dem Laden auch wieder.
+	[+] In der Mitgliederliste wird jetzt der Status der Person angezeigt
+	[-] In der Mitgliederliste wird der Wohnort jetzt nicht mehr angezeigt
+2015-10-27, Hanjo Hingsen
+
 Version 2.0.2
     [!] Mitgliederliste funktioniert jetzt auf verschiedenen Templates richtig. 
         Da gab es Darstellungsprobleme.

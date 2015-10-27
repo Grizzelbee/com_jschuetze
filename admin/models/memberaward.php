@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelMemberaward                       //
 // @description : Model for the DB-Manipulation of a single             //
 //                jSchuetze-memberaward; not for the list               //
-// Version      : 1.0.0                                                 //
+// Version      : 2.1.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -66,9 +66,21 @@ class jSchuetzeModelMemberaward extends JModelAdmin
         if (empty($data))
         {
             $data = $this->getItem();
+            if ($data->auszeichnungsdatum == 0) {
+            	$data->auszeichnungsdatum = '';
+            }            
         }
         return $data;	
     }
     
+    public function save($data){
+    	if ($data['auszeichnungsdatum'] == '') {
+    		$data['auszeichnungsdatum'] = 0;
+    	}else {
+    		$data['auszeichnungsdatum']	= JFactory::getDate($data['auszeichnungsdatum'], 'UTC')->toSQL();
+    	}
+    	
+    	return parent::save($data);
+    }
 }
 ?>

@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModellending                           //
 // @description : Model for the DB-Manipulation of a single             //
 //                jSchuetze-lending; not for the list                   //
-// Version      : 1.0.7                                                 //
+// Version      : 2.1.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -63,6 +63,12 @@ class jSchuetzeModelLending extends JModelAdmin
         if (empty($data))
         {
             $data = $this->getItem();
+            if ($data->ausgabe == 0) {
+            	$data->ausgabe = '';
+            }            
+            if ($data->rueckgabe == 0) {
+            	$data->rueckgabe = '';
+            }            
             if ($data->ordering == 0)
             {
                 $data->ordering = $this->getNextOrderingNr();
@@ -131,6 +137,16 @@ class jSchuetzeModelLending extends JModelAdmin
             // Neuer Datensatz !
             $result = $this->updateBestand($array[fk_fundus], $array[anzahl_aus]);
         }
+      	if ($array['ausgabe'] == '') {
+       		$array['ausgabe'] = 0;
+       	}else {
+       		$array['ausgabe'] = JFactory::getDate($array['ausgabe'], 'UTC')->toSQL();
+       	}
+       	if ($array['rueckgabe'] == '') {
+      		$array['rueckgabe'] = 0;
+       	}else {
+       		$array['rueckgabe'] = JFactory::getDate($array['rueckgabe'], 'UTC')->toSQL();
+       	}
         
         return parent::save($array);
     }

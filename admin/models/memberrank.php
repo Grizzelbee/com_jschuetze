@@ -66,9 +66,29 @@ class jSchuetzeModelMemberrank extends JModelAdmin
         if (empty($data))
         {
             $data = $this->getItem();
+            if ($data->funktion_seit == 0) {
+            	$data->funktion_seit = '';
+            }            
+            if ($data->funktion_bis == 0) {
+            	$data->funktion_bis = '';
+            }            
         }
         return $data;	
     }
     
+    public function save($data){
+    	if ($data['funktion_seit'] == '') {
+    		$data['funktion_seit'] = 0;
+    	}else {
+    		$data['funktion_seit']	= JFactory::getDate($data['funktion_seit'], 'UTC')->toSQL();
+    	}
+    	if ($data['funktion_bis'] == '') {
+    		$data['funktion_bis'] = 0;
+    	}else {
+	    	$data['funktion_bis'] = JFactory::getDate($data['funktion_bis'], 'UTC')->toSQL();
+    	}
+    	 
+    	return parent::save($data);
+    }
 }
 ?>

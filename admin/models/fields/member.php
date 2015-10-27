@@ -29,7 +29,7 @@ class JFormFieldMember extends JFormFieldList
         // Es sollen nicht immer alle in der Datenbank befindlichen Personen geliefert werden.
         // Deshalb kann genauer unterschieden werden
         // $group = 0 => ALLE Personen in der Datenbank (default)
-        // $group = 1 => ALLE verÃ¶ffentlichten Zugmitglieder
+        // $group = 1 => ALLE veröffentlichten Zugmitglieder
         // $group = 2 => Alle Lebenspartner 
         // $group = 3 => ALLE aktiven/passiven/ausgeschiedenen Zugmitglieder; Also alle, die keine Lebenspartner sind
 

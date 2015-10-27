@@ -6,7 +6,7 @@
 // @implements  : Class jSchuetzeModelMember                            //
 // @description : Model for the DB-Manipulation of a single             //
 //                jSchuetze-Member; not for the list                    //
-// Version      : 1.1.1                                                 //
+// Version      : 2.1.0                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted Access' ); 
@@ -67,6 +67,21 @@ class jSchuetzeModelMember extends JModelAdmin
         {
             $data = $this->getItem();
             
+            if ($data->geburtstag == 0) {
+            	$data->geburtstag = '';
+            }            
+            if ($data->beitritt == 0) {
+            	$data->beitritt = '';
+            }
+            if ($data->austritt == 0) {
+            	$data->austritt = '';
+            }
+            if ($data->austritt_bruder == 0) {
+            	$data->austritt_bruder = '';
+            }
+            if ($data->eintritt_sch_wesen == 0) {
+            	$data->eintritt_sch_wesen = '';
+            }
             if ($data->ordering == 0)
             {
                 $data->ordering = $this->getNextOrderingNr();
@@ -104,7 +119,41 @@ class jSchuetzeModelMember extends JModelAdmin
         
         return $db->getAffectedRows();
     }
-    
+  
+    public function save($data){
+    	if ($data['geburtstag'] == '') {
+    		$data['geburtstag'] = 0;
+    	}else {
+    		$data['geburtstag']	= JFactory::getDate($data['geburtstag'], 'UTC')->toSQL();
+    	}
+    	if ($data['beitritt'] == '') {
+    		$data['beitritt'] = 0;
+    	}else {
+	    	$data['beitritt'] = JFactory::getDate($data['beitritt'], 'UTC')->toSQL();
+    	}
+    	if ($data['austritt'] == '') {
+    		$data['austritt'] = 0;
+    	}else {
+    		$data['austritt'] = JFactory::getDate($data['austritt'], 'UTC')->toSQL();
+    	}
+    	if ($data['beitritt_bruder'] == '') {
+    		$data['beitritt_bruder'] = 0;
+    	}else {
+    		$data['beitritt_bruder'] = JFactory::getDate($data['beitritt_bruder'], 'UTC')->toSQL();
+    	}
+    	if ($data['austritt_bruder'] == '') {
+    		$data['austritt_bruder'] = 0;
+    	}else {
+    		$data['austritt_bruder'] = JFactory::getDate($data['austritt_bruder'], 'UTC')->toSQL();
+    	}
+    	if ($data['eintritt_sch_wesen'] == '') {
+    		$data['eintritt_sch_wesen'] = 0;
+    	}else {
+    		$data['eintritt_sch_wesen'] = JFactory::getDate($data['eintritt_sch_wesen'], 'UTC')->toSQL();
+    	}
+    	 
+    	return parent::save($data);
+    }
     
     
 }

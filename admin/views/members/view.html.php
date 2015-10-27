@@ -17,7 +17,7 @@ class jSchuetzeViewMembers extends JViewLegacy
     {
         // Get data from the model
         $this->pagination = $this->get( 'Pagination' );
-        $this->items	     = $this->get( 'Items' );
+        $this->items	  = $this->get( 'Items' );
         $this->state      = $this->get( 'State' );
 
         // Get order state

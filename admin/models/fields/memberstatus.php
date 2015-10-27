@@ -5,7 +5,7 @@
 // @file        : admin/models/fields/status.php                        //
 // @implements  : Class JFormFieldStatus                                //
 // @description : Field to select one of the Status in jSchutze         //
-// Version      : 1.0.0                                                 //
+// Version      : 2.0.3                                                 //
 // *********************************************************************//
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
@@ -19,7 +19,7 @@ JFormHelper::loadFieldClass('list');
  *
  * @since		1.6
  */
-class JFormFieldStatus extends JFormFieldList
+class JFormFieldMemberstatus extends JFormFieldList
 {
 	/**
 	 * The form field type.
@@ -27,7 +27,7 @@ class JFormFieldStatus extends JFormFieldList
 	 * @var		string
 	 * @since	1.6
 	 */
-	protected $type = 'Status';
+	protected $type = 'Memberstatus';
  
 	/**
 	 * Method to get the field options.
